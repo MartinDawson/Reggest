@@ -29,14 +29,14 @@ const plugins = [
     title: 'Reggest',
     hash: true,
     favicon: path.resolve(__dirname, 'wwwroot/favicon.ico'),
-    template: path.resolve(__dirname, 'wwwroot/components/app/app.ejs'),
+    template: path.resolve(__dirname, 'Components/app/app.ejs'),
     env: process.env.NODE_ENV,
   }),
 ];
 let devtool = false;
 
 const entry = {
-  app: './wwwroot/components/app/appContainer.js',
+  app: './Components/app/appContainer.js',
 };
 
 if (isInProduction) {
@@ -62,9 +62,9 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.jsx?$/,
+        test: /\.js$/,
         include: [
-          path.resolve(__dirname, 'wwwroot/components'),
+          path.resolve(__dirname, 'Components'),
         ],
         loader: 'babel-loader',
       },

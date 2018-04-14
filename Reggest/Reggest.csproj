@@ -3,11 +3,73 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="Components\app\app.ejs" />
+    <Content Include="Components\app\app.js" />
+    <Content Include="Components\app\appContainer.js" />
+    <Content Include="Components\app\environment\environment.js" />
+    <Content Include="Components\app\routing\routeConfig.js" />
+    <Content Include="Components\app\routing\router.js" />
+    <Content Include="Components\app\store\store.js" />
+    <Content Include="Components\errorPage\errorPage.js" />
+    <Content Include="Components\errorPage\errorPage.less" />
+    <Content Include="Components\errorPage\errorPageContainer.js" />
+    <Content Include="Components\GraphQl\AppMutation.cs" />
+    <Content Include="Components\GraphQl\AppQuery.cs" />
+    <Content Include="Components\GraphQl\AppSchema.cs" />
+    <Content Include="Components\icons\cross.js" />
+    <Content Include="Components\icons\spinner.js" />
+    <Content Include="Components\legal\cookieNotice.js" />
+    <Content Include="Components\legal\cookieNoticeContainer.js" />
+    <Content Include="Components\legal\imprint.js" />
+    <Content Include="Components\legal\imprint.less" />
+    <Content Include="Components\legal\imprintContainer.js" />
+    <Content Include="Components\legal\privacyPolicy.js" />
+    <Content Include="Components\legal\privacyPolicyContainer.js" />
+    <Content Include="Components\legal\termsAndConditions.js" />
+    <Content Include="Components\legal\termsAndConditionsContainer.js" />
+    <Content Include="Components\shared\button\button.js" />
+    <Content Include="Components\shared\button\button.less" />
+    <Content Include="Components\shared\button\linkButton.jsx" />
+    <Content Include="Components\shared\button\modalButton.jsx" />
+    <Content Include="Components\shared\button\modalButtonContainer.js" />
+    <Content Include="Components\shared\button\spinnerButton.jsx" />
+    <Content Include="Components\shared\button\spinnerButton.less" />
+    <Content Include="Components\shared\displayType.js" />
+    <Content Include="Components\shared\errorBoundary.js" />
+    <Content Include="Components\shared\modal\actions.js" />
+    <Content Include="Components\shared\modal\modal.js" />
+    <Content Include="Components\shared\modal\modal.less" />
+    <Content Include="Components\shared\modal\modalContainer.js" />
+    <Content Include="Components\shared\modal\reducer.js" />
+    <Content Include="Components\shared\overlay\overlay.js" />
+    <Content Include="Components\shared\overlay\overlay.less" />
+    <Content Include="Components\shared\popup\actions.js" />
+    <Content Include="Components\shared\popup\popup.js" />
+    <Content Include="Components\shared\popup\popup.less" />
+    <Content Include="Components\shared\popup\popups.js" />
+    <Content Include="Components\shared\popup\popups.less" />
+    <Content Include="Components\shared\popup\popupsContainer.js" />
+    <Content Include="Components\shared\popup\reducer.js" />
+    <Content Include="Components\shared\sizes.js" />
+    <Content Include="Components\shared\withDisplayType.js" />
+    <Content Include="Components\shared\withErrorBoundary.js" />
+    <Content Include="Components\styles\colors.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.7.0" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.2.2" />
+    <PackageReference Include="GraphQL" Version="2.0.0-alpha-868" />
+    <PackageReference Include="GraphQL.Server.Transports.AspNetCore" Version="3.1.0-alpha0019" />
+    <PackageReference Include="GraphQL.Relay" Version="0.5.0" />
     <PackageReference Include="MailKit" Version="2.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.0" />
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="wwwroot\build\favicon.ico" />
+    <None Include="wwwroot\build\index.html" />
   </ItemGroup>
 </Project>
