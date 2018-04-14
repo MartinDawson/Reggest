@@ -33,7 +33,7 @@ const reducers = combineReducers({
   popup,
 });
 
-const store = createStore(reducers, null, middleWare);
+const store = createStore(reducers, {}, middleWare);
 
 store.dispatch(FarceActions.init());
 

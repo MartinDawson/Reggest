@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.0",
-    "signature": "dca672d55c2fc0e7bf96d3caa3441f6cf205b92e"
+    "signature": "14037dd5fc1370eaebe040a95a061b2220b1f94f"
   },
   "compilationOptions": {
     "defines": [
@@ -24,6 +24,7 @@
       "Reggest/1.0.0": {
         "dependencies": {
           "Autofac": "4.7.0",
+          "Autofac.Extensions.DependencyInjection": "4.2.2",
           "GraphQL": "2.0.0-alpha-868",
           "GraphQL.Relay": "0.5.0",
           "GraphQL.Server.Transports.AspNetCore": "3.1.0-alpha0019",
@@ -49,6 +50,19 @@
         },
         "compile": {
           "lib/netstandard1.1/Autofac.dll": {}
+        }
+      },
+      "Autofac.Extensions.DependencyInjection/4.2.2": {
+        "dependencies": {
+          "Autofac": "4.7.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "2.0.0",
+          "NETStandard.Library": "2.0.0"
+        },
+        "runtime": {
+          "lib/netstandard1.1/Autofac.Extensions.DependencyInjection.dll": {}
+        },
+        "compile": {
+          "lib/netstandard1.1/Autofac.Extensions.DependencyInjection.dll": {}
         }
       },
       "GraphQL/2.0.0-alpha-868": {
@@ -4482,6 +4496,13 @@
       "sha512": "sha512-y3QWj9NE+riKfgIxuouKJPmGchhj18jVSbw06S7PF8DMAnje2V74hF1yMzwXhtLkfB/L7oalhya4ZMNf80j73w==",
       "path": "autofac/4.7.0",
       "hashPath": "autofac.4.7.0.nupkg.sha512"
+    },
+    "Autofac.Extensions.DependencyInjection/4.2.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-nkspkD4qRKCvM1WG6bFLAuEwvbajEhEe7U3Q6XISCBEG6ZamOy52JACXnx3VumZksjPTylavkUZRzBBY7T2R+w==",
+      "path": "autofac.extensions.dependencyinjection/4.2.2",
+      "hashPath": "autofac.extensions.dependencyinjection.4.2.2.nupkg.sha512"
     },
     "GraphQL/2.0.0-alpha-868": {
       "type": "package",

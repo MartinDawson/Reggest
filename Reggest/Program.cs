@@ -19,8 +19,17 @@ namespace Reggest
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .ConfigureAppConfiguration(ConfigConfiguration)
                 .UseStartup<Startup>()
                 .UseKestrel(options => options.ConfigureEndpoints())
                 .Build();
+
+        private static void ConfigConfiguration(WebHostBuilderContext webHostBuilderContext, IConfigurationBuilder configurationBuilder)
+        {
+            configurationBuilder
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", false, true)
+                .AddEnvironmentVariables();
+        }
     }
 }

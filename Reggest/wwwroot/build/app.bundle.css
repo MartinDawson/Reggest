@@ -1,3 +1,18 @@
+.Components-shared-pageContent__pageContent--wputW {
+  margin: 0 auto;
+  width: 60%;
+  padding: 20px;
+  border-radius: 5px;
+  min-height: 75vh;
+}
+.Components-shared-pageContent__pageContent--wputW h1 {
+  font-size: 1.7em;
+  margin-top: 10px;
+}
+.Components-shared-pageContent__pageContent--wputW p {
+  letter-spacing: 0.06em;
+  line-height: 1.3em;
+}
 .Components-legal-imprint__imprintContent--2TNeO > h1 {
   margin-bottom: 40px;
 }

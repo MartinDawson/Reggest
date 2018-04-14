@@ -21,6 +21,8 @@ using GraphQL;
 using GraphQL.Relay.Types;
 using Reggest.Services;
 using Autofac.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.SpaServices.Webpack;
+using Microsoft.AspNetCore.Rewrite;
 
 namespace Reggest
 {
@@ -67,21 +69,50 @@ namespace Reggest
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            loggerFactory.AddConsole(_configuration.GetSection("Logging"));
+            loggerFactory.AddDebug();
+
             if (env.IsDevelopment())
             {
                 app.UseBrowserLink();
                 app.UseDeveloperExceptionPage();
+                app.UseDatabaseErrorPage();
+                app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
+                {
+                    ConfigFile = "./webpack.config.js"
+                });
             }
             else
             {
                 app.UseExceptionHandler("/Error");
             }
 
-            app.UseStaticFiles();
+            var options = new RewriteOptions();
 
-            app.UseMvc();
+            options.AddRedirectToHttps();
+
+            app.UseRewriter(options);
+            app.UseStaticFiles();
+            app.UseSession();
+            app.UseGraphQLHttp<AppSchema>(new GraphQLHttpOptions());
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    "app",
+                    "{controller}/{action}"
+                );
+
+                routes.MapSpaFallbackRoute(
+                    "default",
+                    new
+                    {
+                        controller = "App",
+                        action = "Index"
+                    }
+                );
+            });
         }
 
         private ContainerBuilder RegisterServices()
