@@ -1,3 +1,5 @@
+### Share date on r/fitness and r/xxfitness must be: 1.0.0 on the 21/04/2018 (MUST GET PERMISSION FIRST)
+
 [regest.com](https://www.reggest.com)
 
 ### The problem
@@ -14,6 +16,9 @@ Implement a simplistic QandA functionality type app that suggests the best fitne
 
 ### Current Target Audience
 - Beginners who are starting fitness in gyms, specifically users from r/fitness and r/xxfitness
+
+### Business Model
+- Free app
 
 ### Competitors
 - http://www.rohitnair.net/pp/: 
