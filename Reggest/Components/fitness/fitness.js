@@ -1,32 +1,19 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-import QAndA from '../qAndA/qAndA';
+import QAndA from '../qAndA/qAndAContainer';
 import styles from './fitness.less';
 
-const questionsAndAnswers = [
-  {
-    question: 'Are you looking for aesthetics or strength?',
-    answers: [
-      'aesthetics',
-      'strength',
-      'both',
-    ],
-  }, {
-    question: 'Are you okay with using barbells?',
-    answers: [
-      'yes',
-      'no',
-    ],
-  },
-];
-
-const Fitness = () => (
+const Fitness = ({ question }) => (
   <div className={styles.fitness}>
     <div>
-      {questionsAndAnswers.map(questionAndAnswers =>
-        <QAndA key={questionAndAnswers.question} {...questionAndAnswers} />)}
+      <QAndA question={question} />
     </div>
   </div>
 );
+
+Fitness.propTypes = {
+  question: PropTypes.object.isRequired,
+};
 
 export default Fitness;

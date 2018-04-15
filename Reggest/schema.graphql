@@ -1,0 +1,53 @@
+# source: https://localhost:8080/graphql
+# timestamp: Sun Apr 15 2018 17:00:04 GMT+0200 (W. Europe Daylight Time)
+
+type Answer implements Node {
+  """The Id of the Answer"""
+  answerId: Int!
+
+  """The Global Id of the Answer"""
+  id: ID!
+
+  """An answer to present to the user"""
+  answerText: String
+
+  """The question associated with this answer"""
+  question: Question
+}
+
+"""
+The `Date` scalar type represents a timestamp provided in UTC. `Date` expects
+timestamps to be formatted in accordance with the
+[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) standard.
+"""
+scalar Date
+
+scalar Decimal
+
+interface Node {
+  """Global node Id"""
+  id: ID
+}
+
+type Query {
+  """Fetches an object given its global Id"""
+  node(
+    """The global Id of the object"""
+    id: ID!
+  ): Node
+  question: Question
+}
+
+type Question implements Node {
+  """The Id of the Question"""
+  questionId: Int!
+
+  """The Global Id of the Question"""
+  id: ID!
+
+  """The question to ask the user"""
+  questionText: String
+
+  """The answers for this question"""
+  answers: [Answer]
+}

@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 
 import styles from './qAndA.less';
 
-const QAndA = ({ question, answers }) => (
+const QAndA = ({ questionText, answers }) => (
   <div className={styles.qAndA}>
-    <div className={styles.question}>{question}</div>
+    <div className={styles.question}>{questionText}</div>
     <div className={styles.answers}>
       {answers.map(answer => (
-        <div className={styles.answerContainer}>
-          <button key={answer} className={styles.answer}>{answer}</button>
+        <div key={answer.answerText} className={styles.answerContainer}>
+          <button className={styles.answer}>{answer.answerText}</button>
         </div>
       ))}
     </div>
@@ -17,9 +17,11 @@ const QAndA = ({ question, answers }) => (
 );
 
 QAndA.propTypes = {
-  question: PropTypes.string.isRequired,
+  questionText: PropTypes.string.isRequired,
   answers: PropTypes.arrayOf(
-    PropTypes.string.isRequired,
+    PropTypes.shape({
+      answerText: PropTypes.string.isRequired,
+    }).isRequired,
   ).isRequired,
 };
 

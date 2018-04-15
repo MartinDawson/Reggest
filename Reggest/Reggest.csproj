@@ -3,6 +3,12 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Components\legal\**" />
+    <Content Remove="Components\legal\**" />
+    <EmbeddedResource Remove="Components\legal\**" />
+    <None Remove="Components\legal\**" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Components\app\app.ejs" />
     <Content Include="Components\app\app.js" />
     <Content Include="Components\app\appContainer.js" />
@@ -18,15 +24,6 @@
     <Content Include="Components\GraphQl\AppSchema.cs" />
     <Content Include="Components\icons\cross.js" />
     <Content Include="Components\icons\spinner.js" />
-    <Content Include="Components\legal\cookieNotice.js" />
-    <Content Include="Components\legal\cookieNoticeContainer.js" />
-    <Content Include="Components\legal\imprint.js" />
-    <Content Include="Components\legal\imprint.less" />
-    <Content Include="Components\legal\imprintContainer.js" />
-    <Content Include="Components\legal\privacyPolicy.js" />
-    <Content Include="Components\legal\privacyPolicyContainer.js" />
-    <Content Include="Components\legal\termsAndConditions.js" />
-    <Content Include="Components\legal\termsAndConditionsContainer.js" />
     <Content Include="Components\shared\button\button.js" />
     <Content Include="Components\shared\button\button.less" />
     <Content Include="Components\shared\button\linkButton.jsx" />

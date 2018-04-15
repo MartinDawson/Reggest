@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
-using Microsoft.EntityFrameworkCore.ValueGeneration;
 using Reggest.Data;
 using System;
 
@@ -204,9 +203,6 @@ namespace Reggest.Migrations
                     b.Property<string>("AnswerText")
                         .IsRequired();
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired();
-
                     b.Property<int>("QuestionId");
 
                     b.HasKey("Id");
@@ -214,8 +210,6 @@ namespace Reggest.Migrations
                     b.HasIndex("QuestionId");
 
                     b.ToTable("Answers");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Answer");
                 });
 
             modelBuilder.Entity("Reggest.Components.qAndA.Question", b =>
@@ -223,37 +217,12 @@ namespace Reggest.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired();
-
                     b.Property<string>("QuestionText")
                         .IsRequired();
 
                     b.HasKey("Id");
 
                     b.ToTable("Questions");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Question");
-                });
-
-            modelBuilder.Entity("Reggest.Components.fitness.FitnessAnswer", b =>
-                {
-                    b.HasBaseType("Reggest.Components.qAndA.Answer");
-
-
-                    b.ToTable("FitnessAnswer");
-
-                    b.HasDiscriminator().HasValue("FitnessAnswer");
-                });
-
-            modelBuilder.Entity("Reggest.Components.fitness.FitnessQuestion", b =>
-                {
-                    b.HasBaseType("Reggest.Components.qAndA.Question");
-
-
-                    b.ToTable("FitnessQuestion");
-
-                    b.HasDiscriminator().HasValue("FitnessQuestion");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -28,7 +28,6 @@
 .Components-fitness-fitness__fitness--Ri77d {
   display: flex;
   justify-content: center;
-  padding-top: 20%;
 }
 .Components-shared-pageContent__pageContent--wputW {
   margin: 0 auto;
@@ -79,10 +78,22 @@
 }
 .Components-layouts-primaryLayout-primaryLayout__wrap--3Ov38 {
   min-height: 100%;
+  display: flex;
 }
 .Components-layouts-primaryLayout-primaryLayout__main--1G6a1 {
+  margin: 0 auto;
   overflow: auto;
   padding-bottom: 80px;
+  margin-top: 60px;
+}
+.Components-layouts-primaryLayout-primaryLayout__reggest--RIHSC {
+  font-size: 60px;
+  line-height: 38px;
+  font-family: "Ubuntu", arial, sans-serif;
+  font-weight: 700;
+  color: #0D0D0D;
+  margin-bottom: 40px;
+  display: inline-block;
 }
 .Components-footer-footer__footer--3S1n4 {
   position: relative;
@@ -96,6 +107,22 @@
 }
 .Components-footer-footer__footer--3S1n4 > a {
   margin: 10px;
+}
+.Components-shared-popup-popup__popup--24OYM {
+  color: #414141;
+  background-color: #ffffff;
+  border-radius: 2px;
+  padding: 8px;
+  text-align: center;
+}
+.Components-shared-popup-popups__popups--1m1KE {
+  border-radius: 5px;
+  font-size: 15px;
+  border: solid 1px #efefef;
+  letter-spacing: 0.1em;
+  width: 100%;
+  top: 0;
+  position: absolute;
 }
 body {
   margin: 0;

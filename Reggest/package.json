@@ -25,12 +25,12 @@
   "license": "UNLICENSED",
   "scripts": {
     "prestart": "cross-env NODE_ENV=development webpack",
-    "start": "npm-run-all --parallel development",
+    "start": "npm-run-all --parallel development relay-compiler:watch",
     "development": "cross-env ASPNETCORE_ENVIRONMENT=Development dotnet run",
-    "relay-compiler": "relay-compiler --src ./components --schema schema.graphql --extensions=js --extensions=jsx",
+    "relay-compiler": "relay-compiler --src ./components --schema schema.graphql",
     "relay-compiler:watch": "npm run relay-compiler -- --watch",
     "get-schema": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 graphql get-schema dev",
-    "lint": "eslint --fix --ext .jsx,.js components",
+    "lint": "eslint --fix --ext .js components",
     "clean": "rimraf ./wwwroot/build",
     "build-client": "cross-env NODE_ENV=production webpack",
     "build": "npm-run-all --sequential clean build-client"

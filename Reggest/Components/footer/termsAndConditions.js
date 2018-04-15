@@ -9,7 +9,7 @@ const TermsAndConditions = () => (
     <p>
       &quot;You&quot; and &quot;your&quot; refer to you, as a user of the Site.
       A &quot;user&quot; is someone who accesses,browses, crawls, scrapes, or in any
-      way uses the Site. &quot;We,&quot; &quot;us,&quot; and &quot;our&quot; refer to Reggest.
+      way uses the Site. &quot;We,&quot; &quot;us,&quot; and &quot;our&quot; refer to reggest.
       &quot;Content&quot; means text, images, photos, audio, video, location data,
       and all other forms of data or communication.
       &quot;Your Content&quot; means Content that you submit or transmit to, through, or in
@@ -17,13 +17,13 @@ const TermsAndConditions = () => (
       check-ins, messages, and information that you publicly display or displayed in
       your account profile.
       &quot;User Content&quot; means Content that users submit or transmit to, through,
-      or in connection with the Site. &quot;Reggest Content&quot; means Content that
+      or in connection with the Site. &quot;reggest Content&quot; means Content that
       we create and make available in connection with the Site.
       &quot;Third Party Content&quot; means Content that originates from parties other
-      than Reggest or its users, which is made available in connection with the Site.
+      than reggest or its users, which is made available in connection with the Site.
       &quot;Site Content&quot; means all of the Content that is made available in connection
       with the Site, including Your Content, User Content, Third Party Content,
-      and Reggest Content.
+      and reggest Content.
     </p>
     <ol>
       <li>
@@ -40,12 +40,12 @@ const TermsAndConditions = () => (
       <li>
         <h2>Disclaimer</h2>
         <p>
-          The materials on the Reggest website are provided &quot;as shown&quot;.
-          Reggest makes no warranties, expressed or implied, and hereby disclaims
+          The materials on the reggest website are provided &quot;as shown&quot;.
+          reggest makes no warranties, expressed or implied, and hereby disclaims
           and negates all other warranties, including without limitation, implied
           warranties or conditions of merchantability, fitness for a particular
           purpose, or non-infringement of intellectual property or other violation of rights.
-          Further, Reggest does not warrant or make any representations concerning the accuracy,
+          Further, reggest does not warrant or make any representations concerning the accuracy,
           likely results, or reliability of the use of the materials on its internet
           website or otherwise relating to such materials or on any sites linked to this site.
         </p>
@@ -53,7 +53,7 @@ const TermsAndConditions = () => (
       <li>
         <h2>Limitations</h2>
         <p>
-          In no event shall Reggest or its suppliers be liable for any damages (including, without
+          In no event shall reggest or its suppliers be liable for any damages (including, without
           limitation, damages for loss of data or profit, or due to business interruption)
           arising out of the use or inability to use the materials on our internet site or
           offered services, even if we or an authorized representative has been notified
@@ -66,7 +66,7 @@ const TermsAndConditions = () => (
         <h2>Revisions and Errors</h2>
         <p>
           The materials appearing on our website could include technical, typographical,
-          or photographic errors. Reggest does not warrant that any of the materials on
+          or photographic errors. reggest does not warrant that any of the materials on
           its website are accurate, complete, or current. We may make changes to the
           materials contained on its website at any time without notice.
         </p>
@@ -74,7 +74,7 @@ const TermsAndConditions = () => (
       <li>
         <h2>Links</h2>
         <p>
-          Reggest has not reviewed all of the sites linked to its internet website
+          reggest has not reviewed all of the sites linked to its internet website
           and is not responsible for the contents of any such linked site.
           The inclusion of any link does not imply endorsement by us of the site.
           Use of any such linked website is at the user&quot;s own risk.
@@ -83,7 +83,7 @@ const TermsAndConditions = () => (
       <li>
         <h2>Governing Law</h2>
         <p>
-          Any claim relating to the Reggest website shall be governed by the laws
+          Any claim relating to the reggest website shall be governed by the laws
           of the country of note without regard to its conflict of law provisions.
         </p>
       </li>
@@ -103,7 +103,7 @@ const TermsAndConditions = () => (
           but not limited to, text, graphics, audio clips, logos, buttons, images,
           digital downloads, data compilations, software, icons, html code and xml code,
           as well as all copyright, patent, trademark, trade dress, and other rights
-          therein, are owned or licensed by Reggest and its third-party information providers,
+          therein, are owned or licensed by reggest and its third-party information providers,
           and are protected by international intellectual property laws.
         </p>
       </li>

@@ -23,6 +23,8 @@ using Reggest.Services;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.AspNetCore.Rewrite;
+using Reggest.Components.qAndA;
+using Reggest.Repository;
 
 namespace Reggest
 {
@@ -133,7 +135,7 @@ namespace Reggest
                     return resolvedType.As<IGraphType>();
                 });
             });
-            builder.RegisterAssemblyTypes(assembly).AsClosedTypesOf(typeof(NodeGraphType<>));
+            builder.RegisterAssemblyTypes(assembly).AsClosedTypesOf(typeof(GraphQL.Relay.Types.NodeGraphType<>));
             builder.RegisterAssemblyTypes(assembly).AsClosedTypesOf(typeof(ObjectGraphType<>));
             builder.RegisterAssemblyTypes(assembly).AsClosedTypesOf(typeof(InterfaceGraphType<>));
             builder.RegisterAssemblyTypes(assembly).AsClosedTypesOf(typeof(MutationPayloadGraphType<,>));
@@ -143,6 +145,8 @@ namespace Reggest
             builder.RegisterType<AppMutation>();
             builder.RegisterType<AuthMessageSender>().As<IEmailSender>();
             builder.RegisterType<AuthMessageSender>().As<ISmsSender>();
+            builder.RegisterType<Repository<Question, ApplicationDbContext>>().As<IRepository<Question>>();
+            builder.RegisterType<Repository<Answer, ApplicationDbContext>>().As<IRepository<Answer>>();
 
             return builder;
         }

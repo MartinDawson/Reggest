@@ -14,7 +14,7 @@ namespace Reggest.Components.GraphQl
             var mutation = (AppMutation)resolveType(typeof(AppMutation));
 
             Query = query;
-            Mutation = mutation;
+            // Mutation = mutation;
         }
     }
 }

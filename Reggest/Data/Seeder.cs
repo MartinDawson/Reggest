@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Reggest.Components.fitness;
+using Reggest.Components.qAndA;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,12 +21,52 @@ namespace Reggest.Data
                     context.Database.Migrate();
 
                     SeedFitnessPlans(context);
+                    SeedQandA(context);
                     
                     context.SaveChanges();
                 }
             }
 
             return webHost;
+        }
+
+        private static void SeedQandA(ApplicationDbContext context)
+        {
+            var questions = new List<Question>
+            {
+                new Question
+                {
+                    QuestionText = "How many days a week do you want to do strength training (Not cardio) on average?",
+                    Answers = new List<Answer>
+                    {
+                        new Answer { AnswerText = "1-3" },
+                        new Answer { AnswerText = "4-5" },
+                        new Answer { AnswerText = "5+" },
+                    }
+                },
+                new Question
+                {
+                    QuestionText = "Are you comfortable and able to use 20kg (45lbs) bars?",
+                    Answers = new List<Answer>
+                    {
+                        new Answer { AnswerText = "Yes" },
+                        new Answer { AnswerText = "No" },
+                        new Answer { AnswerText = "Not sure" },
+                    }
+                },
+                new Question
+                {
+                    QuestionText = "What's your goal from doing strength training?",
+                    Answers = new List<Answer>
+                    {
+                        new Answer { AnswerText = "I want to look good naked" },
+                        new Answer { AnswerText = "I want to be stronger" },
+                        new Answer { AnswerText = "Both" },
+                    }
+                }
+            };
+
+            context.Questions.AddRange(questions.Where(question => !context.Questions.Any(x => x.QuestionText == question.QuestionText)));
         }
 
         private static void SeedFitnessPlans(ApplicationDbContext context)

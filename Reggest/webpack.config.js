@@ -26,7 +26,7 @@ const plugins = [
     },
   }),
   new HTMLPlugin({
-    title: 'Reggest',
+    title: 'reggest',
     hash: true,
     favicon: path.resolve(__dirname, 'wwwroot/favicon.ico'),
     template: path.resolve(__dirname, 'Components/app/app.ejs'),

@@ -23,9 +23,6 @@ namespace Reggest.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<FitnessQuestion>();
-            modelBuilder.Entity<FitnessAnswer>();
         }
     }
 }
