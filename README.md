@@ -1,6 +1,6 @@
 ### Share date on r/fitness and r/xxfitness must be: 1.0.0 on the 21/04/2018 (MUST GET PERMISSION FIRST)
 
-[regest.com](https://www.reggest.com)
+## [regest.com](https://www.reggest.com)
 
 ### The problem
 There are a lot of fitness plans in the world that overwhelm beginners
