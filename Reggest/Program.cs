@@ -7,6 +7,7 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Reggest.Data;
 
 namespace Reggest
 {
@@ -14,7 +15,11 @@ namespace Reggest
     {
         public static void Main(string[] args)
         {
-            BuildWebHost(args).Run();
+            var webHost = BuildWebHost(args).SeedData();
+
+            webHost.Wait();
+
+            webHost.Result.Run();
         }
 
         public static IWebHost BuildWebHost(string[] args) =>

@@ -13865,9 +13865,6 @@
   },
   "project": {
     "version": "1.0.0",
-    "restoreSettings": {
-      "hideWarningsAndErrors": true
-    },
     "restore": {
       "projectUniqueName": "I:\\Users\\Martin\\Reggest\\Reggest\\Reggest.csproj",
       "projectName": "Reggest",
@@ -13879,6 +13876,7 @@
         "I:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
+        "I:\\Users\\Martin\\Reggest\\Reggest\\NuGet.Config",
         "I:\\Users\\Martin\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "I:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -13904,42 +13902,42 @@
     "frameworks": {
       "netcoreapp2.0": {
         "dependencies": {
-          "GraphQL.Server.Transports.AspNetCore": {
+          "Autofac": {
             "target": "Package",
-            "version": "3.1.0-alpha0019"
-          },
-          "MailKit": {
-            "target": "Package",
-            "version": "2.0.2"
-          },
-          "GraphQL.Relay": {
-            "target": "Package",
-            "version": "0.5.0"
+            "version": "[4.7.0, )"
           },
           "Autofac.Extensions.DependencyInjection": {
             "target": "Package",
-            "version": "4.2.2"
-          },
-          "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
-            "target": "Package",
-            "version": "2.0.0"
+            "version": "[4.2.2, )"
           },
           "GraphQL": {
             "target": "Package",
-            "version": "2.0.0-alpha-868"
+            "version": "[2.0.0-alpha-868, )"
           },
-          "Microsoft.NETCore.App": {
+          "GraphQL.Relay": {
             "target": "Package",
-            "version": "2.0",
-            "autoReferenced": true
+            "version": "[0.5.0, )"
+          },
+          "GraphQL.Server.Transports.AspNetCore": {
+            "target": "Package",
+            "version": "[3.1.0-alpha0019, )"
+          },
+          "MailKit": {
+            "target": "Package",
+            "version": "[2.0.2, )"
           },
           "Microsoft.AspNetCore.All": {
             "target": "Package",
-            "version": "2.0.5"
+            "version": "[2.0.5, )"
           },
-          "Autofac": {
+          "Microsoft.NETCore.App": {
             "target": "Package",
-            "version": "4.7.0"
+            "version": "[2.0.0, )",
+            "autoReferenced": true
+          },
+          "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+            "target": "Package",
+            "version": "[2.0.0, )"
           }
         },
         "imports": [

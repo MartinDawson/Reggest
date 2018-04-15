@@ -19,7 +19,8 @@ module.exports = {
     'react/require-extension': 'off',
     'relay/graphql-syntax': 'error',
     'react/forbid-prop-types': 'off',
-    'react/jsx-filename-extension': 'off'
+    'react/jsx-filename-extension': 'off',
+    'jsx-a11y/anchor-is-valid': 'off'
   },
   overrides: [
     {

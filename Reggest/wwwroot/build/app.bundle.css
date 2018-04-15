@@ -1,3 +1,35 @@
+.Components-qAndA-qAndA__question--23UTf {
+  font-weight: 900;
+  color: #3e3e3e;
+  font-size: 26px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.Components-qAndA-qAndA__answerContainer--1BXkS {
+  width: 50%;
+  display: inline-block;
+}
+.Components-qAndA-qAndA__answer--2r1QH {
+  background-color: #ffffff;
+  box-shadow: 0 2px 60px 0 rgba(0, 0, 0, 0.08);
+  outline: none;
+  border: none;
+  padding: 35px 40px;
+  width: 95%;
+  margin: 10px auto;
+  display: block;
+  border-radius: 7px;
+  border: solid 1px transparent;
+}
+.Components-qAndA-qAndA__answer--2r1QH:hover {
+  border-color: #9ecaed;
+  box-shadow: 0 0 10px #9ecaed;
+}
+.Components-fitness-fitness__fitness--Ri77d {
+  display: flex;
+  justify-content: center;
+  padding-top: 20%;
+}
 .Components-shared-pageContent__pageContent--wputW {
   margin: 0 auto;
   width: 60%;
@@ -13,10 +45,10 @@
   letter-spacing: 0.06em;
   line-height: 1.3em;
 }
-.Components-legal-imprint__imprintContent--2TNeO > h1 {
+.Components-footer-imprint__imprintContent--15rLM > h1 {
   margin-bottom: 40px;
 }
-.Components-legal-imprint__imprintContent--2TNeO > div {
+.Components-footer-imprint__imprintContent--15rLM > div {
   font-size: 18px;
   margin: 10px 0px;
 }
@@ -41,6 +73,50 @@
 .Components-errorPage-errorPage__errorPage--1aS-z .Components-errorPage-errorPage__error--62KZC {
   letter-spacing: 0.06em;
   line-height: 1.3em;
+}
+.Components-layouts-primaryLayout-primaryLayout__primaryLayout--3FVjb {
+  height: 100%;
+}
+.Components-layouts-primaryLayout-primaryLayout__wrap--3Ov38 {
+  min-height: 100%;
+}
+.Components-layouts-primaryLayout-primaryLayout__main--1G6a1 {
+  overflow: auto;
+  padding-bottom: 80px;
+}
+.Components-footer-footer__footer--3S1n4 {
+  position: relative;
+  margin-top: -80px;
+  height: 80px;
+  width: 100%;
+  clear: both;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.Components-footer-footer__footer--3S1n4 > a {
+  margin: 10px;
+}
+body {
+  margin: 0;
+  background-color: #dcdcdc;
+}
+button {
+  cursor: pointer;
+}
+a {
+  text-decoration: none;
+  color: #393939;
+}
+html,
+body {
+  height: 100%;
+}
+#app {
+  height: 100%;
+}
+html {
+  font-family: verdana, arial, helvetica, sans-serif;
 }
 
 /*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAuYnVuZGxlLmNzcyIsInNvdXJjZVJvb3QiOiIifQ==*/

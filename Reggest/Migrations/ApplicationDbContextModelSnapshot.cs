@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
+using Microsoft.EntityFrameworkCore.ValueGeneration;
 using Reggest.Data;
 using System;
 
@@ -179,6 +180,82 @@ namespace Reggest.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("Reggest.Components.fitness.FitnessPlan", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("Link");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("FitnessPlans");
+                });
+
+            modelBuilder.Entity("Reggest.Components.qAndA.Answer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("AnswerText")
+                        .IsRequired();
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired();
+
+                    b.Property<int>("QuestionId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("QuestionId");
+
+                    b.ToTable("Answers");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Answer");
+                });
+
+            modelBuilder.Entity("Reggest.Components.qAndA.Question", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired();
+
+                    b.Property<string>("QuestionText")
+                        .IsRequired();
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Questions");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Question");
+                });
+
+            modelBuilder.Entity("Reggest.Components.fitness.FitnessAnswer", b =>
+                {
+                    b.HasBaseType("Reggest.Components.qAndA.Answer");
+
+
+                    b.ToTable("FitnessAnswer");
+
+                    b.HasDiscriminator().HasValue("FitnessAnswer");
+                });
+
+            modelBuilder.Entity("Reggest.Components.fitness.FitnessQuestion", b =>
+                {
+                    b.HasBaseType("Reggest.Components.qAndA.Question");
+
+
+                    b.ToTable("FitnessQuestion");
+
+                    b.HasDiscriminator().HasValue("FitnessQuestion");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole")
@@ -221,6 +298,14 @@ namespace Reggest.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser")
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Reggest.Components.qAndA.Answer", b =>
+                {
+                    b.HasOne("Reggest.Components.qAndA.Question", "Question")
+                        .WithMany("Answers")
+                        .HasForeignKey("QuestionId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
