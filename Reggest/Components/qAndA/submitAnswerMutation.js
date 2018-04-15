@@ -20,7 +20,7 @@ const mutation = graphql`
   }
 `;
 
-export default (id, dispatch) => {debugger
+export default (id, dispatch) => {
   const variables = {
     input: {
       id,

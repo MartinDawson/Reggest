@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash cb9cc8902828ef57a1b82e3f49055d81
+ * @relayHash 624c9d66b8ced03de2b9d0b0e3e9f192
  */
 
 /* eslint-disable */
@@ -12,15 +12,15 @@ import type { ConcreteRequest } from 'relay-runtime';
 export type submitAnswerMutationVariables = {|
   input: {
     clientMutationId?: ?string,
-    answerId: number,
+    id: number,
   },
 |};
 export type submitAnswerMutationResponse = {|
   +submitAnswer: ?{|
     +answer: {|
       +fitnessPlanAnswerPoints: ?$ReadOnlyArray<?{|
-        +points: number,
-        +fitnessPlan: {|
+        +points: ?number,
+        +fitnessPlan: ?{|
           +name: string,
         |},
       |}>,

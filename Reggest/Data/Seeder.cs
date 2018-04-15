@@ -44,22 +44,36 @@ namespace Reggest.Data
             return webHost;
         }
 
+        static void SetFitnessPlanAnswerPoints(this Answer answer, IDictionary<string, Match> fitnessPlanAnswerDictionary)
+        {
+            var fitnessPlanAnswerPoints = new List<FitnessPlanAnswerPoint>();
+
+            foreach (var fitnessPlanAnswerKeyValue in fitnessPlanAnswerDictionary)
+            {
+                var fitnssPlan = _fitnessPlanService.GetAll().Single(x => x.Name == fitnessPlanAnswerKeyValue.Key);
+
+                fitnessPlanAnswerPoints.Add(new FitnessPlanAnswerPoint
+                {
+                    FitnessPlan = fitnssPlan,
+                    Points = (int)fitnessPlanAnswerKeyValue.Value,
+                });
+            }
+
+            answer.FitnessPlanAnswerPoints = fitnessPlanAnswerPoints;
+        }
+
         private static void SeedQandA()
         {
-            List<FitnessPlanAnswerPoint> GetFitnessPlanAnswerPoints(IDictionary<string, Match> fitnessPlanAnswerDictionary)
+            Answer GetAnswer(string answerText, IDictionary<string, Match> fitnessPlanAnswerDictionary)
             {
-                var fitnessPlanAnswerPoints = new List<FitnessPlanAnswerPoint>();
-
-                foreach (var fitnessPlanAnswerKeyValue in fitnessPlanAnswerDictionary)
+                var answer = new Answer
                 {
-                    fitnessPlanAnswerPoints.Add(new FitnessPlanAnswerPoint
-                    {
-                        FitnessPlan = _fitnessPlanService.GetAll().Single(x => x.Name == fitnessPlanAnswerKeyValue.Key),
-                        Points = (int)fitnessPlanAnswerKeyValue.Value,
-                    });
-                }
+                    AnswerText = answerText,
+                };
 
-                return fitnessPlanAnswerPoints;
+                answer.SetFitnessPlanAnswerPoints(fitnessPlanAnswerDictionary);
+
+                return answer;
             }
 
             Questions = new List<Question>
@@ -69,30 +83,30 @@ namespace Reggest.Data
                     QuestionText = "How many days a week do you want to do strength training (Not cardio) on average?",
                     Answers = new List<Answer>
                     {
-                        new Answer { AnswerText = "1-3", FitnessPlanAnswerPoints = GetFitnessPlanAnswerPoints(new Dictionary<string, Match>{
+                        GetAnswer("1-3", new Dictionary<string, Match>{
                             { GZCLP, Match.No },
                             { StartingStrength, Match.No },
                             { StrongLifts, Match.No },
                             { StrongCurves, Match.No },
                             { ThinnerLeanerStronger, Match.Partial },
                             { DumbbellOnlyBasics, Match.Partial },
-                        })},
-                        new Answer { AnswerText = "4-5", FitnessPlanAnswerPoints = GetFitnessPlanAnswerPoints(new Dictionary<string, Match>{
+                        }),
+                        GetAnswer("4-5", new Dictionary<string, Match>{
                             { GZCLP, Match.Perfect },
                             { StartingStrength, Match.Perfect },
                             { StrongLifts, Match.No },
                             { StrongCurves, Match.No },
                             { ThinnerLeanerStronger, Match.No },
                             { DumbbellOnlyBasics, Match.Partial },
-                        }) },
-                        new Answer { AnswerText = "5+", FitnessPlanAnswerPoints = GetFitnessPlanAnswerPoints(new Dictionary<string, Match>{
+                        }),
+                        GetAnswer("5+", new Dictionary<string, Match>{
                             { GZCLP, Match.Perfect },
                             { StartingStrength, Match.Perfect },
                             { StrongLifts, Match.No },
                             { StrongCurves, Match.No },
                             { ThinnerLeanerStronger, Match.Perfect },
                             { DumbbellOnlyBasics, Match.Partial },
-                        }) },
+                        }),
                     }
                 },
                 new Question
@@ -100,30 +114,30 @@ namespace Reggest.Data
                     QuestionText = "Are you comfortable and able to use 20kg (45lbs) bars?",
                     Answers = new List<Answer>
                     {
-                        new Answer { AnswerText = "Yes", FitnessPlanAnswerPoints = GetFitnessPlanAnswerPoints(new Dictionary<string, Match>{
+                        GetAnswer("Yes", new Dictionary<string, Match>{
                             { GZCLP, Match.Partial },
                             { StartingStrength, Match.No },
                             { StrongLifts, Match.No },
                             { StrongCurves, Match.No },
                             { ThinnerLeanerStronger, Match.No },
                             { DumbbellOnlyBasics, Match.Perfect },
-                        }) },
-                        new Answer { AnswerText = "No", FitnessPlanAnswerPoints = GetFitnessPlanAnswerPoints(new Dictionary<string, Match>{
+                        }),
+                        GetAnswer("No", new Dictionary<string, Match>{
                             { GZCLP, Match.Perfect },
                             { StartingStrength, Match.No },
                             { StrongLifts, Match.No },
                             { StrongCurves, Match.Perfect },
                             { ThinnerLeanerStronger, Match.Partial },
                             { DumbbellOnlyBasics, Match.No },
-                        }) },
-                        new Answer { AnswerText = "Not sure", FitnessPlanAnswerPoints = GetFitnessPlanAnswerPoints(new Dictionary<string, Match>{
+                        }),
+                        GetAnswer("Not sure", new Dictionary<string, Match>{
                             { GZCLP, Match.Perfect },
                             { StartingStrength, Match.Perfect },
                             { StrongLifts, Match.No },
                             { StrongCurves, Match.No },
                             { ThinnerLeanerStronger, Match.Perfect },
                             { DumbbellOnlyBasics, Match.No },
-                        }) },
+                        }),
                     }
                 },
             };

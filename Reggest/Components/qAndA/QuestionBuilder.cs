@@ -10,7 +10,8 @@ namespace Reggest.Components.qAndA
     {
         public static IQueryable<T> BuildQuestion<T>(this IQueryable<T> query) where T : Question
         {
-            return query.Include(x => x.Answers);
+            return query
+                .Include(x => x.Answers);
         }
     }
 }
