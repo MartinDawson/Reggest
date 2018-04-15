@@ -1,7 +1,7 @@
 [regest.com](https://www.reggest.com)
 
 ### The problem
-Their are a lot of fitness plans in the world that overwhelm beginners
+There are a lot of fitness plans in the world that overwhelm beginners
 
 ### The solution
 Implement a simplistic QandA functionality type app that suggests the best fitness plans to meet the users goals
