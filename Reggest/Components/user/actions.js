@@ -1,4 +1,4 @@
-export const AddPoints = points => ({
+export const addPoints = points => ({
   type: 'ADD_POINTS',
   points,
 });

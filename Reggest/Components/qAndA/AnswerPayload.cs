@@ -20,6 +20,7 @@ namespace Reggest.Components.qAndA
             Id(x => x.Id);
             Field<StringGraphType>("answerText", "An answer to present to the user");
             Field<QuestionPayload>("question", "The question associated with this answer");
+            Field<ListGraphType<FitnessPlanAnswerPointPayload>>("fitnessPlanAnswerPoints");
         }
 
         public override Answer GetById(string id)

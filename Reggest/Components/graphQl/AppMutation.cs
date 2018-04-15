@@ -1,4 +1,5 @@
 ﻿using GraphQL.Relay.Types;
+using Reggest.Components.qAndA;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace Reggest.Components.GraphQl
     {
         public AppMutation()
         {
+            Mutation<SubmitAnswerInput, SubmitAnswerPayload>("submitAnswer");
         }
     }
 }

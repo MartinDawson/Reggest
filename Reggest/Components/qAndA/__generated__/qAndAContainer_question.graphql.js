@@ -13,6 +13,7 @@ declare export opaque type qAndAContainer_question$ref: FragmentReference;
 export type qAndAContainer_question = {|
   +questionText: ?string,
   +answers: ?$ReadOnlyArray<?{|
+    +answerId: number,
     +answerText: ?string,
   |}>,
   +$refType: qAndAContainer_question$ref,
@@ -46,6 +47,13 @@ const node/*: ConcreteFragment*/ = {
         {
           "kind": "ScalarField",
           "alias": null,
+          "name": "answerId",
+          "args": null,
+          "storageKey": null
+        },
+        {
+          "kind": "ScalarField",
+          "alias": null,
           "name": "answerText",
           "args": null,
           "storageKey": null
@@ -54,5 +62,5 @@ const node/*: ConcreteFragment*/ = {
     }
   ]
 };
-(node/*: any*/).hash = '39c89e4da91f162670c4aa66d28ebddf';
+(node/*: any*/).hash = 'c08fdc305d8731938647f226ed0b0105';
 module.exports = node;

@@ -25,11 +25,19 @@ namespace Reggest.Components.qAndA
             return _repository.GetAll().BuildQuestion().OrderBy(r => Guid.NewGuid()).First();
         }
 
-        public IEnumerable<Question> GetQuestions()
+        public IEnumerable<Question> GetAll()
         {
             var questions = _repository.GetAll().BuildQuestion();
 
             return questions;
+        }
+
+        public void AddQuestions(ICollection<Question> questions)
+        {
+            foreach (var question in questions)
+            {
+                _repository.Add(question);
+            }
         }
     }
 }

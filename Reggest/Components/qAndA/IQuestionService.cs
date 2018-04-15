@@ -9,6 +9,7 @@ namespace Reggest.Components.qAndA
     {
         Question GetQuestion(int id);
         Question GetRandomQuestion();
-        IEnumerable<Question> GetQuestions();
+        IEnumerable<Question> GetAll();
+        void AddQuestions(ICollection<Question> questions);
     }
 }

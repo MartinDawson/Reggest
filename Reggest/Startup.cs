@@ -25,6 +25,7 @@ using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.AspNetCore.Rewrite;
 using Reggest.Components.qAndA;
 using Reggest.Repository;
+using Reggest.Components.fitness;
 
 namespace Reggest
 {
@@ -83,7 +84,7 @@ namespace Reggest
                 app.UseDatabaseErrorPage();
                 app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
                 {
-                    ConfigFile = "./webpack.config.js"
+                    ConfigFile = "./webpack.config.js",
                 });
             }
             else
@@ -147,6 +148,7 @@ namespace Reggest
             builder.RegisterType<AuthMessageSender>().As<ISmsSender>();
             builder.RegisterType<Repository<Question, ApplicationDbContext>>().As<IRepository<Question>>();
             builder.RegisterType<Repository<Answer, ApplicationDbContext>>().As<IRepository<Answer>>();
+            builder.RegisterType<Repository<FitnessPlan, ApplicationDbContext>>().As<IRepository<FitnessPlan>>();
 
             return builder;
         }

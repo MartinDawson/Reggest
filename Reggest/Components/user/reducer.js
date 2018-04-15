@@ -1,4 +1,6 @@
-const defaultState = {};
+const defaultState = {
+  points: 0,
+};
 
 const reducer = (state = defaultState, action) => {
   switch (action.type) {

@@ -19,7 +19,7 @@ namespace Reggest.Components.qAndA
 
             Id(x => x.Id);
             Field<StringGraphType>("questionText", "The question to ask the user");
-            Field<ListGraphType<AnswerPayload>>("answers", "The answers for this question", resolve: x => x.Source.Answers);
+            Field<ListGraphType<AnswerPayload>>("answers", "The answers for this question");
         }
 
         public override Question GetById(string id)

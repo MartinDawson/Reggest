@@ -195,6 +195,26 @@ namespace Reggest.Migrations
                     b.ToTable("FitnessPlans");
                 });
 
+            modelBuilder.Entity("Reggest.Components.fitness.FitnessPlanAnswerPoint", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("AnswerId");
+
+                    b.Property<int>("FitnessPlanId");
+
+                    b.Property<int>("Points");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AnswerId");
+
+                    b.HasIndex("FitnessPlanId");
+
+                    b.ToTable("FitnessPlansAnswersPoints");
+                });
+
             modelBuilder.Entity("Reggest.Components.qAndA.Answer", b =>
                 {
                     b.Property<int>("Id")
@@ -267,6 +287,19 @@ namespace Reggest.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser")
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Reggest.Components.fitness.FitnessPlanAnswerPoint", b =>
+                {
+                    b.HasOne("Reggest.Components.qAndA.Answer", "Answer")
+                        .WithMany("FitnessPlanAnswerPoints")
+                        .HasForeignKey("AnswerId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Reggest.Components.fitness.FitnessPlan", "FitnessPlan")
+                        .WithMany("FitnessPlanAnswerPoints")
+                        .HasForeignKey("FitnessPlanId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

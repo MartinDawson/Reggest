@@ -1,5 +1,5 @@
 # source: https://localhost:8080/graphql
-# timestamp: Sun Apr 15 2018 17:00:04 GMT+0200 (W. Europe Daylight Time)
+# timestamp: Sun Apr 15 2018 22:01:22 GMT+0200 (W. Europe Daylight Time)
 
 type Answer implements Node {
   """The Id of the Answer"""
@@ -13,6 +13,7 @@ type Answer implements Node {
 
   """The question associated with this answer"""
   question: Question
+  fitnessPlanAnswerPoints: [FitnessPlanAnswerPoint]
 }
 
 """
@@ -23,6 +24,37 @@ timestamps to be formatted in accordance with the
 scalar Date
 
 scalar Decimal
+
+type FitnessPlan implements Node {
+  """The Id of the FitnessPlan"""
+  fitnessPlanId: Int!
+
+  """The Global Id of the FitnessPlan"""
+  id: ID!
+  name: String!
+  description: String!
+  link: String!
+  fitnessPlanAnswerPoints: [FitnessPlanAnswerPoint]
+}
+
+type FitnessPlanAnswerPoint implements Node {
+  """The Id of the FitnessPlanAnswerPoint"""
+  fitnessPlanAnswerPointId: Int!
+
+  """The Global Id of the FitnessPlanAnswerPoint"""
+  id: ID!
+
+  """
+  The number of points that the current answer gives for the fitness plan
+  """
+  points: Int
+  answer: Answer
+  fitnessPlan: FitnessPlan
+}
+
+type Mutation {
+  submitAnswer(input: SubmitAnswerInput!): SubmitAnswerPayload
+}
 
 interface Node {
   """Global node Id"""
@@ -50,4 +82,14 @@ type Question implements Node {
 
   """The answers for this question"""
   answers: [Answer]
+}
+
+input SubmitAnswerInput {
+  clientMutationId: String = null
+  id: Int!
+}
+
+type SubmitAnswerPayload {
+  clientMutationId: String
+  answer: Answer!
 }
