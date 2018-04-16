@@ -13,8 +13,10 @@ namespace Reggest.Components.qAndA
         public int Id { get; set; }
         [Required]
         public string AnswerText { get; set; }
+        public int Points { get; set; }
         public int QuestionId { get; set; }
         public Question Question { get; set; }
+        public bool IsACustomAnswer => AnswerText != null;
         public virtual ICollection<FitnessPlanAnswerPoint> FitnessPlanAnswerPoints { get; set; } = new List<FitnessPlanAnswerPoint>();
     }
 }

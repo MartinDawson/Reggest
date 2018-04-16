@@ -11,6 +11,7 @@ import Matcher from 'found/lib/Matcher';
 
 import routeConfig from '../routing/routeConfig';
 import popup from '../../shared/popup/reducer';
+import user from '../../user/reducer';
 
 const historyEnhancer = createHistoryEnhancer({
   protocol: new BrowserProtocol(),
@@ -34,6 +35,7 @@ const reducers = combineReducers({
   found,
   form,
   popup,
+  user,
 });
 
 const store = createStore(reducers, {}, middleWare);

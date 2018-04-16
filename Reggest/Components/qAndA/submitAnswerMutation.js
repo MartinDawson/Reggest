@@ -9,6 +9,7 @@ const mutation = graphql`
   ) {
     submitAnswer(input: $input) {
       answer {
+        points
         fitnessPlanAnswerPoints {
           points
           fitnessPlan {
@@ -30,9 +31,13 @@ export default (id, dispatch) => {
   return createMutation(
     mutation,
     variables,
-  ).then((submitAnswer) => {debugger
-    const fitnessPlanAnswerPoints = submitAnswer.answer.fitnessPlanAnswerPoint;
+  ).then(({ submitAnswer }) => {
+    const { fitnessPlanAnswerPoints, points } = submitAnswer.answer;
+    const fitnessPlansPoints = fitnessPlanAnswerPoints.map(x => ({
+      name: x.fitnessPlan.name,
+      points: x.points,
+    }));
 
-    dispatch(addPoints(submitAnswer.answer.fitnessPlanAnswerPoint));
+    dispatch(addPoints(fitnessPlansPoints, points));
   });
 };

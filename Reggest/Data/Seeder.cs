@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Reggest.Components.fitness;
 using Reggest.Components.qAndA;
+using Reggest.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -64,11 +65,12 @@ namespace Reggest.Data
 
         private static void SeedQandA()
         {
-            Answer GetAnswer(string answerText, IDictionary<string, Match> fitnessPlanAnswerDictionary)
+            Answer GetAnswer(string answerText, int points, IDictionary<string, Match> fitnessPlanAnswerDictionary)
             {
                 var answer = new Answer
                 {
                     AnswerText = answerText,
+                    Points = points,
                 };
 
                 answer.SetFitnessPlanAnswerPoints(fitnessPlanAnswerDictionary);
@@ -76,69 +78,47 @@ namespace Reggest.Data
                 return answer;
             }
 
+            List<Answer> GetSlidingScaleAnswers(IDictionary<string, Match> fitnessPlanAnswerDictionary)
+            {
+                var answers = new List<Answer>
+                {
+                    GetAnswer(Match.VeryDislike.GetDisplayName(), (int)Match.VeryDislike, fitnessPlanAnswerDictionary),
+                    GetAnswer(Match.Dislike.GetDisplayName(), (int)Match.Dislike, fitnessPlanAnswerDictionary),
+                    GetAnswer(Match.DontCare.GetDisplayName(), (int)Match.DontCare, fitnessPlanAnswerDictionary),
+                    GetAnswer(Match.Like.GetDisplayName(), (int)Match.Like, fitnessPlanAnswerDictionary),
+                    GetAnswer(Match.VeryLike.GetDisplayName(), (int)Match.VeryLike, fitnessPlanAnswerDictionary)
+                };
+
+                return answers;
+            }
+
             Questions = new List<Question>
             {
                 new Question
                 {
-                    QuestionText = "How many days a week do you want to do strength training (Not cardio) on average?",
-                    Answers = new List<Answer>
+                    QuestionText = "Do you like using dumbbells in your workout routine?",
+                    Answers = GetSlidingScaleAnswers(new Dictionary<string, Match>
                     {
-                        GetAnswer("1-3", new Dictionary<string, Match>{
-                            { GZCLP, Match.No },
-                            { StartingStrength, Match.No },
-                            { StrongLifts, Match.No },
-                            { StrongCurves, Match.No },
-                            { ThinnerLeanerStronger, Match.Partial },
-                            { DumbbellOnlyBasics, Match.Partial },
-                        }),
-                        GetAnswer("4-5", new Dictionary<string, Match>{
-                            { GZCLP, Match.Perfect },
-                            { StartingStrength, Match.Perfect },
-                            { StrongLifts, Match.No },
-                            { StrongCurves, Match.No },
-                            { ThinnerLeanerStronger, Match.No },
-                            { DumbbellOnlyBasics, Match.Partial },
-                        }),
-                        GetAnswer("5+", new Dictionary<string, Match>{
-                            { GZCLP, Match.Perfect },
-                            { StartingStrength, Match.Perfect },
-                            { StrongLifts, Match.No },
-                            { StrongCurves, Match.No },
-                            { ThinnerLeanerStronger, Match.Perfect },
-                            { DumbbellOnlyBasics, Match.Partial },
-                        }),
-                    }
+                        { GZCLP, Match.DontCare },
+                        { StartingStrength, Match.DontCare },
+                        { StrongLifts, Match.DontCare },
+                        { StrongCurves, Match.Dislike },
+                        { ThinnerLeanerStronger, Match.VeryDislike },
+                        { DumbbellOnlyBasics, Match.VeryLike },
+                    })
                 },
                 new Question
                 {
-                    QuestionText = "Are you comfortable and able to use 20kg (45lbs) bars?",
-                    Answers = new List<Answer>
+                    QuestionText = "Do you like using barbells in your workout routine?",
+                    Answers = GetSlidingScaleAnswers(new Dictionary<string, Match>
                     {
-                        GetAnswer("Yes", new Dictionary<string, Match>{
-                            { GZCLP, Match.Partial },
-                            { StartingStrength, Match.No },
-                            { StrongLifts, Match.No },
-                            { StrongCurves, Match.No },
-                            { ThinnerLeanerStronger, Match.No },
-                            { DumbbellOnlyBasics, Match.Perfect },
-                        }),
-                        GetAnswer("No", new Dictionary<string, Match>{
-                            { GZCLP, Match.Perfect },
-                            { StartingStrength, Match.No },
-                            { StrongLifts, Match.No },
-                            { StrongCurves, Match.Perfect },
-                            { ThinnerLeanerStronger, Match.Partial },
-                            { DumbbellOnlyBasics, Match.No },
-                        }),
-                        GetAnswer("Not sure", new Dictionary<string, Match>{
-                            { GZCLP, Match.Perfect },
-                            { StartingStrength, Match.Perfect },
-                            { StrongLifts, Match.No },
-                            { StrongCurves, Match.No },
-                            { ThinnerLeanerStronger, Match.Perfect },
-                            { DumbbellOnlyBasics, Match.No },
-                        }),
-                    }
+                        { GZCLP, Match.DontCare },
+                        { StartingStrength, Match.DontCare },
+                        { StrongLifts, Match.DontCare },
+                        { StrongCurves, Match.DontCare },
+                        { ThinnerLeanerStronger, Match.DontCare },
+                        { DumbbellOnlyBasics, Match.VeryLike }
+                    }),
                 },
             };
 

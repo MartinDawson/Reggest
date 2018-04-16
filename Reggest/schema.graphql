@@ -1,5 +1,5 @@
 # source: https://localhost:8080/graphql
-# timestamp: Sun Apr 15 2018 23:23:57 GMT+0200 (W. Europe Daylight Time)
+# timestamp: Mon Apr 16 2018 23:09:55 GMT+0200 (W. Europe Daylight Time)
 
 type Answer implements Node {
   """The Id of the Answer"""
@@ -7,9 +7,10 @@ type Answer implements Node {
 
   """The Global Id of the Answer"""
   id: ID!
+  points: Int!
 
   """An answer to present to the user"""
-  answerText: String
+  answerText: String!
 
   """The question associated with this answer"""
   question: Question
@@ -47,7 +48,7 @@ type FitnessPlanAnswerPoint implements Node {
   """
   The number of points that the current answer gives for the fitness plan
   """
-  points: Int
+  points: Int!
   answer: Answer
   fitnessPlan: FitnessPlan
 }
@@ -78,7 +79,7 @@ type Question implements Node {
   id: ID!
 
   """The question to ask the user"""
-  questionText: String
+  questionText: String!
 
   """The answers for this question"""
   answers: [Answer]

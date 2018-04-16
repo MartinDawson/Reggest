@@ -43,7 +43,7 @@ namespace Reggest
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-               options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
+               options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")), ServiceLifetime.Transient);
             // services.AddApplicationInsightsTelemetry(_configuration["ApplicationInsights:InstrumentationKey"]);
             services.AddSession(options =>
             {
@@ -99,9 +99,22 @@ namespace Reggest
             app.UseRewriter(options);
             app.UseStaticFiles();
             app.UseSession();
-            app.UseGraphQLHttp<AppSchema>(new GraphQLHttpOptions());
+           app.UseGraphQLHttp<AppSchema>(new GraphQLHttpOptions
+            {
+                ExposeExceptions = !env.IsProduction(),
+            });
             app.UseMvc(routes =>
             {
+                routes.MapRoute(
+                    "constants",
+                    "{controller}/constants.js",
+                    new
+                    {
+                        controller = "App",
+                        action = "GetJavaScript",
+                    }
+                );
+
                 routes.MapRoute(
                     "app",
                     "{controller}/{action}"
@@ -136,6 +149,7 @@ namespace Reggest
                     return resolvedType.As<IGraphType>();
                 });
             });
+
             builder.RegisterAssemblyTypes(assembly).AsClosedTypesOf(typeof(GraphQL.Relay.Types.NodeGraphType<>));
             builder.RegisterAssemblyTypes(assembly).AsClosedTypesOf(typeof(ObjectGraphType<>));
             builder.RegisterAssemblyTypes(assembly).AsClosedTypesOf(typeof(InterfaceGraphType<>));

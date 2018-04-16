@@ -12,6 +12,7 @@ const fragments = graphql`
     answers {
       answerId
       answerText
+      points
     }
   }
 `;

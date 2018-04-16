@@ -11,10 +11,11 @@ import type { ConcreteFragment } from 'relay-runtime';
 import type { FragmentReference } from 'relay-runtime';
 declare export opaque type qAndAContainer_question$ref: FragmentReference;
 export type qAndAContainer_question = {|
-  +questionText: ?string,
+  +questionText: string,
   +answers: ?$ReadOnlyArray<?{|
     +answerId: number,
-    +answerText: ?string,
+    +answerText: string,
+    +points: number,
   |}>,
   +$refType: qAndAContainer_question$ref,
 |};
@@ -57,10 +58,17 @@ const node/*: ConcreteFragment*/ = {
           "name": "answerText",
           "args": null,
           "storageKey": null
+        },
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "points",
+          "args": null,
+          "storageKey": null
         }
       ]
     }
   ]
 };
-(node/*: any*/).hash = 'c08fdc305d8731938647f226ed0b0105';
+(node/*: any*/).hash = 'c0d505175d65be9f477c3754e1debc62';
 module.exports = node;

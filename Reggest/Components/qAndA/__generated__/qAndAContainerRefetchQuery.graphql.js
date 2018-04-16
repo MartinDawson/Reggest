@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 81ccf23a6732cca385e3757cb1c3e7cc
+ * @relayHash 866dcfebe9edbcc6e4e04007c38fe652
  */
 
 /* eslint-disable */
@@ -32,6 +32,7 @@ fragment qAndAContainer_question on Question {
   answers {
     answerId
     answerText
+    points
     id
   }
 }
@@ -50,7 +51,7 @@ return {
   "operationKind": "query",
   "name": "qAndAContainerRefetchQuery",
   "id": null,
-  "text": "query qAndAContainerRefetchQuery {\n  question {\n    ...qAndAContainer_question\n    id\n  }\n}\n\nfragment qAndAContainer_question on Question {\n  questionText\n  answers {\n    answerId\n    answerText\n    id\n  }\n}\n",
+  "text": "query qAndAContainerRefetchQuery {\n  question {\n    ...qAndAContainer_question\n    id\n  }\n}\n\nfragment qAndAContainer_question on Question {\n  questionText\n  answers {\n    answerId\n    answerText\n    points\n    id\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -118,6 +119,13 @@ return {
                 "kind": "ScalarField",
                 "alias": null,
                 "name": "answerText",
+                "args": null,
+                "storageKey": null
+              },
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "points",
                 "args": null,
                 "storageKey": null
               },

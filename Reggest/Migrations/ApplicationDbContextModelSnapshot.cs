@@ -223,6 +223,8 @@ namespace Reggest.Migrations
                     b.Property<string>("AnswerText")
                         .IsRequired();
 
+                    b.Property<int>("Points");
+
                     b.Property<int>("QuestionId");
 
                     b.HasKey("Id");

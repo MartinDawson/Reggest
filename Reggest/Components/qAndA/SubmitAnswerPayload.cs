@@ -25,7 +25,10 @@ namespace Reggest.Components.qAndA
             var id = inputs.Get<int>("id");
             var answer = _answerService.GetAnswer(id);
 
-            return answer;
+            return new
+            {
+                answer
+            };
         }
     }
 }

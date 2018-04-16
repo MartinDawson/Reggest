@@ -15,7 +15,7 @@ namespace Reggest.Components.qAndA
             Name = nameof(FitnessPlanAnswerPoint);
 
             Id(x => x.Id);
-            Field<IntGraphType>("points", "The number of points that the current answer gives for the fitness plan");
+            Field(x => x.Points).Description("The number of points that the current answer gives for the fitness plan");
             Field<AnswerPayload>("answer");
             Field<FitnessPlanPayload>("fitnessPlan");
         }

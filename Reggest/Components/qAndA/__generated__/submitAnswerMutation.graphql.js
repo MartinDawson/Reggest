@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 624c9d66b8ced03de2b9d0b0e3e9f192
+ * @relayHash 503cacdd4ec52eec6b939ac2e43feb56
  */
 
 /* eslint-disable */
@@ -18,8 +18,9 @@ export type submitAnswerMutationVariables = {|
 export type submitAnswerMutationResponse = {|
   +submitAnswer: ?{|
     +answer: {|
+      +points: number,
       +fitnessPlanAnswerPoints: ?$ReadOnlyArray<?{|
-        +points: ?number,
+        +points: number,
         +fitnessPlan: ?{|
           +name: string,
         |},
@@ -36,6 +37,7 @@ mutation submitAnswerMutation(
 ) {
   submitAnswer(input: $input) {
     answer {
+      points
       fitnessPlanAnswerPoints {
         points
         fitnessPlan {
@@ -93,7 +95,7 @@ return {
   "operationKind": "mutation",
   "name": "submitAnswerMutation",
   "id": null,
-  "text": "mutation submitAnswerMutation(\n  $input: SubmitAnswerInput!\n) {\n  submitAnswer(input: $input) {\n    answer {\n      fitnessPlanAnswerPoints {\n        points\n        fitnessPlan {\n          name\n          id\n        }\n        id\n      }\n      id\n    }\n  }\n}\n",
+  "text": "mutation submitAnswerMutation(\n  $input: SubmitAnswerInput!\n) {\n  submitAnswer(input: $input) {\n    answer {\n      points\n      fitnessPlanAnswerPoints {\n        points\n        fitnessPlan {\n          name\n          id\n        }\n        id\n      }\n      id\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -120,6 +122,7 @@ return {
             "concreteType": "Answer",
             "plural": false,
             "selections": [
+              v2,
               {
                 "kind": "LinkedField",
                 "alias": null,
@@ -173,6 +176,7 @@ return {
             "concreteType": "Answer",
             "plural": false,
             "selections": [
+              v2,
               {
                 "kind": "LinkedField",
                 "alias": null,
@@ -208,5 +212,5 @@ return {
   }
 };
 })();
-(node/*: any*/).hash = '2fc002e830e41d36e06284d610de10b6';
+(node/*: any*/).hash = '105ff848593b0798c47d1a7f4f51e851';
 module.exports = node;

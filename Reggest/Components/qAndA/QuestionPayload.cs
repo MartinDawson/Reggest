@@ -18,7 +18,7 @@ namespace Reggest.Components.qAndA
             Name = nameof(Question);
 
             Id(x => x.Id);
-            Field<StringGraphType>("questionText", "The question to ask the user");
+            Field(x => x.QuestionText).Description("The question to ask the user");
             Field<ListGraphType<AnswerPayload>>("answers", "The answers for this question");
         }
 
