@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Reggest.Components.fitness;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -12,5 +13,6 @@ namespace Reggest.Components.qAndA
         [Required]
         public string QuestionText { get; set; }
         public virtual ICollection<Answer> Answers { get; set; } = new List<Answer>();
+        public virtual ICollection<FitnessPlanAnswerPoint> FitnessPlanAnswerPoints { get; set; } = new List<FitnessPlanAnswerPoint>();
     }
 }

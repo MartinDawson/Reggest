@@ -8,7 +8,7 @@ namespace Reggest.Components.qAndA
     public interface IQuestionService
     {
         Question GetQuestion(int id);
-        Question GetRandomQuestion();
+        Question GetNextQuestion(int questionIndex);
         IEnumerable<Question> GetAll();
         void AddQuestions(ICollection<Question> questions);
     }

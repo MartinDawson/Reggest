@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 503cacdd4ec52eec6b939ac2e43feb56
+ * @relayHash 236ab54a23af9490bc76227d0056d612
  */
 
 /* eslint-disable */
@@ -19,12 +19,18 @@ export type submitAnswerMutationResponse = {|
   +submitAnswer: ?{|
     +answer: {|
       +points: number,
-      +fitnessPlanAnswerPoints: ?$ReadOnlyArray<?{|
-        +points: number,
-        +fitnessPlan: ?{|
-          +name: string,
-        |},
-      |}>,
+      +question: ?{|
+        +fitnessPlanAnswerPoints: ?$ReadOnlyArray<?{|
+          +points: number,
+          +fitnessPlan: ?{|
+            +fitnessPlanId: number,
+            +name: ?string,
+            +parentFitnessPlan: ?{|
+              +id: string,
+            |},
+          |},
+        |}>,
+      |},
     |},
   |},
 |};
@@ -38,10 +44,17 @@ mutation submitAnswerMutation(
   submitAnswer(input: $input) {
     answer {
       points
-      fitnessPlanAnswerPoints {
-        points
-        fitnessPlan {
-          name
+      question {
+        fitnessPlanAnswerPoints {
+          points
+          fitnessPlan {
+            fitnessPlanId
+            name
+            parentFitnessPlan {
+              id
+            }
+            id
+          }
           id
         }
         id
@@ -79,23 +92,42 @@ v2 = {
 v3 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "name",
+  "name": "fitnessPlanId",
   "args": null,
   "storageKey": null
 },
 v4 = {
   "kind": "ScalarField",
   "alias": null,
+  "name": "name",
+  "args": null,
+  "storageKey": null
+},
+v5 = {
+  "kind": "ScalarField",
+  "alias": null,
   "name": "id",
   "args": null,
   "storageKey": null
+},
+v6 = {
+  "kind": "LinkedField",
+  "alias": null,
+  "name": "parentFitnessPlan",
+  "storageKey": null,
+  "args": null,
+  "concreteType": "FitnessPlan",
+  "plural": false,
+  "selections": [
+    v5
+  ]
 };
 return {
   "kind": "Request",
   "operationKind": "mutation",
   "name": "submitAnswerMutation",
   "id": null,
-  "text": "mutation submitAnswerMutation(\n  $input: SubmitAnswerInput!\n) {\n  submitAnswer(input: $input) {\n    answer {\n      points\n      fitnessPlanAnswerPoints {\n        points\n        fitnessPlan {\n          name\n          id\n        }\n        id\n      }\n      id\n    }\n  }\n}\n",
+  "text": "mutation submitAnswerMutation(\n  $input: SubmitAnswerInput!\n) {\n  submitAnswer(input: $input) {\n    answer {\n      points\n      question {\n        fitnessPlanAnswerPoints {\n          points\n          fitnessPlan {\n            fitnessPlanId\n            name\n            parentFitnessPlan {\n              id\n            }\n            id\n          }\n          id\n        }\n        id\n      }\n      id\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -126,23 +158,36 @@ return {
               {
                 "kind": "LinkedField",
                 "alias": null,
-                "name": "fitnessPlanAnswerPoints",
+                "name": "question",
                 "storageKey": null,
                 "args": null,
-                "concreteType": "FitnessPlanAnswerPoint",
-                "plural": true,
+                "concreteType": "Question",
+                "plural": false,
                 "selections": [
-                  v2,
                   {
                     "kind": "LinkedField",
                     "alias": null,
-                    "name": "fitnessPlan",
+                    "name": "fitnessPlanAnswerPoints",
                     "storageKey": null,
                     "args": null,
-                    "concreteType": "FitnessPlan",
-                    "plural": false,
+                    "concreteType": "FitnessPlanAnswerPoint",
+                    "plural": true,
                     "selections": [
-                      v3
+                      v2,
+                      {
+                        "kind": "LinkedField",
+                        "alias": null,
+                        "name": "fitnessPlan",
+                        "storageKey": null,
+                        "args": null,
+                        "concreteType": "FitnessPlan",
+                        "plural": false,
+                        "selections": [
+                          v3,
+                          v4,
+                          v6
+                        ]
+                      }
                     ]
                   }
                 ]
@@ -180,30 +225,44 @@ return {
               {
                 "kind": "LinkedField",
                 "alias": null,
-                "name": "fitnessPlanAnswerPoints",
+                "name": "question",
                 "storageKey": null,
                 "args": null,
-                "concreteType": "FitnessPlanAnswerPoint",
-                "plural": true,
+                "concreteType": "Question",
+                "plural": false,
                 "selections": [
-                  v2,
                   {
                     "kind": "LinkedField",
                     "alias": null,
-                    "name": "fitnessPlan",
+                    "name": "fitnessPlanAnswerPoints",
                     "storageKey": null,
                     "args": null,
-                    "concreteType": "FitnessPlan",
-                    "plural": false,
+                    "concreteType": "FitnessPlanAnswerPoint",
+                    "plural": true,
                     "selections": [
-                      v3,
-                      v4
+                      v2,
+                      {
+                        "kind": "LinkedField",
+                        "alias": null,
+                        "name": "fitnessPlan",
+                        "storageKey": null,
+                        "args": null,
+                        "concreteType": "FitnessPlan",
+                        "plural": false,
+                        "selections": [
+                          v3,
+                          v4,
+                          v6,
+                          v5
+                        ]
+                      },
+                      v5
                     ]
                   },
-                  v4
+                  v5
                 ]
               },
-              v4
+              v5
             ]
           }
         ]
@@ -212,5 +271,5 @@ return {
   }
 };
 })();
-(node/*: any*/).hash = '105ff848593b0798c47d1a7f4f51e851';
+(node/*: any*/).hash = '97eeda7926a88adfd6853e14cd7cdc28';
 module.exports = node;

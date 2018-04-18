@@ -10,22 +10,19 @@ namespace Reggest.Components.qAndA
     public class AnswerService : IAnswerService
     {
         private readonly IRepository<Answer> _repository;
-        private readonly IFitnessPlanService _fitnessPlanService;
+        private readonly IQuestionService _questionService;
 
-        public AnswerService(IRepository<Answer> repository, IFitnessPlanService fitnessPlanService)
+        public AnswerService(IRepository<Answer> repository, IQuestionService questionService)
         {
             _repository = repository;
-            _fitnessPlanService = fitnessPlanService;
+            _questionService = questionService;
         }
 
         public Answer GetAnswer(int id)
         {
             var answer = _repository.GetAll().BuildAnswer().Single(x => x.Id == id);
 
-            foreach (var fitnessPlanAnswerPoint in answer.FitnessPlanAnswerPoints)
-            {
-                fitnessPlanAnswerPoint.FitnessPlan = _fitnessPlanService.GetFitnessPlan(fitnessPlanAnswerPoint.FitnessPlanId);
-            }
+            answer.Question = _questionService.GetQuestion(answer.QuestionId);
 
             return answer;
         }

@@ -1,4 +1,5 @@
-﻿using Reggest.Repository;
+﻿using Reggest.Components.fitness;
+using Reggest.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,20 +10,29 @@ namespace Reggest.Components.qAndA
     public class QuestionService : IQuestionService
     {
         private readonly IRepository<Question> _repository;
+        private readonly IFitnessPlanService _fitnessPlanService;
 
-        public QuestionService(IRepository<Question> repository)
+        public QuestionService(IRepository<Question> repository, IFitnessPlanService fitnessPlanService)
         {
             _repository = repository;
+            _fitnessPlanService = fitnessPlanService;
         }
 
         public Question GetQuestion(int id)
         {
-            return _repository.GetAll().BuildQuestion().Single(x => x.Id == id);
+            var question = _repository.GetAll().BuildQuestion().Single(x => x.Id == id);
+
+            foreach (var fitnessPlanAnswerPoint in question.FitnessPlanAnswerPoints)
+            {
+                fitnessPlanAnswerPoint.FitnessPlan = _fitnessPlanService.GetFitnessPlan(fitnessPlanAnswerPoint.FitnessPlanId);
+            }
+
+            return question;
         }
 
-        public Question GetRandomQuestion()
+        public Question GetNextQuestion(int questionIndex)
         {
-            return _repository.GetAll().BuildQuestion().OrderBy(r => Guid.NewGuid()).First();
+            return GetAll().Skip(questionIndex).FirstOrDefault();
         }
 
         public IEnumerable<Question> GetAll()

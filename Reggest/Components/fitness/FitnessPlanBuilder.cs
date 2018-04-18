@@ -11,8 +11,7 @@ namespace Reggest.Components.qAndA
     {
         public static IQueryable<T> BuildFitnessPlan<T>(this IQueryable<T> query) where T : FitnessPlan
         {
-            return query
-                .Include(x => x.FitnessPlanAnswerPoints);
+            return query;
         }
     }
 }

@@ -184,13 +184,21 @@ namespace Reggest.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<int>("DaysPerWeek");
+
                     b.Property<string>("Description");
 
                     b.Property<string>("Link");
 
                     b.Property<string>("Name");
 
+                    b.Property<int?>("ParentFitnessPlanId");
+
+                    b.Property<TimeSpan?>("TimeToCompleteWorkout");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("ParentFitnessPlanId");
 
                     b.ToTable("FitnessPlans");
                 });
@@ -200,17 +208,17 @@ namespace Reggest.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("AnswerId");
-
                     b.Property<int>("FitnessPlanId");
 
                     b.Property<int>("Points");
 
+                    b.Property<int?>("QuestionId");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("AnswerId");
-
                     b.HasIndex("FitnessPlanId");
+
+                    b.HasIndex("QuestionId");
 
                     b.ToTable("FitnessPlansAnswersPoints");
                 });
@@ -292,17 +300,23 @@ namespace Reggest.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("Reggest.Components.fitness.FitnessPlan", b =>
+                {
+                    b.HasOne("Reggest.Components.fitness.FitnessPlan", "ParentFitnessPlan")
+                        .WithMany("VariationPlans")
+                        .HasForeignKey("ParentFitnessPlanId");
+                });
+
             modelBuilder.Entity("Reggest.Components.fitness.FitnessPlanAnswerPoint", b =>
                 {
-                    b.HasOne("Reggest.Components.qAndA.Answer", "Answer")
-                        .WithMany("FitnessPlanAnswerPoints")
-                        .HasForeignKey("AnswerId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("Reggest.Components.fitness.FitnessPlan", "FitnessPlan")
-                        .WithMany("FitnessPlanAnswerPoints")
+                        .WithMany()
                         .HasForeignKey("FitnessPlanId")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Reggest.Components.qAndA.Question")
+                        .WithMany("FitnessPlanAnswerPoints")
+                        .HasForeignKey("QuestionId");
                 });
 
             modelBuilder.Entity("Reggest.Components.qAndA.Answer", b =>

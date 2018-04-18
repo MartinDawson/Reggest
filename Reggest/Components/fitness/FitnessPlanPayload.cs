@@ -19,10 +19,10 @@ namespace Reggest.Components.qAndA
             Name = nameof(FitnessPlan);
 
             Id(x => x.Id);
-            Field(x => x.Name);
-            Field(x => x.Description);
-            Field(x => x.Link);
-            Field<ListGraphType<FitnessPlanAnswerPointPayload>>("fitnessPlanAnswerPoints");
+            Field(x => x.Name, nullable: true);
+            Field(x => x.Description, nullable: true);
+            Field(x => x.Link, nullable: true);
+            Field<FitnessPlanPayload>("parentFitnessPlan", "The fitness plan that this variation plan is related to.");
         }
 
         public override FitnessPlan GetById(string id)

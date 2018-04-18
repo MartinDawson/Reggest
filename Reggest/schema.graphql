@@ -1,5 +1,5 @@
 # source: https://localhost:8080/graphql
-# timestamp: Mon Apr 16 2018 23:09:55 GMT+0200 (W. Europe Daylight Time)
+# timestamp: Wed Apr 18 2018 23:58:43 GMT+0200 (W. Europe Daylight Time)
 
 type Answer implements Node {
   """The Id of the Answer"""
@@ -7,14 +7,15 @@ type Answer implements Node {
 
   """The Global Id of the Answer"""
   id: ID!
-  points: Int!
 
   """An answer to present to the user"""
   answerText: String!
 
+  """The amount of points this answer gives"""
+  points: Int!
+
   """The question associated with this answer"""
   question: Question
-  fitnessPlanAnswerPoints: [FitnessPlanAnswerPoint]
 }
 
 """
@@ -32,10 +33,12 @@ type FitnessPlan implements Node {
 
   """The Global Id of the FitnessPlan"""
   id: ID!
-  name: String!
-  description: String!
-  link: String!
-  fitnessPlanAnswerPoints: [FitnessPlanAnswerPoint]
+  name: String
+  description: String
+  link: String
+
+  """The fitness plan that this variation plan is related to."""
+  parentFitnessPlan: FitnessPlan
 }
 
 type FitnessPlanAnswerPoint implements Node {
@@ -49,8 +52,13 @@ type FitnessPlanAnswerPoint implements Node {
   The number of points that the current answer gives for the fitness plan
   """
   points: Int!
-  answer: Answer
   fitnessPlan: FitnessPlan
+}
+
+"""Provides ordering"""
+input FitnessPlanOrderInput {
+  """Orders by the ids of fitnessPlans"""
+  fitnessPlanIds: [Int]!
 }
 
 type Mutation {
@@ -68,7 +76,14 @@ type Query {
     """The global Id of the object"""
     id: ID!
   ): Node
-  question: Question
+  questionByIndex(
+    """The index of the question to get, 0 by default"""
+    index: Int = null
+  ): Question
+  fitnessPlans(
+    """The ordering for the fitness plans"""
+    order: FitnessPlanOrderInput = null
+  ): [FitnessPlan]
 }
 
 type Question implements Node {
@@ -83,6 +98,7 @@ type Question implements Node {
 
   """The answers for this question"""
   answers: [Answer]
+  fitnessPlanAnswerPoints: [FitnessPlanAnswerPoint]
 }
 
 input SubmitAnswerInput {

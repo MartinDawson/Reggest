@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 866dcfebe9edbcc6e4e04007c38fe652
+ * @relayHash eca7ec2892cedadb383df0e80ac0640f
  */
 
 /* eslint-disable */
@@ -9,37 +9,46 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-type qAndAContainer_question$ref = any;
-export type qAndAContainerRefetchQueryVariables = {| |};
+type qAndAContainer$ref = any;
+export type qAndAContainerRefetchQueryVariables = {|
+  questionIndex?: ?number,
+|};
 export type qAndAContainerRefetchQueryResponse = {|
-  +question: ?{|
-    +$fragmentRefs: qAndAContainer_question$ref,
-  |},
+  +$fragmentRefs: qAndAContainer$ref,
 |};
 */
 
 
 /*
-query qAndAContainerRefetchQuery {
-  question {
-    ...qAndAContainer_question
-    id
-  }
+query qAndAContainerRefetchQuery(
+  $questionIndex: Int
+) {
+  ...qAndAContainer
 }
 
-fragment qAndAContainer_question on Question {
-  questionText
-  answers {
-    answerId
-    answerText
-    points
+fragment qAndAContainer on Query {
+  questionByIndex(index: $questionIndex) {
+    questionText
+    answers {
+      answerId
+      answerText
+      id
+    }
     id
   }
 }
 */
 
 const node/*: ConcreteRequest*/ = (function(){
-var v0 = {
+var v0 = [
+  {
+    "kind": "LocalArgument",
+    "name": "questionIndex",
+    "type": "Int",
+    "defaultValue": null
+  }
+],
+v1 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "id",
@@ -51,44 +60,40 @@ return {
   "operationKind": "query",
   "name": "qAndAContainerRefetchQuery",
   "id": null,
-  "text": "query qAndAContainerRefetchQuery {\n  question {\n    ...qAndAContainer_question\n    id\n  }\n}\n\nfragment qAndAContainer_question on Question {\n  questionText\n  answers {\n    answerId\n    answerText\n    points\n    id\n  }\n}\n",
+  "text": "query qAndAContainerRefetchQuery(\n  $questionIndex: Int\n) {\n  ...qAndAContainer\n}\n\nfragment qAndAContainer on Query {\n  questionByIndex(index: $questionIndex) {\n    questionText\n    answers {\n      answerId\n      answerText\n      id\n    }\n    id\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
     "name": "qAndAContainerRefetchQuery",
     "type": "Query",
     "metadata": null,
-    "argumentDefinitions": [],
+    "argumentDefinitions": v0,
     "selections": [
       {
-        "kind": "LinkedField",
-        "alias": null,
-        "name": "question",
-        "storageKey": null,
-        "args": null,
-        "concreteType": "Question",
-        "plural": false,
-        "selections": [
-          {
-            "kind": "FragmentSpread",
-            "name": "qAndAContainer_question",
-            "args": null
-          }
-        ]
+        "kind": "FragmentSpread",
+        "name": "qAndAContainer",
+        "args": null
       }
     ]
   },
   "operation": {
     "kind": "Operation",
     "name": "qAndAContainerRefetchQuery",
-    "argumentDefinitions": [],
+    "argumentDefinitions": v0,
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "question",
+        "name": "questionByIndex",
         "storageKey": null,
-        "args": null,
+        "args": [
+          {
+            "kind": "Variable",
+            "name": "index",
+            "variableName": "questionIndex",
+            "type": "Int"
+          }
+        ],
         "concreteType": "Question",
         "plural": false,
         "selections": [
@@ -122,22 +127,15 @@ return {
                 "args": null,
                 "storageKey": null
               },
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "name": "points",
-                "args": null,
-                "storageKey": null
-              },
-              v0
+              v1
             ]
           },
-          v0
+          v1
         ]
       }
     ]
   }
 };
 })();
-(node/*: any*/).hash = 'e4bcf4165fcd5403d2854252566be518';
+(node/*: any*/).hash = 'a1d7b0fc73c8b9bd0b5f731bf960ebd5';
 module.exports = node;

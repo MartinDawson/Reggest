@@ -26,7 +26,6 @@ QAndA.propTypes = {
   answers: PropTypes.arrayOf(
     PropTypes.shape({
       answerId: PropTypes.instanceOf.isRequired,
-      points: PropTypes.number.isRequired,
       answerText: PropTypes.string.isRequired,
     }).isRequired,
   ).isRequired,

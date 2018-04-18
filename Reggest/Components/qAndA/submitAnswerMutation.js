@@ -1,7 +1,7 @@
 import { graphql } from 'react-relay';
 import { createMutation } from 'relay-compose';
 
-import { addPoints } from '../user/actions';
+import { rankFitnessPlans } from '../user/actions';
 
 const mutation = graphql`
   mutation submitAnswerMutation(
@@ -10,10 +10,16 @@ const mutation = graphql`
     submitAnswer(input: $input) {
       answer {
         points
-        fitnessPlanAnswerPoints {
-          points
-          fitnessPlan {
-            name
+        question {
+          fitnessPlanAnswerPoints {
+            points
+            fitnessPlan {
+              fitnessPlanId
+              name
+              parentFitnessPlan {
+                id
+              }
+            }
           }
         }
       }
@@ -32,12 +38,13 @@ export default (id, dispatch) => {
     mutation,
     variables,
   ).then(({ submitAnswer }) => {
-    const { fitnessPlanAnswerPoints, points } = submitAnswer.answer;
-    const fitnessPlansPoints = fitnessPlanAnswerPoints.map(x => ({
+    const { question, points } = submitAnswer.answer;
+    const fitnessPlansPoints = question.fitnessPlanAnswerPoints.filter(x => x.fitnessPlan.name).map(x => ({
       name: x.fitnessPlan.name,
+      id: x.fitnessPlan.fitnessPlanId,
       points: x.points,
     }));
 
-    dispatch(addPoints(fitnessPlansPoints, points));
+    dispatch(rankFitnessPlans(fitnessPlansPoints, points));
   });
 };

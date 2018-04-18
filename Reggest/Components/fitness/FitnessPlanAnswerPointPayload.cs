@@ -16,7 +16,6 @@ namespace Reggest.Components.qAndA
 
             Id(x => x.Id);
             Field(x => x.Points).Description("The number of points that the current answer gives for the fitness plan");
-            Field<AnswerPayload>("answer");
             Field<FitnessPlanPayload>("fitnessPlan");
         }
 

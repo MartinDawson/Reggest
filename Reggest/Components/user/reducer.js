@@ -9,13 +9,14 @@ window._Constants.fitnessPlans.forEach((x) => {
 
 const defaultState = {
   fitnessPlans: fitnessPlansDefault,
+  rankedFitnessPlans: [],
 };
 
 /* eslint-enable no-underscore-dangle */
 
 const reducer = (state = defaultState, action) => {
   switch (action.type) {
-    case 'ADD_POINTS': {debugger
+    case 'RANK_FITNESS_PLANS': {
       const fitnessPlans = {};
 
       action.fitnessPlansPoints.forEach((x) => {
@@ -26,12 +27,19 @@ const reducer = (state = defaultState, action) => {
 
         fitnessPlans[x.name] = {
           ...state.fitnessPlans[x.name],
+          id: x.id,
+          name: x.name,
           points: newPoints,
         };
       });
 
+      const rankedFitnessPlans = Object.keys(fitnessPlans).map(key => fitnessPlans[key]);
+
+      rankedFitnessPlans.sort((a, b) => a.points - b.points);
+
       return {
         ...state,
+        rankedFitnessPlans,
         fitnessPlans,
       };
     }

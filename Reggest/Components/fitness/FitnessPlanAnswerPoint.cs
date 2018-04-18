@@ -10,8 +10,6 @@ namespace Reggest.Components.fitness
     {
         public int Id { get; set; }
         public int Points { get; set; }
-        public int AnswerId { get; set; }
-        public virtual Answer Answer { get; set; }
         public int FitnessPlanId { get; set; }
         public virtual FitnessPlan FitnessPlan { get; set; }
     }

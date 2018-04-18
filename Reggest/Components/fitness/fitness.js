@@ -1,19 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import QAndA from '../qAndA/qAndAContainer';
 import styles from './fitness.less';
 
-const Fitness = ({ question }) => (
+const Fitness = props => (
   <div className={styles.fitness}>
     <div>
-      <QAndA question={question} />
+      <QAndA data={props} />
     </div>
   </div>
 );
-
-Fitness.propTypes = {
-  question: PropTypes.object.isRequired,
-};
 
 export default Fitness;

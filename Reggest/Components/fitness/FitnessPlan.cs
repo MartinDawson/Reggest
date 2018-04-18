@@ -7,19 +7,15 @@ using System.Threading.Tasks;
 
 namespace Reggest.Components.fitness
 {
-    public enum Match
+    public enum AnswerMatch
     {
-        [Display(Name = "Extremely dislike")]
-        VeryDislike = 0,
-        [Display(Name = "Dislike")]
-        Dislike = 1,
-        [Display(Name = "Don't care")]
-        DontCare = 2,
-        [Display(Name = "Like")]
-        Like = 3,
-        [Display(Name = "Extremely like")]
-        VeryLike = 4,
-    };
+        FirstAnswer = 1,
+        SecondAnswer = 2,
+        ThirdAnswer = 3,
+        FourthAnswer = 4,
+        FifthAnswer = 5,
+        SixthAnswer = 6,
+    }
 
     public class FitnessPlan
     {
@@ -27,6 +23,10 @@ namespace Reggest.Components.fitness
         public string Name { get; set; }
         public string Description { get; set; }
         public string Link { get; set; }
-        public virtual ICollection<FitnessPlanAnswerPoint> FitnessPlanAnswerPoints { get; set; } = new List<FitnessPlanAnswerPoint>();
+        public TimeSpan? TimeToCompleteWorkout { get; set; }
+        public int DaysPerWeek { get; set; }
+        public int? ParentFitnessPlanId { get; set; }
+        public FitnessPlan ParentFitnessPlan { get; set; }
+        public virtual ICollection<FitnessPlan> VariationPlans { get; set; } = new List<FitnessPlan>();
     }
 }

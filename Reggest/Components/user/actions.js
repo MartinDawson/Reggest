@@ -1,5 +1,5 @@
-export const addPoints = (fitnessPlansPoints, answerPoints) => ({
-  type: 'ADD_POINTS',
+export const rankFitnessPlans = (fitnessPlansPoints, answerPoints) => ({
+  type: 'RANK_FITNESS_PLANS',
   fitnessPlansPoints,
   answerPoints,
 });
