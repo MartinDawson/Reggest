@@ -5,12 +5,15 @@ import styles from './popup.less';
 
 class Popup extends React.Component {
   componentDidMount() {
-    setTimeout(() => this.props.hidePopup(this.props.index), this.props.millisecondsToShow);
+    if (Number.isFinite(this.props.millisecondsToShow)) {
+      setTimeout(() => this.props.hidePopup(this.props.index), this.props.millisecondsToShow);
+    }
   }
   render() {
     return (
       <div className={styles.popup}>
         {this.props.text}
+        <button onClick={this.props.hidePopup(this.props.index)}>Close</button>
       </div>
     );
   }

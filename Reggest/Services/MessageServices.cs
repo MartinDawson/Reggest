@@ -7,6 +7,7 @@ using MailKit.Security;
 using Microsoft.Extensions.Configuration;
 using MimeKit;
 using MimeKit.Text;
+using MailChimp;
 
 namespace Reggest.Services
 {

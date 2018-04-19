@@ -1,0 +1,38 @@
+.inputCheckboxField {
+  display: flex;
+  align-items: center;
+}
+
+.input {
+  /* Instead of display: none because redux-form validation won't work otherwise */
+  position: absolute;
+  opacity: 0;
+}
+
+.customCheckbox {
+  border-radius: 4px;
+  height: 16px;
+  margin-right: 10px;
+  width: 16px;
+  padding: 0 0 0 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+
+  svg {
+    fill: @grey9;
+    opacity: 0;
+    transition: opacity .2s;
+    /* Transition chrome fix: https://stackoverflow.com/questions/12827135/css3-transform-affecting-other-elements-with-chrome-safari */
+    backface-visibility: hidden;
+  }
+}
+
+.input:checked + .customCheckbox {
+  background-color: rgba(73, 165, 165, 0.2);
+
+  svg {
+    opacity: 1;
+  }
+}

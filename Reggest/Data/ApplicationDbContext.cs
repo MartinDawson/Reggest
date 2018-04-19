@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Reggest.Components.account;
 using Reggest.Components.fitness;
 using Reggest.Components.qAndA;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Reggest.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<FitnessPlan> FitnessPlans { get; set; }
         public DbSet<Question> Questions { get; set; }

@@ -26,6 +26,10 @@ using Microsoft.AspNetCore.Rewrite;
 using Reggest.Components.qAndA;
 using Reggest.Repository;
 using Reggest.Components.fitness;
+using MailChimp;
+using Reggest.Components.account;
+using Reggest.Components.graphQl;
+using Microsoft.AspNetCore.Http;
 
 namespace Reggest
 {
@@ -45,6 +49,20 @@ namespace Reggest
             services.AddDbContext<ApplicationDbContext>(options =>
                options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")), ServiceLifetime.Transient);
             // services.AddApplicationInsightsTelemetry(_configuration["ApplicationInsights:InstrumentationKey"]);
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredLength = 0;
+                // Allow all characters
+                options.User.AllowedUserNameCharacters = string.Empty;
+                options.User.RequireUniqueEmail = true;
+            })
+            .AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddDefaultTokenProviders();
+
             services.AddSession(options =>
             {
                 options.IdleTimeout = TimeSpan.FromMinutes(30);
@@ -61,6 +79,25 @@ namespace Reggest
             services.AddGraphQLHttp();
             services.AddMvc().AddJsonOptions(x => x.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
             services.AddMemoryCache();
+
+            //services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            //  .AddCookie(o => o.LoginPath = new PathString("/login"))
+            //  .AddFacebook(o =>
+            //  {
+            //      o.AppId = _configuration["OAuth:Facebook:Id"];
+            //      o.AppSecret = _configuration["OAuth:Facebook:Secret"];
+            //      o.Scope.Add("email");
+            //  }).AddTwitter(o =>
+            //  {
+            //      o.ConsumerKey = _configuration["OAuth:Twitter:Id"];
+            //      o.ConsumerSecret = _configuration["OAuth:Twitter:Secret"];
+            //      o.RetrieveUserDetails = true;
+            //  }).AddGoogle(o =>
+            //  {
+            //      o.ClientId = _configuration["OAuth:Google:Id"];
+            //      o.ClientSecret = _configuration["OAuth:Google:Secret"];
+            //      o.Scope.Add("email");
+            //  });
 
             var builder = RegisterServices();
 
@@ -92,6 +129,19 @@ namespace Reggest
                 app.UseExceptionHandler("/Error");
             }
 
+
+            async Task<Context> BuildUserContext(HttpContext c)
+            {
+                var userManager = app.ApplicationServices.GetRequiredService<UserManager<ApplicationUser>>();
+                var currentUser = await userManager.GetUserAsync(c.User);
+
+                return new Context
+                {
+                    CurrentUser = currentUser,
+                    HttpContext = c
+                };
+            }
+
             var options = new RewriteOptions();
 
             options.AddRedirectToHttps();
@@ -99,9 +149,10 @@ namespace Reggest
             app.UseRewriter(options);
             app.UseStaticFiles();
             app.UseSession();
-           app.UseGraphQLHttp<AppSchema>(new GraphQLHttpOptions
+            app.UseGraphQLHttp<AppSchema>(new GraphQLHttpOptions
             {
                 ExposeExceptions = !env.IsProduction(),
+                BuildUserContext = BuildUserContext,
             });
             app.UseMvc(routes =>
             {
@@ -136,7 +187,6 @@ namespace Reggest
             var builder = new ContainerBuilder();
             var assembly = Assembly.GetExecutingAssembly();
 
-            builder.Register(x => _configuration).As<IConfiguration>().SingleInstance();
             builder.Register(x =>
             {
                 var context = x.Resolve<IComponentContext>();
