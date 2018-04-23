@@ -9,6 +9,7 @@ import PrimaryLayoutErrorBoundary from './primaryLayoutErrorBoundary';
 import DisplayType from '../../shared/displayType';
 import Footer from '../../footer/footer';
 import Popups from '../../shared/popup/popupsContainer';
+import NewsletterModal from '../../email/newsletterModalContainer';
 
 const PrimaryLayout = ({
   children,
@@ -27,12 +28,19 @@ const PrimaryLayout = ({
         >
           <div className={styles.wrap}>
             <div className={styles.main}>
-              <Link to="/" className={styles.reggest}>reggest</Link>
+              <div className={styles.reggestContainer}>
+                <Link to="/" className={styles.reggest}>
+                  reggest
+                  <div className={styles.betaLabel}>beta</div>
+                </Link>
+                <div className={styles.moto}>fitness plan suggester</div>
+              </div>
               {children}
             </div>
           </div>
           <Footer />
           <Popups />
+          <NewsletterModal />
           <CookieNotice />
         </PrimaryLayoutErrorBoundary>
       );

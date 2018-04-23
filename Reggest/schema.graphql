@@ -1,5 +1,5 @@
 # source: https://localhost:8080/graphql
-# timestamp: Thu Apr 19 2018 22:44:25 GMT+0200 (W. Europe Daylight Time)
+# timestamp: Sun Apr 22 2018 17:07:04 GMT+0200 (W. Europe Daylight Time)
 
 type Answer implements Node {
   """The Id of the Answer"""
@@ -67,9 +67,16 @@ type FitnessPlan implements Node {
   name: String
   description: String
   link: String
+  daysPerWeek: Int!
+
+  """The time the workout takes in hours/minutes"""
+  timeToWorkout: TimeToWorkout
 
   """The fitness plan that this variation plan is related to."""
   parentFitnessPlan: FitnessPlan
+
+  """The different types of variations of this fitness plan."""
+  variationPlans: [FitnessPlan]
 }
 
 type FitnessPlanAnswerPoint implements Node {
@@ -218,8 +225,17 @@ type SubmitAnswerPayload {
 input SubscribeNewsletterInput {
   clientMutationId: String = null
   email: String!
+  recaptcha: String!
 }
 
 type SubscribeNewsletterPayload {
   clientMutationId: String
+}
+
+type TimeToWorkout {
+  """The amount of hours it takes to complete the workout"""
+  hours: Int
+
+  """The amount of minutes it takes to complete the workout"""
+  minutes: Int
 }

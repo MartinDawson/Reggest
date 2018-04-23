@@ -11,8 +11,9 @@ const Modal = ({
   title,
   hideModal,
   className,
+  allowOverlayHideModal,
 }) => (
-  <Overlay onClick={hideModal}>
+  <Overlay onClick={allowOverlayHideModal ? hideModal : null}>
     <div className={classnames(styles.modal, className)}>
       <button onClick={hideModal} className={styles.close}>
         <CrossIcon />
@@ -27,6 +28,7 @@ const Modal = ({
 
 Modal.defaultProps = {
   className: null,
+  allowOverlayHideModal: true,
 };
 
 Modal.propTypes = {
@@ -34,6 +36,7 @@ Modal.propTypes = {
   className: PropTypes.string,
   title: PropTypes.string.isRequired,
   hideModal: PropTypes.func.isRequired,
+  allowOverlayHideModal: PropTypes.bool,
 };
 
 export default Modal;

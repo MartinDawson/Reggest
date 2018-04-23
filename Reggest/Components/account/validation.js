@@ -1,4 +1,4 @@
-import noWhiteSpace from '../shared/validation/noWhiteSpace';
+import noWhiteSpace from '../shared/noWhiteSpace';
 
 const validation = (values) => {
   const errors = {};

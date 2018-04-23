@@ -23,7 +23,7 @@ const plugins = [
     __DEV__: !isInProduction,
     'process.env': {
       NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-      TEST: JSON.stringify(process.env.fitnessPlans),
+      RECAPTCHA_SITE_KEY: JSON.stringify(process.env.RECAPTCHA_SITE_KEY),
     },
   }),
   new HTMLPlugin({

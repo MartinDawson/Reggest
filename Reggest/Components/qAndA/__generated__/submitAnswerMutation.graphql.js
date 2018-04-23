@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 236ab54a23af9490bc76227d0056d612
+ * @relayHash 407f94da728fa1b5881f8972d606e8bd
  */
 
 /* eslint-disable */
@@ -9,6 +9,7 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
+type variationPlansContainer_fitnessPlan$ref = any;
 export type submitAnswerMutationVariables = {|
   input: {
     clientMutationId?: ?string,
@@ -25,9 +26,13 @@ export type submitAnswerMutationResponse = {|
           +fitnessPlan: ?{|
             +fitnessPlanId: number,
             +name: ?string,
-            +parentFitnessPlan: ?{|
-              +id: string,
+            +description: ?string,
+            +daysPerWeek: number,
+            +timeToWorkout: ?{|
+              +hours: ?number,
+              +minutes: ?number,
             |},
+            +$fragmentRefs: variationPlansContainer_fitnessPlan$ref,
           |},
         |}>,
       |},
@@ -50,9 +55,13 @@ mutation submitAnswerMutation(
           fitnessPlan {
             fitnessPlanId
             name
-            parentFitnessPlan {
-              id
+            description
+            daysPerWeek
+            timeToWorkout {
+              hours
+              minutes
             }
+            ...variationPlansContainer_fitnessPlan
             id
           }
           id
@@ -61,6 +70,14 @@ mutation submitAnswerMutation(
       }
       id
     }
+  }
+}
+
+fragment variationPlansContainer_fitnessPlan on FitnessPlan {
+  variationPlans {
+    fitnessPlanId
+    daysPerWeek
+    id
   }
 }
 */
@@ -106,28 +123,55 @@ v4 = {
 v5 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "id",
+  "name": "description",
   "args": null,
   "storageKey": null
 },
 v6 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "daysPerWeek",
+  "args": null,
+  "storageKey": null
+},
+v7 = {
   "kind": "LinkedField",
   "alias": null,
-  "name": "parentFitnessPlan",
+  "name": "timeToWorkout",
   "storageKey": null,
   "args": null,
-  "concreteType": "FitnessPlan",
+  "concreteType": "TimeToWorkout",
   "plural": false,
   "selections": [
-    v5
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "hours",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "minutes",
+      "args": null,
+      "storageKey": null
+    }
   ]
+},
+v8 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
 };
 return {
   "kind": "Request",
   "operationKind": "mutation",
   "name": "submitAnswerMutation",
   "id": null,
-  "text": "mutation submitAnswerMutation(\n  $input: SubmitAnswerInput!\n) {\n  submitAnswer(input: $input) {\n    answer {\n      points\n      question {\n        fitnessPlanAnswerPoints {\n          points\n          fitnessPlan {\n            fitnessPlanId\n            name\n            parentFitnessPlan {\n              id\n            }\n            id\n          }\n          id\n        }\n        id\n      }\n      id\n    }\n  }\n}\n",
+  "text": "mutation submitAnswerMutation(\n  $input: SubmitAnswerInput!\n) {\n  submitAnswer(input: $input) {\n    answer {\n      points\n      question {\n        fitnessPlanAnswerPoints {\n          points\n          fitnessPlan {\n            fitnessPlanId\n            name\n            description\n            daysPerWeek\n            timeToWorkout {\n              hours\n              minutes\n            }\n            ...variationPlansContainer_fitnessPlan\n            id\n          }\n          id\n        }\n        id\n      }\n      id\n    }\n  }\n}\n\nfragment variationPlansContainer_fitnessPlan on FitnessPlan {\n  variationPlans {\n    fitnessPlanId\n    daysPerWeek\n    id\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -185,7 +229,14 @@ return {
                         "selections": [
                           v3,
                           v4,
-                          v6
+                          v5,
+                          v6,
+                          v7,
+                          {
+                            "kind": "FragmentSpread",
+                            "name": "variationPlansContainer_fitnessPlan",
+                            "args": null
+                          }
                         ]
                       }
                     ]
@@ -252,17 +303,33 @@ return {
                         "selections": [
                           v3,
                           v4,
+                          v5,
                           v6,
-                          v5
+                          v7,
+                          {
+                            "kind": "LinkedField",
+                            "alias": null,
+                            "name": "variationPlans",
+                            "storageKey": null,
+                            "args": null,
+                            "concreteType": "FitnessPlan",
+                            "plural": true,
+                            "selections": [
+                              v3,
+                              v6,
+                              v8
+                            ]
+                          },
+                          v8
                         ]
                       },
-                      v5
+                      v8
                     ]
                   },
-                  v5
+                  v8
                 ]
               },
-              v5
+              v8
             ]
           }
         ]
@@ -271,5 +338,5 @@ return {
   }
 };
 })();
-(node/*: any*/).hash = '97eeda7926a88adfd6853e14cd7cdc28';
+(node/*: any*/).hash = 'cfda04c5dbde357bcfb0fd4c6d5f185d';
 module.exports = node;

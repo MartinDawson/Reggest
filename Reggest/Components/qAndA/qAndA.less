@@ -1,23 +1,33 @@
+.qAndA {
+  margin: 40px 0;
+}
+
 .question {
   font-weight: 900;
-  color: #3e3e3e;;
-  font-size: 26px;
+  color: #3e3e3e;
+  font-size: 24px;
   text-align: center;
   margin-bottom: 20px;
 }
 
 .answerContainer {
-  width: 50%;
-  display: inline-block;
+  flex: 1;
+  flex-basis: 50%;
+}
+
+.answers {
+  height: 300px;
+  flex-wrap: wrap;
+  display: flex;
 }
 
 .answer {
   background-color: #ffffff;
-  box-shadow: 0 2px 60px 0 rgba(0, 0, 0, 0.08);
+  height: 95%;
   outline: none;
   border: none;
-  padding: 35px 40px;
-  width: 95%;
+  font-size: 20px;
+  width: 98%;
   margin: 10px auto;
   display: block;
   border-radius: 7px;

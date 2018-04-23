@@ -12,6 +12,7 @@ import Matcher from 'found/lib/Matcher';
 import routeConfig from '../routing/routeConfig';
 import popup from '../../shared/popup/reducer';
 import user from '../../user/reducer';
+import modal from '../../shared/modal/reducer';
 
 const historyEnhancer = createHistoryEnhancer({
   protocol: new BrowserProtocol(),
@@ -22,19 +23,19 @@ const matcherEnhancer = createMatchEnhancer(
   new Matcher(routeConfig),
 );
 
-const middleWare = compose(
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const middleWare = composeEnhancers(
   applyMiddleware(thunk),
   historyEnhancer,
   matcherEnhancer,
-  /* eslint-disable no-underscore-dangle */
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-  /* eslint-enable no-underscore-dangle */
 );
 
 const reducers = combineReducers({
   found,
   form,
   popup,
+  modal,
   user,
 });
 

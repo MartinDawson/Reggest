@@ -1,0 +1,66 @@
+.fitnessPlans {
+  margin: 40px 0px;
+  background-color: white;
+  border-radius: 4px;
+  border: solid 1px white;
+  padding: 15px 25px;
+}
+
+.fitnessPlan:nth-child(odd),
+.fitnessPlanRanked:nth-child(even) {
+  background-color: #f6f6f6;
+  border: solid 1px #f6f6f6;
+}
+
+.fitnessPlan,
+.fitnessPlanRanked {
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+.fitnessPlanRanked {
+  counter-increment: item;
+  display: flex;
+}
+
+.stats {
+  margin-bottom: 15px;
+}
+
+.fitnessPlanRanked:before {
+  margin-right: 10px;
+  content: "#" counter(item);
+  color: #737373;
+  margin-top: 1px;
+}
+
+.name {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #4c4c4c;
+  margin-bottom: 7px;
+}
+
+.description {
+  font-size: 14px;
+  letter-spacing: 0.01em;
+}
+
+.daysPerWeek,
+.timePerWorkout {
+  margin-bottom: 1px;
+  font-size: 17px;
+
+  .label {
+    color: #414141;
+    letter-spacing: 0.02em;
+  }
+}
+
+.label,
+.answers {
+  margin-right: 5px;
+  margin-right: 5px;
+}

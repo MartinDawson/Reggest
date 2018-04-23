@@ -41,7 +41,7 @@ namespace Reggest.Components.GraphQl
                 .Argument<FitnessPlanOrderInput>("order", "The ordering for the fitness plans")
                 .Resolve(c => {
                     var fitnessPlanOrder = c.GetArgument<FitnessPlanOrder>("order");
-                    var fitnessPlans = fitnessPlanService.GetAll();
+                    var fitnessPlans = fitnessPlanService.GetAll().Where(x => x.ParentFitnessPlan == null);
 
                     if (fitnessPlanOrder?.FitnessPlanIds == null)
                     {

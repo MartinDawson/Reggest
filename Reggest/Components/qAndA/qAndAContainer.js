@@ -1,52 +1,40 @@
 import { graphql } from 'react-relay';
-import { compose, flattenProp, withHandlers, branch, renderComponent } from 'recompose';
-import { refetchContainer } from 'relay-compose';
+import { compose, withHandlers, setPropTypes, flattenProp } from 'recompose';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { fragment } from 'relay-compose';
 
 import qAndA from './qAndA';
 import submitAnswerMutation from './submitAnswerMutation';
-import fitnessPlansRanked from '../fitness/fitnessPlansRankedContainer';
 
 let questionIndex = 0;
 
+const handlers = {
+  answerOnClick: ({ dispatch, getNextQuestion }) => (id) => {
+    questionIndex += 1;
+    submitAnswerMutation(id, dispatch);
+    getNextQuestion(questionIndex);
+  },
+};
+
 const fragments = graphql`
-  fragment qAndAContainer on Query {
-    questionByIndex (
-      index: $questionIndex
-    ) {
-      questionText
-      answers {
-        answerId
-        answerText
-      }
+  fragment qAndAContainer_question on Question {
+    questionText
+    answers {
+      answerId
+      answerText
     }
   }
 `;
 
-const refetchQuery = graphql`
-  query qAndAContainerRefetchQuery(
-    $questionIndex: Int
-  ) {
-    ...qAndAContainer
-  }
-`;
-
-const handlers = {
-  answerOnClick: ({ dispatch, relay }) => (id) => {
-    questionIndex += 1;
-    submitAnswerMutation(id, dispatch);
-    relay.refetch({ questionIndex });
-  },
+const propTypes = {
+  getNextQuestion: PropTypes.func.isRequired,
 };
 
 export default compose(
+  setPropTypes(propTypes),
   connect(),
-  refetchContainer(fragments, refetchQuery),
-  flattenProp('data'),
-  flattenProp('questionByIndex'),
-  branch(
-    props => props.questionByIndex === null,
-    renderComponent(fitnessPlansRanked),
-  ),
+  fragment(fragments),
+  flattenProp('question'),
   withHandlers(handlers),
 )(qAndA);

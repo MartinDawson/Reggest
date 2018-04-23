@@ -12,8 +12,12 @@ const Overlay = ({ onClick, children }) => (
   </div>
 );
 
+Overlay.defaultProps = {
+  onClick: Function.prototype,
+};
+
 Overlay.propTypes = {
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   children: PropTypes.node.isRequired,
 };
 

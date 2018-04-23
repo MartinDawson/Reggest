@@ -141,16 +141,20 @@
           }
         }
       },
-      "MailChimp.NET/1.1.92": {
+      "MailChimp.Net.V3/3.0.0": {
         "type": "package",
         "dependencies": {
-          "ServiceStack.Text": "[3.9.71]"
+          "Microsoft.Extensions.Configuration": "1.1.2",
+          "Microsoft.Extensions.Configuration.FileExtensions": "1.1.2",
+          "Microsoft.Extensions.Configuration.Json": "1.1.2",
+          "Microsoft.Extensions.Options": "1.1.2",
+          "Newtonsoft.Json": "10.0.3"
         },
         "compile": {
-          "lib/net40/MailChimp.dll": {}
+          "lib/netstandard2.0/MailChimp.Net.dll": {}
         },
         "runtime": {
-          "lib/net40/MailChimp.dll": {}
+          "lib/netstandard2.0/MailChimp.Net.dll": {}
         }
       },
       "MailKit/2.0.2": {
@@ -3280,15 +3284,6 @@
           }
         }
       },
-      "ServiceStack.Text/3.9.71": {
-        "type": "package",
-        "compile": {
-          "lib/net35/ServiceStack.Text.dll": {}
-        },
-        "runtime": {
-          "lib/net35/ServiceStack.Text.dll": {}
-        }
-      },
       "SQLitePCLRaw.bundle_green/1.1.7": {
         "type": "package",
         "dependencies": {
@@ -5458,15 +5453,25 @@
         "runtimes/win-x86/native/libuv.dll"
       ]
     },
-    "MailChimp.NET/1.1.92": {
-      "sha512": "/yY9HRaGFHq9cWQnvm5/ZEZ0PeIw+BwgDechLMnxddGPXVrKhcKEy9bX48Tp05MziCrRhWt7p9YoMSRfN6201w==",
+    "MailChimp.Net.V3/3.0.0": {
+      "sha512": "CQTkF+eRz3Y4L4Kxlu9OumFAeaghFA6ZUElnaDuyYqNReZhTfCDrJ+kjE734Ao8apXQbyIihKFRD2RdWP+3StQ==",
       "type": "package",
-      "path": "mailchimp.net/1.1.92",
+      "path": "mailchimp.net.v3/3.0.0",
       "files": [
-        "lib/net35/MailChimp.dll",
-        "lib/net40/MailChimp.dll",
-        "mailchimp.net.1.1.92.nupkg.sha512",
-        "mailchimp.net.nuspec"
+        "lib/net451/MailChimp.Net.dll",
+        "lib/net46/MailChimp.Net.dll",
+        "lib/net461/MailChimp.Net.dll",
+        "lib/net47/MailChimp.Net.dll",
+        "lib/netstandard1.3/MailChimp.Net.dll",
+        "lib/netstandard1.4/MailChimp.Net.dll",
+        "lib/netstandard1.5/MailChimp.Net.dll",
+        "lib/netstandard1.6/MailChimp.Net.dll",
+        "lib/netstandard1.7/MailChimp.Net.dll",
+        "lib/netstandard1.8/MailChimp.Net.dll",
+        "lib/netstandard1.9/MailChimp.Net.dll",
+        "lib/netstandard2.0/MailChimp.Net.dll",
+        "mailchimp.net.v3.3.0.0.nupkg.sha512",
+        "mailchimp.net.v3.nuspec"
       ]
     },
     "MailKit/2.0.2": {
@@ -8788,23 +8793,6 @@
         "runtimes/win-x86/native/sni.dll",
         "useSharedDesignerContext.txt",
         "version.txt"
-      ]
-    },
-    "ServiceStack.Text/3.9.71": {
-      "sha512": "+nIZF3d2o50W4/DjtfN21AzH1shaRlEiixgFISx3v5WD4WJVRd3WLmW75+SIiPOnCQAoZ+zbGX91hrBNkx+7xg==",
-      "type": "package",
-      "path": "servicestack.text/3.9.71",
-      "files": [
-        "lib/net35/ServiceStack.Text.XML",
-        "lib/net35/ServiceStack.Text.dll",
-        "lib/sl4-windowsphone71/ServiceStack.Text.WP.XML",
-        "lib/sl4-windowsphone71/ServiceStack.Text.WP.dll",
-        "lib/sl4/ServiceStack.Text.dll",
-        "lib/sl4/ServiceStack.Text.xml",
-        "lib/sl5/ServiceStack.Text.XML",
-        "lib/sl5/ServiceStack.Text.dll",
-        "servicestack.text.3.9.71.nupkg.sha512",
-        "servicestack.text.nuspec"
       ]
     },
     "SQLitePCLRaw.bundle_green/1.1.7": {
@@ -13902,7 +13890,7 @@
       "GraphQL >= 2.0.0-alpha-868",
       "GraphQL.Relay >= 0.5.0",
       "GraphQL.Server.Transports.AspNetCore >= 3.1.0-alpha0019",
-      "MailChimp.NET >= 1.1.92",
+      "MailChimp.Net.V3 >= 3.0.0",
       "MailKit >= 2.0.2",
       "Microsoft.AspNetCore.All >= 2.0.5",
       "Microsoft.NETCore.App >= 2.0.0",
@@ -13915,6 +13903,9 @@
   },
   "project": {
     "version": "1.0.0",
+    "restoreSettings": {
+      "hideWarningsAndErrors": true
+    },
     "restore": {
       "projectUniqueName": "I:\\Users\\Martin\\Reggest\\Reggest\\Reggest.csproj",
       "projectName": "Reggest",
@@ -13926,7 +13917,6 @@
         "I:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "I:\\Users\\Martin\\Reggest\\Reggest\\NuGet.Config",
         "I:\\Users\\Martin\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "I:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -13952,46 +13942,46 @@
     "frameworks": {
       "netcoreapp2.0": {
         "dependencies": {
-          "Autofac": {
-            "target": "Package",
-            "version": "[4.7.0, )"
-          },
-          "Autofac.Extensions.DependencyInjection": {
-            "target": "Package",
-            "version": "[4.2.2, )"
-          },
-          "GraphQL": {
-            "target": "Package",
-            "version": "[2.0.0-alpha-868, )"
-          },
-          "GraphQL.Relay": {
-            "target": "Package",
-            "version": "[0.5.0, )"
-          },
           "GraphQL.Server.Transports.AspNetCore": {
             "target": "Package",
-            "version": "[3.1.0-alpha0019, )"
-          },
-          "MailChimp.NET": {
-            "target": "Package",
-            "version": "[1.1.92, )"
+            "version": "3.1.0-alpha0019"
           },
           "MailKit": {
             "target": "Package",
-            "version": "[2.0.2, )"
+            "version": "2.0.2"
           },
-          "Microsoft.AspNetCore.All": {
+          "GraphQL.Relay": {
             "target": "Package",
-            "version": "[2.0.5, )"
+            "version": "0.5.0"
           },
-          "Microsoft.NETCore.App": {
+          "Autofac.Extensions.DependencyInjection": {
             "target": "Package",
-            "version": "[2.0.0, )",
-            "autoReferenced": true
+            "version": "4.2.2"
           },
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
-            "version": "[2.0.0, )"
+            "version": "2.0.0"
+          },
+          "GraphQL": {
+            "target": "Package",
+            "version": "2.0.0-alpha-868"
+          },
+          "Microsoft.NETCore.App": {
+            "target": "Package",
+            "version": "2.0",
+            "autoReferenced": true
+          },
+          "Microsoft.AspNetCore.All": {
+            "target": "Package",
+            "version": "2.0.5"
+          },
+          "MailChimp.Net.V3": {
+            "target": "Package",
+            "version": "3.0.0"
+          },
+          "Autofac": {
+            "target": "Package",
+            "version": "4.7.0"
           }
         },
         "imports": [
@@ -14001,27 +13991,5 @@
         "warn": true
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'MailChimp.NET 1.1.92' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.0'. This package may not be fully compatible with your project.",
-      "libraryId": "MailChimp.NET",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.0"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'ServiceStack.Text 3.9.71' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.0'. This package may not be fully compatible with your project.",
-      "libraryId": "ServiceStack.Text",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.0"
-      ]
-    }
-  ]
+  }
 }

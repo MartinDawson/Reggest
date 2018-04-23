@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Modal from './modal';
 import { hideModal, showModal } from './actions';
 
-const mapStateToProps = ({ modal, app }, { id }) => ({
+const mapStateToProps = ({ modal }, { id }) => ({
   isCurrentModal: modal.currentModal === id,
 });
 

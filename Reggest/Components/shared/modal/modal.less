@@ -18,34 +18,53 @@
 
 .modal {
   position: relative;
-  top: 10%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 30%;
-  min-width: 400px;
   background-color: white;
   padding: 25px;
   border-radius: 4px;
   z-index: 102;
 }
 
+:global(.desktop) {
+  .modal {
+    transform: translateX(-50%);
+    left: 50%;
+    width: 30%;
+    top: 10%;
+    min-width: 400px;
+  }
+}
+
 :global(.tablet) .modal, :global(.mobile) .modal {
   min-height: 100%;
   width: 100%;
   top: 0%;
+  box-sizing: border-box;
 }
 
-.close,
-.close:hover {
-  border:none;
+.close {
+  border: none;
   background-color: initial;
   display: flex;
   margin-left: auto;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+
+  svg {
+    height: 20px;
+    width: 20px;
+    fill: #515151;
+  }
+}
+
+.close:focus {
+  outline: none;
 }
 
 .title {
   font-size: 25px;
   letter-spacing: 0.06em;
-  margin: 20px 0px;
   color: #443f3f;
+  margin-top: 10px;
+  margin-bottom: 25px;
 }

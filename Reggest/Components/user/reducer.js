@@ -27,8 +27,7 @@ const reducer = (state = defaultState, action) => {
 
         fitnessPlans[x.name] = {
           ...state.fitnessPlans[x.name],
-          id: x.id,
-          name: x.name,
+          ...x,
           points: newPoints,
         };
       });

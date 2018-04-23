@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import styles from './socialLogins.less';
-import { hr } from '../../../shared/modal/modal.less';
+import { hr } from '../shared/modal/modal.less';
 import SocialLoginsButton from './socialLoginsButton';
 
 const SocialLogins = ({ loginProviders }) => (

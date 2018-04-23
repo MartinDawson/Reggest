@@ -26,7 +26,6 @@ using Microsoft.AspNetCore.Rewrite;
 using Reggest.Components.qAndA;
 using Reggest.Repository;
 using Reggest.Components.fitness;
-using MailChimp;
 using Reggest.Components.account;
 using Reggest.Components.graphQl;
 using Microsoft.AspNetCore.Http;
@@ -48,7 +47,14 @@ namespace Reggest
         {
             services.AddDbContext<ApplicationDbContext>(options =>
                options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")), ServiceLifetime.Transient);
-            // services.AddApplicationInsightsTelemetry(_configuration["ApplicationInsights:InstrumentationKey"]);
+
+            var instrumentationKey = _configuration["applicationInsights:key"];
+
+            if (instrumentationKey != null)
+            {
+                services.AddApplicationInsightsTelemetry(instrumentationKey);
+            }
+
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
             {
                 options.Password.RequireDigit = false;
@@ -208,7 +214,6 @@ namespace Reggest
 
             builder.RegisterType<AppQuery>();
             builder.RegisterType<AppMutation>();
-            builder.RegisterType<AuthMessageSender>().As<IEmailSender>();
             builder.RegisterType<AuthMessageSender>().As<ISmsSender>();
             builder.RegisterType<Repository<Question, ApplicationDbContext>>().As<IRepository<Question>>();
             builder.RegisterType<Repository<Answer, ApplicationDbContext>>().As<IRepository<Answer>>();

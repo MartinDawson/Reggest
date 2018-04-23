@@ -101,8 +101,8 @@ namespace Reggest.Data
                         new FitnessPlanAnswerPoint { FitnessPlanId = GetVariationPlanId(ThinnerLeanerStronger, 4), Points = (int)AnswerMatch.SecondAnswer },
                         new FitnessPlanAnswerPoint { FitnessPlanId = GetVariationPlanId(ThinnerLeanerStronger, 5), Points = (int)AnswerMatch.SecondAnswer },
                         new FitnessPlanAnswerPoint { FitnessPlanId = GetFitnessPlanId(DumbbellOnlyBasics), Points = (int)AnswerMatch.ThirdAnswer },
-                        new FitnessPlanAnswerPoint { FitnessPlanId = GetFitnessPlanId(TwoSuns), Points = (int)AnswerMatch.FourthAnswer },
-                        new FitnessPlanAnswerPoint { FitnessPlanId = GetVariationPlanId(TwoSuns, 5), Points = (int)AnswerMatch.FourthAnswer },
+                        new FitnessPlanAnswerPoint { FitnessPlanId = GetFitnessPlanId(TwoSuns), Points = (int)AnswerMatch.ThirdAnswer },
+                        new FitnessPlanAnswerPoint { FitnessPlanId = GetVariationPlanId(TwoSuns, 5), Points = (int)AnswerMatch.ThirdAnswer },
                         new FitnessPlanAnswerPoint { FitnessPlanId = GetVariationPlanId(TwoSuns, 6), Points = (int)AnswerMatch.FourthAnswer },
                     },
                     Answers = new List<Answer>
@@ -221,6 +221,46 @@ namespace Reggest.Data
                     },
                     Answers = GetAnswersForImportance(),
                 },
+                new Question
+                {
+                    QuestionText = "How important is lower body development (glutes, legs etc.) to you?",
+                    FitnessPlanAnswerPoints = new List<FitnessPlanAnswerPoint>
+                    {
+                        new FitnessPlanAnswerPoint { FitnessPlanId = GetFitnessPlanId(GZCLP), Points = (int)AnswerMatch.SecondAnswer },
+                        new FitnessPlanAnswerPoint { FitnessPlanId = GetFitnessPlanId(StartingStrength), Points = (int)AnswerMatch.SecondAnswer },
+                        new FitnessPlanAnswerPoint { FitnessPlanId = GetFitnessPlanId(StrongLifts), Points = (int)AnswerMatch.SecondAnswer },
+                        new FitnessPlanAnswerPoint { FitnessPlanId = GetFitnessPlanId(StrongCurves), Points = (int)AnswerMatch.FirstAnswer },
+                        new FitnessPlanAnswerPoint { FitnessPlanId = GetVariationPlanId(StrongCurves, 4), Points = (int)AnswerMatch.FirstAnswer },
+                        new FitnessPlanAnswerPoint { FitnessPlanId = GetFitnessPlanId(ThinnerLeanerStronger), Points = (int)AnswerMatch.SecondAnswer },
+                        new FitnessPlanAnswerPoint { FitnessPlanId = GetVariationPlanId(ThinnerLeanerStronger, 4), Points = (int)AnswerMatch.SecondAnswer },
+                        new FitnessPlanAnswerPoint { FitnessPlanId = GetVariationPlanId(ThinnerLeanerStronger, 5), Points = (int)AnswerMatch.SecondAnswer },
+                        new FitnessPlanAnswerPoint { FitnessPlanId = GetFitnessPlanId(DumbbellOnlyBasics), Points = (int)AnswerMatch.SecondAnswer },
+                        new FitnessPlanAnswerPoint { FitnessPlanId = GetFitnessPlanId(TwoSuns), Points = (int)AnswerMatch.FirstAnswer },
+                        new FitnessPlanAnswerPoint { FitnessPlanId = GetVariationPlanId(TwoSuns, 5), Points = (int)AnswerMatch.FirstAnswer },
+                        new FitnessPlanAnswerPoint { FitnessPlanId = GetVariationPlanId(TwoSuns, 6), Points = (int)AnswerMatch.FirstAnswer },
+                    },
+                    Answers = GetAnswersForImportance(),
+                },
+                                new Question
+                {
+                    QuestionText = "How important is upper body development (arms, chest, shoulders etc.) to you?",
+                    FitnessPlanAnswerPoints = new List<FitnessPlanAnswerPoint>
+                    {
+                        new FitnessPlanAnswerPoint { FitnessPlanId = GetFitnessPlanId(GZCLP), Points = (int)AnswerMatch.FirstAnswer },
+                        new FitnessPlanAnswerPoint { FitnessPlanId = GetFitnessPlanId(StartingStrength), Points = (int)AnswerMatch.SecondAnswer },
+                        new FitnessPlanAnswerPoint { FitnessPlanId = GetFitnessPlanId(StrongLifts), Points = (int)AnswerMatch.SecondAnswer },
+                        new FitnessPlanAnswerPoint { FitnessPlanId = GetFitnessPlanId(StrongCurves), Points = (int)AnswerMatch.ThirdAnswer },
+                        new FitnessPlanAnswerPoint { FitnessPlanId = GetVariationPlanId(StrongCurves, 4), Points = (int)AnswerMatch.ThirdAnswer },
+                        new FitnessPlanAnswerPoint { FitnessPlanId = GetFitnessPlanId(ThinnerLeanerStronger), Points = (int)AnswerMatch.FirstAnswer },
+                        new FitnessPlanAnswerPoint { FitnessPlanId = GetVariationPlanId(ThinnerLeanerStronger, 4), Points = (int)AnswerMatch.FirstAnswer },
+                        new FitnessPlanAnswerPoint { FitnessPlanId = GetVariationPlanId(ThinnerLeanerStronger, 5), Points = (int)AnswerMatch.FirstAnswer },
+                        new FitnessPlanAnswerPoint { FitnessPlanId = GetFitnessPlanId(DumbbellOnlyBasics), Points = (int)AnswerMatch.SecondAnswer },
+                        new FitnessPlanAnswerPoint { FitnessPlanId = GetFitnessPlanId(TwoSuns), Points = (int)AnswerMatch.SecondAnswer },
+                        new FitnessPlanAnswerPoint { FitnessPlanId = GetVariationPlanId(TwoSuns, 5), Points = (int)AnswerMatch.SecondAnswer },
+                        new FitnessPlanAnswerPoint { FitnessPlanId = GetVariationPlanId(TwoSuns, 6), Points = (int)AnswerMatch.SecondAnswer },
+                    },
+                    Answers = GetAnswersForImportance(),
+                },
             };
 
             var questions = _questionService.GetAll();
@@ -259,7 +299,7 @@ namespace Reggest.Data
                 new FitnessPlan
                 {
                     Name = StrongCurves,
-                    Description = "An aesthetics-based beginners program. Focuses on glute and lower body development, while also including upper body work as well. 3 days per week. Link includes a free 4 week sample workout. See here for a user who created tracking spreadsheets.",
+                    Description = "An aesthetics-based beginners program. Focuses on glute and lower body development, while also including upper body work as well.",
                     Link = "https://www.reddit.com/r/xxfitness/comments/3k7e47/ok_the_color_coded_google_excel_strong_curve/?st=jfzvxru9&sh=a1dd43f2",
                     DaysPerWeek = 3,
                     TimeToCompleteWorkout = TimeSpan.FromHours(1),
@@ -290,6 +330,7 @@ namespace Reggest.Data
                 new FitnessPlan
                 {
                     Name = TwoSuns,
+                    Description = "The nSuns (2suns) Linear Progression program is that takes inspiration from a few other popular programs and condenses it down into a single high volume week. Involves heavy amounts of squats/deadlifts/benching.",
                     DaysPerWeek = 4,
                     TimeToCompleteWorkout = TimeSpan.FromHours(1.5),
                     VariationPlans = new List<FitnessPlan> {

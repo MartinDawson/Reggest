@@ -22,7 +22,17 @@ namespace Reggest.Components.qAndA
             Field(x => x.Name, nullable: true);
             Field(x => x.Description, nullable: true);
             Field(x => x.Link, nullable: true);
+            Field(x => x.DaysPerWeek);
+            Field<TimeToWorkoutPayload>("timeToWorkout", "The time the workout takes in hours/minutes", resolve: x =>
+            {
+                return new TimeToWorkout
+                {
+                    Hours = x.Source.TimeToCompleteWorkout?.Hours,
+                    Minutes = x.Source.TimeToCompleteWorkout?.Minutes,
+                };
+            });
             Field<FitnessPlanPayload>("parentFitnessPlan", "The fitness plan that this variation plan is related to.");
+            Field<ListGraphType<FitnessPlanPayload>>("variationPlans", "The different types of variations of this fitness plan.");
         }
 
         public override FitnessPlan GetById(string id)

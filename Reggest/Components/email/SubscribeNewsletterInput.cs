@@ -14,6 +14,7 @@ namespace Reggest.Components.qAndA
             Name = nameof(SubscribeNewsletterInput);
 
             Field<NonNullGraphType<StringGraphType>>("email");
+            Field<NonNullGraphType<StringGraphType>>("recaptcha");
         }
     }
 }
