@@ -1,12 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+    <MvcRazorExcludeRefAssembliesFromPublish>false</MvcRazorExcludeRefAssembliesFromPublish>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Components\legal\**" />
     <Content Remove="Components\legal\**" />
     <EmbeddedResource Remove="Components\legal\**" />
     <None Remove="Components\legal\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Properties\PublishProfiles\reggest - Web Deploy.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Components\app\app.ejs" />
