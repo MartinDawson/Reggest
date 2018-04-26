@@ -1,5 +1,3 @@
-### Share date on r/fitness and r/xxfitness must be: 1.0.0 on the 21/04/2018 (MUST GET PERMISSION FIRST)
-
 ## [reggest.com](https://www.reggest.com)
 
 ### The problem
