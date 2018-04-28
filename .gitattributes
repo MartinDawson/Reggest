@@ -12,6 +12,4 @@
 *.js text eol=lf
 *.jsx text eol=lf
 *.less text eol=lf
-
-# Change to CRLF
-*.cs text eol=CRLF
+*.cs text eol=lf
