@@ -12,11 +12,9 @@
 3. run `yarn install` to install the correct npm packages
 4. run `dotnet restore` to build the nuget packages
 6. Create a '.env' file in this directory. I.e "Reggest/Reggest/.env". Copy and paste all of the variables from the [.env variables section here](https://github.com/MartinDawson/Reggest/blob/master/README.md#env-variables) into this file.
-7. Create a new empty database in Microsoft SQL Server Management Studio Called 'Reggest' by clicking on 'New Database' on the 'Databases' folder.
+7. Create a new empty database in Microsoft SQL Server Management Studio Called 'Reggest' by clicking on 'New Database' on the 'Databases' folder. Example: https://user-images.githubusercontent.com/15030491/39398017-1a02e840-4b08-11e8-928e-c3397e0297c2.jpg 
     - Server name: '.'
     - Authentication: 'Windows Authentication'
-
-Example image: https://user-images.githubusercontent.com/15030491/39398017-1a02e840-4b08-11e8-928e-c3397e0297c2.jpg   
 8. run `yarn run start` to start the project
 9. Open http://localhost:8080
 
