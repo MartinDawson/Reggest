@@ -143,8 +143,6 @@ namespace Reggest
             {
                 options.AddRedirectToHttps();
             }
-            options.AddRedirectToWww();
-
             app.UseRewriter(options);
             app.UseStaticFiles();
             app.UseSession();
