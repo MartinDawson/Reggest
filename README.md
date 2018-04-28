@@ -15,7 +15,9 @@
 10. Open http://localhost:8080
 
 ### .env variables
+```
 NODE_ENV=Development
+```
 
 Note: Some env variables are private and you will not have access to such as the 'RECAPTCHA_SITE_KEY' for security reasons.
 
