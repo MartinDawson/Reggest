@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Rewrite;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,6 +17,13 @@ namespace Reggest.Kestrel
 {
     public static class KestrelServerExtension
     {
+        public static RewriteOptions AddRedirectToWww(this RewriteOptions options)
+        {
+            options.Rules.Add(new RedirectToWwwRule());
+
+            return options;
+        }
+
         public static void ConfigureEndpoints(this KestrelServerOptions options)
         {
             var configuration = options.ApplicationServices.GetRequiredService<IConfiguration>();

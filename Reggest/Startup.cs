@@ -28,6 +28,7 @@ using Reggest.Repository;
 using Reggest.Components.fitness;
 using Reggest.Components.graphQl;
 using Microsoft.AspNetCore.Http;
+using Reggest.Kestrel;
 
 namespace Reggest
 {
@@ -142,6 +143,7 @@ namespace Reggest
             {
                 options.AddRedirectToHttps();
             }
+            options.AddRedirectToWww();
 
             app.UseRewriter(options);
             app.UseStaticFiles();
