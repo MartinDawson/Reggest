@@ -53,7 +53,11 @@ public static class KestrelServerOptionsExtensions
                         if (config.Scheme == "https")
                         {
                             var certificate = LoadCertificate(config, environment);
-                            listenOptions.UseHttps(certificate);
+
+                            if (certificate != null)
+                            {
+                                listenOptions.UseHttps(certificate);
+                            }
                         }
                     });
             }
@@ -74,7 +78,7 @@ public static class KestrelServerOptionsExtensions
 
                 if (certificate.Count == 0)
                 {
-                    throw new InvalidOperationException($"Certificate not found for {config.Host}.");
+                    return null;
                 }
 
                 return certificate[0];

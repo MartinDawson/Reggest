@@ -35,10 +35,12 @@ namespace Reggest
     public class Startup
     {
         private readonly IConfiguration _configuration;
+        private readonly IHostingEnvironment _env;
 
-        public Startup(IConfiguration configuration, ILoggerFactory loggerFactory)
+        public Startup(IConfiguration configuration, ILoggerFactory loggerFactory, IHostingEnvironment env)
         {
             _configuration = configuration;
+            _env = env;
             loggerFactory.CreateLogger<Startup>();
         }
 
@@ -74,10 +76,15 @@ namespace Reggest
                 options.IdleTimeout = TimeSpan.FromMinutes(30);
                 options.Cookie.Name = ".Reggest";
             });
-            services.Configure<MvcOptions>(options =>
+
+            if (!_env.IsDevelopment())
             {
-                options.Filters.Add(new RequireHttpsAttribute());
-            });
+                services.Configure<MvcOptions>(options =>
+                {
+                    options.Filters.Add(new RequireHttpsAttribute());
+                });
+            }
+
             services.Configure<DataProtectionTokenProviderOptions>(options =>
             {
                 options.TokenLifespan = TimeSpan.FromMinutes(30);
@@ -150,7 +157,10 @@ namespace Reggest
 
             var options = new RewriteOptions();
 
-            options.AddRedirectToHttps();
+            if (!env.IsDevelopment())
+            {
+                options.AddRedirectToHttps();
+            }
 
             app.UseRewriter(options);
             app.UseStaticFiles();

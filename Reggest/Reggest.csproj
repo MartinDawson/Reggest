@@ -74,4 +74,7 @@
     <None Include="wwwroot\build\favicon.ico" />
     <None Include="wwwroot\build\index.html" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
 </Project>
