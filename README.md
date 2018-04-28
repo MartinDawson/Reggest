@@ -1,6 +1,25 @@
-### Share date on r/fitness and r/xxfitness must be: 1.0.0 on the 21/04/2018 (MUST GET PERMISSION FIRST)
-
 ## [reggest.com](https://www.reggest.com)
+
+## Dev Setup
+1. run "git clone https://github.com/MartinDawson/Reggest.git"
+2. Cd into the newly created "Reggest/Reggest" folders
+3. run "npm i -g yarn"
+4. run "yarn" to install the correct node packages
+5. run "dotnet restore" to build the nuget packages
+6. Install [watchman](https://facebook.github.io/watchman/docs/install.html) and follow the setup
+7. Create a '.env' file in the root project. I.e "Reggest/Reggest/.env". Copy and paste all of the variables from the [.env variables section here](https://github.com/MartinDawson/Reggest/blob/master/README.md#env-variables) into this file.
+8. Create a database in Microsoft SQL Server Management Studio Called 'Reggest'. I.e in the 'Databases/Reggest' section.
+    - Server name: '.'
+    - Authentication: 'Windows Authentication'
+9. run "yarn run start" to start the project
+10. Open http://localhost:8080
+
+### .env variables
+```
+NODE_ENV=Development
+```
+
+Note: Some env variables are private and you will not have access to such as the 'RECAPTCHA_SITE_KEY' for security reasons.
 
 ### The problem
 There are a lot of fitness plans in the world that overwhelm beginners
