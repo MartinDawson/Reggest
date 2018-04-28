@@ -7,8 +7,17 @@
 4. run "yarn" to install the correct node packages
 5. run "dotnet restore" to build the nuget packages
 6. Install [watchman](https://facebook.github.io/watchman/docs/install.html) and follow the setup
-7. run "yarn run start" to start the project
-8. Open http://localhost:8080
+7. Create a '.env' file in the root project. I.e "Reggest/Reggest/.env". Add the variables from the node_env section here.
+8. Create a database in Microsoft SQL Server Management Studio Called 'Reggest'. I.e in the 'Databases/Reggest' section.
+  - Server name: '.'
+  - Authentication: 'Windows Authentication'
+9. run "yarn run start" to start the project
+10. Open http://localhost:8080
+
+### .env public variables
+NODE_ENV=Development
+
+Note: Some env variables are private and you will not have access to such as the 'RECAPTCHA_SITE_KEY' for security reasons.
 
 ### The problem
 There are a lot of fitness plans in the world that overwhelm beginners
