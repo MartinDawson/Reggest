@@ -16,7 +16,7 @@
     - Server name: '.'
     - Authentication: 'Windows Authentication'
 8. run `yarn run start` to start the project
-9. Open http://localhost:8080
+9. Open http://localhost:49891
 
 ### .env variables
 ```
