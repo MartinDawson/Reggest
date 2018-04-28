@@ -1,18 +1,22 @@
 ## [reggest.com](https://www.reggest.com)
 
+## Prerequisites
+1. [Yarn](https://yarnpkg.com/lang/en/docs/install/#windows-stable)
+2. [Dotnet SDK](https://www.microsoft.com/net/learn/get-started/windows)
+3. [Microsoft SQL Server Management Studio](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-2017). 2017 version is recommended.
+4. [Watchman](https://facebook.github.io/watchman/docs/install.html). Follow the setup.
+
 ## Dev Setup
-1. run "git clone https://github.com/MartinDawson/Reggest.git"
-2. cd into the newly created "Reggest/Reggest" folders
-3. run "npm i -g yarn"
-4. run "yarn" to install the correct node packages
-5. run "dotnet restore" to build the nuget packages
-6. Install [watchman](https://facebook.github.io/watchman/docs/install.html) and follow the setup
-7. Create a '.env' file in the root project. I.e "Reggest/Reggest/.env". Copy and paste all of the variables from the [.env variables section here](https://github.com/MartinDawson/Reggest/blob/master/README.md#env-variables) into this file.
-8. Create a database in Microsoft SQL Server Management Studio Called 'Reggest'. I.e in the 'Databases/Reggest' section.
+1. run `git clone https://github.com/MartinDawson/Reggest.git` on your command prompt
+2. run `cd Reggest/Reggest` to move into the source directory of the solution
+3. run `yarn install` to install the correct npm packages
+4. run `dotnet restore` to build the nuget packages
+6. Create a '.env' file in this directory. I.e "Reggest/Reggest/.env". Copy and paste all of the variables from the [.env variables section here](https://github.com/MartinDawson/Reggest/blob/master/README.md#env-variables) into this file.
+7. Create a new empty database in Microsoft SQL Server Management Studio Called 'Reggest' by clicking on 'New Database' on the 'Databases' folder. Example: https://user-images.githubusercontent.com/15030491/39398017-1a02e840-4b08-11e8-928e-c3397e0297c2.jpg 
     - Server name: '.'
     - Authentication: 'Windows Authentication'
-9. run "yarn run start" to start the project
-10. Open http://localhost:8080
+8. run `yarn run start` to start the project
+9. Open http://localhost:8080
 
 ### .env variables
 ```
@@ -20,6 +24,9 @@ NODE_ENV=Development
 ```
 
 Note: Some env variables are private and you will not have access to such as the 'RECAPTCHA_SITE_KEY' for security reasons.
+
+### Feedback
+https://www.reddit.com/r/xxfitness/comments/8f5ct5/i_created_a_website_that_recommends_fitness_plans/?st=jgjjqg9m&sh=c12a96e5
 
 ### The problem
 There are a lot of fitness plans in the world that overwhelm beginners
