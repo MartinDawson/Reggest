@@ -21,9 +21,8 @@
 ### .env variables
 ```
 NODE_ENV=Development
+RECAPTCHA_SITE_KEY=6Ley01QUAAAAAHFUtLNjjoZzJAOEqr1iyztvEECM
 ```
-
-Note: Some env variables are private and you will not have access to such as the 'RECAPTCHA_SITE_KEY' for security reasons.
 
 ### Feedback
 https://www.reddit.com/r/xxfitness/comments/8f5ct5/i_created_a_website_that_recommends_fitness_plans/?st=jgjjqg9m&sh=c12a96e5
