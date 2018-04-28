@@ -8,7 +8,7 @@
 5. run "dotnet restore" to build the nuget packages
 6. Install [watchman](https://facebook.github.io/watchman/docs/install.html) and follow the setup
 7. run "yarn run start" to start the project
-8. Open localhost:8080
+8. Open http://localhost:8080
 
 ### The problem
 There are a lot of fitness plans in the world that overwhelm beginners
