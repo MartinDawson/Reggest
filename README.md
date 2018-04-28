@@ -7,7 +7,7 @@
 4. run "yarn" to install the correct node packages
 5. run "dotnet restore" to build the nuget packages
 6. Install [watchman](https://facebook.github.io/watchman/docs/install.html) and follow the setup
-7. Create a '.env' file in the root project. I.e "Reggest/Reggest/.env". Add the variables from the [.env variables section here](https://github.com/MartinDawson/Reggest/blob/master/README.md#env-variables).
+7. Create a '.env' file in the root project. I.e "Reggest/Reggest/.env". Copy and paste all of the variables from the [.env variables section here](https://github.com/MartinDawson/Reggest/blob/master/README.md#env-variables) into this file.
 8. Create a database in Microsoft SQL Server Management Studio Called 'Reggest'. I.e in the 'Databases/Reggest' section.
     - Server name: '.'
     - Authentication: 'Windows Authentication'
