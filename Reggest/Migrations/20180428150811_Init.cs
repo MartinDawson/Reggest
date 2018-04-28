@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Reggest.Migrations
 {
-    public partial class init : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

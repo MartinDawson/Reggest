@@ -1,5 +1,5 @@
-# source: https://localhost:8080/graphql
-# timestamp: Sun Apr 22 2018 17:07:04 GMT+0200 (W. Europe Daylight Time)
+# source: http://localhost:8080/graphql
+# timestamp: Sat Apr 28 2018 17:09:53 GMT+0200 (W. Europe Daylight Time)
 
 type Answer implements Node {
   """The Id of the Answer"""
@@ -18,17 +18,6 @@ type Answer implements Node {
   question: Question
 }
 
-type ApplicationUser implements Node {
-  """The Id of the ApplicationUser"""
-  userId: String!
-
-  """The Global Id of the ApplicationUser"""
-  id: ID!
-  userName: String!
-  email: String!
-  emailConfirmed: Boolean!
-}
-
 """
 The `Date` scalar type represents a timestamp provided in UTC. `Date` expects
 timestamps to be formatted in accordance with the
@@ -37,26 +26,6 @@ timestamps to be formatted in accordance with the
 scalar Date
 
 scalar Decimal
-
-type ExternalLoginCallbackPayload {
-  """The existing logged in user"""
-  user: ApplicationUser
-
-  """The current login provider, i.e facebook, twitter, google etc"""
-  loginProvider: String
-
-  """The new users user name"""
-  userName: String
-}
-
-input ExternalLoginConfirmationInput {
-  clientMutationId: String = null
-  userName: String!
-}
-
-type ExternalLoginConfirmationPayload {
-  clientMutationId: String
-}
 
 type FitnessPlan implements Node {
   """The Id of the FitnessPlan"""
@@ -99,47 +68,9 @@ input FitnessPlanOrderInput {
   fitnessPlanIds: [Int]!
 }
 
-input GenerateResetPasswordTokenInput {
-  clientMutationId: String = null
-  email: String!
-}
-
-type GenerateResetPasswordTokenPayload {
-  clientMutationId: String
-  user: ApplicationUser
-  passwordResetToken: String
-}
-
-input LoginInput {
-  clientMutationId: String = null
-  username: String!
-  password: String!
-  rememberMe: Boolean = null
-}
-
-type LoginPayload {
-  clientMutationId: String
-  user: ApplicationUser
-}
-
-type LoginProvider {
-  name: String!
-  displayName: String!
-}
-
-type LogoutPayload {
-  clientMutationId: String
-}
-
 type Mutation {
   submitAnswer(input: SubmitAnswerInput!): SubmitAnswerPayload
   subscribeNewsletter(input: SubscribeNewsletterInput!): SubscribeNewsletterPayload
-  register(input: RegisterInput!): RegisterPayload
-  login(input: LoginInput!): LoginPayload
-  externalLoginConfirmation(input: ExternalLoginConfirmationInput!): ExternalLoginConfirmationPayload
-  logout: LogoutPayload
-  generateResetPasswordToken(input: GenerateResetPasswordTokenInput!): GenerateResetPasswordTokenPayload
-  resetPassword(input: ResetPasswordInput!): ResetPasswordPayload
 }
 
 interface Node {
@@ -161,16 +92,6 @@ type Query {
     """The ordering for the fitness plans"""
     order: FitnessPlanOrderInput = null
   ): [FitnessPlan]
-  user: ApplicationUser
-  externalLoginCallback: ExternalLoginCallbackPayload
-  confirmEmail(
-    """The id of the user"""
-    userId: String!
-
-    """The unique code to verify the email"""
-    token: String!
-  ): Boolean
-  loginProviders: [LoginProvider]
 }
 
 type Question implements Node {
@@ -186,30 +107,6 @@ type Question implements Node {
   """The answers for this question"""
   answers: [Answer]
   fitnessPlanAnswerPoints: [FitnessPlanAnswerPoint]
-}
-
-input RegisterInput {
-  clientMutationId: String = null
-  username: String!
-  email: String!
-  password: String!
-}
-
-type RegisterPayload {
-  clientMutationId: String
-  user: ApplicationUser
-  emailConfirmationToken: String
-}
-
-input ResetPasswordInput {
-  clientMutationId: String = null
-  password: String!
-  userId: String!
-  token: String!
-}
-
-type ResetPasswordPayload {
-  clientMutationId: String
 }
 
 input SubmitAnswerInput {

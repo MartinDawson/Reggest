@@ -26,10 +26,8 @@ using Microsoft.AspNetCore.Rewrite;
 using Reggest.Components.qAndA;
 using Reggest.Repository;
 using Reggest.Components.fitness;
-using Reggest.Components.account;
 using Reggest.Components.graphQl;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace Reggest
 {
@@ -57,20 +55,6 @@ namespace Reggest
             {
                 services.AddApplicationInsightsTelemetry(instrumentationKey);
             }
-
-            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
-            {
-                options.Password.RequireDigit = false;
-                options.Password.RequireLowercase = false;
-                options.Password.RequireNonAlphanumeric = false;
-                options.Password.RequireUppercase = false;
-                options.Password.RequiredLength = 0;
-                // Allow all characters
-                options.User.AllowedUserNameCharacters = string.Empty;
-                options.User.RequireUniqueEmail = true;
-            })
-            .AddEntityFrameworkStores<ApplicationDbContext>()
-            .AddDefaultTokenProviders();
 
             services.AddSession(options =>
             {
@@ -144,14 +128,10 @@ namespace Reggest
             }
 
 
-            async Task<Context> BuildUserContext(HttpContext c)
+            Context BuildUserContext(HttpContext c)
             {
-                var userManager = app.ApplicationServices.GetRequiredService<UserManager<ApplicationUser>>();
-                var currentUser = await userManager.GetUserAsync(c.User);
-
                 return new Context
                 {
-                    CurrentUser = currentUser,
                     HttpContext = c
                 };
             }
