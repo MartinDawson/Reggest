@@ -12,17 +12,17 @@ const Fitness = props => (
       {props.hasQuestion ? (
         <div>
           <div className={styles.title}>
-            <div>let&apos;s suggest a fitness plan for you.</div>
+            <div>let&apos;s suggest a lifting plan for you.</div>
             <div>simply answer a few questions...</div>
           </div>
           <QAndA question={props.data.questionByIndex} getNextQuestion={props.getNextQuestion} />
-          <div className={styles.title}>or see all certified fitness plans</div>
+          <div className={styles.title}>or see all certified lifting plans</div>
           <FitnessPlans data={props.data} />
         </div>
       ) : (
         <div>
           <div className={styles.title}>
-            <div>Your suggested fitness plans.</div>
+            <div>Your suggested lifting plans.</div>
           </div>
           <FitnessPlansRanked />
         </div>

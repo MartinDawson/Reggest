@@ -24,7 +24,7 @@
   "homepage": "https://github.com/MartinDawson/Reggest",
   "license": "UNLICENSED",
   "scripts": {
-    "prestart": "cross-env NODE_ENV=development webpack",
+    "prestart": "cross-env NODE_ENV=Development webpack",
     "start": "npm-run-all --parallel development relay-compiler:watch",
     "development": "cross-env ASPNETCORE_ENVIRONMENT=Development dotnet run",
     "update": "babel-node Components/graphQl/updateSchema.js",
@@ -33,7 +33,7 @@
     "get-schema": "cross-env graphql get-schema dev",
     "lint": "eslint --fix --ext .js components",
     "clean": "rimraf ./wwwroot/build",
-    "build-client": "cross-env NODE_ENV=production webpack",
+    "build-client": "cross-env NODE_ENV=Production webpack",
     "build": "npm-run-all --sequential clean build-client"
   },
   "browserslist": [

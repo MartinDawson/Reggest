@@ -13,7 +13,7 @@ const NewsletterModal = ({ handleSubmit, error, hideModal }) => (
   <Modal title="Subscribe." id="fitnessPlans" allowOverlayHideModal={false}>
     <ValidationErrors errors={error} />
     <div className={styles.subscribeText}>
-      <div>Subscribe to get your fitness plans emailed to you.</div>
+      <div>Subscribe to get your lifting plans emailed to you.</div>
     </div>
     <form onSubmit={handleSubmit} action="">
       <div className={styles.fields}>

@@ -33,7 +33,7 @@ const PrimaryLayout = ({
                   reggest
                   <div className={styles.betaLabel}>beta</div>
                 </Link>
-                <div className={styles.moto}>fitness plan suggester</div>
+                <div className={styles.moto}>lifting plan suggester</div>
               </div>
               {children}
             </div>
