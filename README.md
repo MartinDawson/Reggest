@@ -7,17 +7,17 @@
 4. [Watchman](https://facebook.github.io/watchman/docs/install.html). Follow the setup.
 
 ## Dev Setup
-1. run "git clone https://github.com/MartinDawson/Reggest.git"
-2. cd into the newly created "Reggest/Reggest" folders
-3. run "yarn" to install the correct node packages
-4. run "dotnet restore" to build the nuget packages
-6. Create a '.env' file in the root project. I.e "Reggest/Reggest/.env". Copy and paste all of the variables from the [.env variables section here](https://github.com/MartinDawson/Reggest/blob/master/README.md#env-variables) into this file.
-7. Create a new database in Microsoft SQL Server Management Studio Called 'Reggest' by clicking on 'New Database' on the 'Databases' folder.
+1. run `git clone https://github.com/MartinDawson/Reggest.git` on your command prompt
+2. run `cd Reggest/Reggest` to move into the source directory of the solution
+3. run `yarn install` to install the correct npm packages
+4. run `dotnet restore` to build the nuget packages
+6. Create a '.env' file in this directory. I.e "Reggest/Reggest/.env". Copy and paste all of the variables from the [.env variables section here](https://github.com/MartinDawson/Reggest/blob/master/README.md#env-variables) into this file.
+7. Create a new empty database in Microsoft SQL Server Management Studio Called 'Reggest' by clicking on 'New Database' on the 'Databases' folder.
     - Server name: '.'
     - Authentication: 'Windows Authentication'
-    
+
 Example image: https://user-images.githubusercontent.com/15030491/39398017-1a02e840-4b08-11e8-928e-c3397e0297c2.jpg   
-8. run "yarn run start" to start the project
+8. run `yarn run start` to start the project
 9. Open http://localhost:8080
 
 ### .env variables
