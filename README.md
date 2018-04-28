@@ -2,7 +2,7 @@
 
 ## Dev Setup
 1. run "git clone https://github.com/MartinDawson/Reggest.git"
-2. Cd into the newly created "Reggest/Reggest" folders
+2. cd into the newly created "Reggest/Reggest" folders
 3. run "npm i -g yarn"
 4. run "yarn" to install the correct node packages
 5. run "dotnet restore" to build the nuget packages
