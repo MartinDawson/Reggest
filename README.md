@@ -1,6 +1,5 @@
 ## [reggest.com](https://www.reggest.com)
 
-
 ## Prerequisites
 1. [Yarn](https://yarnpkg.com/lang/en/docs/install/#windows-stable)
 2. [Dotnet SDK](https://www.microsoft.com/net/learn/get-started/windows)
@@ -16,6 +15,7 @@
 7. Create a new database in Microsoft SQL Server Management Studio Called 'Reggest' by clicking on 'New Database' on the 'Databases' folder.
     - Server name: '.'
     - Authentication: 'Windows Authentication'
+    
 Example image: https://user-images.githubusercontent.com/15030491/39398017-1a02e840-4b08-11e8-928e-c3397e0297c2.jpg   
 8. run "yarn run start" to start the project
 9. Open http://localhost:8080
