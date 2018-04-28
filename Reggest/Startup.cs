@@ -29,6 +29,7 @@ using Reggest.Components.fitness;
 using Reggest.Components.account;
 using Reggest.Components.graphQl;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace Reggest
 {
@@ -77,13 +78,13 @@ namespace Reggest
                 options.Cookie.Name = ".Reggest";
             });
 
-            if (!_env.IsDevelopment())
+            services.Configure<MvcOptions>(options =>
             {
-                services.Configure<MvcOptions>(options =>
+                if (!_env.IsDevelopment())
                 {
                     options.Filters.Add(new RequireHttpsAttribute());
-                });
-            }
+                }
+            });
 
             services.Configure<DataProtectionTokenProviderOptions>(options =>
             {
@@ -157,7 +158,7 @@ namespace Reggest
 
             var options = new RewriteOptions();
 
-            if (!env.IsDevelopment())
+            if (!_env.IsDevelopment())
             {
                 options.AddRedirectToHttps();
             }

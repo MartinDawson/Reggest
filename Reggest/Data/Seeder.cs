@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Reggest.Components.fitness;
 using Reggest.Components.qAndA;
-using Reggest.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
