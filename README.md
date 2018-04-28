@@ -1,5 +1,15 @@
 ## [reggest.com](https://www.reggest.com)
 
+## Dev Setup
+1. Clone https://github.com/MartinDawson/Reggest.git
+2. Cd into the newly created "Reggest/Reggest" folders
+3. run "npm i -g yarn"
+4. run "yarn" to install the correct node packages
+5. run "dotnet restore" to build the nuget packages
+6. Install [watchman](https://facebook.github.io/watchman/docs/install.html) and follow the setup
+7. run "yarn run start" to start the project
+8. Open localhost:8080
+
 ### The problem
 There are a lot of fitness plans in the world that overwhelm beginners
 
