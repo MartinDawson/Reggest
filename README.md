@@ -1,11 +1,12 @@
 ## [reggest.com](https://www.reggest.com)
 
-## Dev Setup
-### Prerequisites
+
+## Prerequisites
 1. [Yarn](https://yarnpkg.com/lang/en/docs/install/#windows-stable)
 2. [Dotnet SDK](https://www.microsoft.com/net/learn/get-started/windows)
 3. [Microsoft SQL Server Management Studio](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-2017). 2017 version is recommended.
 
+## Dev Setup
 1. run "git clone https://github.com/MartinDawson/Reggest.git"
 2. cd into the newly created "Reggest/Reggest" folders
 3. run "yarn" to install the correct node packages
