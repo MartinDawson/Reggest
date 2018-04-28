@@ -1,0 +1,17 @@
+# Force line ending normalization, using LF
+* text=auto
+
+# Denote all files that are truly binary and should not be modified.
+*.png binary
+*.gif binary
+*.jpg binary
+*.jpeg binary
+*.zip binary
+
+# Stop line endings changing to CRLF on windows
+*.js text eol=lf
+*.jsx text eol=lf
+*.less text eol=lf
+
+# Change to CRLF
+*.cs text eol=CRLF
