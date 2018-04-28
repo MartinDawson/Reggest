@@ -27,6 +27,9 @@ NODE_ENV=Development
 
 Note: Some env variables are private and you will not have access to such as the 'RECAPTCHA_SITE_KEY' for security reasons.
 
+### Feedback
+https://www.reddit.com/r/xxfitness/comments/8f5ct5/i_created_a_website_that_recommends_fitness_plans/?st=jgjjqg9m&sh=c12a96e5
+
 ### The problem
 There are a lot of fitness plans in the world that overwhelm beginners
 
