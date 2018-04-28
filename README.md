@@ -5,13 +5,13 @@
 1. [Yarn](https://yarnpkg.com/lang/en/docs/install/#windows-stable)
 2. [Dotnet SDK](https://www.microsoft.com/net/learn/get-started/windows)
 3. [Microsoft SQL Server Management Studio](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-2017). 2017 version is recommended.
+4. [Watchman](https://facebook.github.io/watchman/docs/install.html). Follow the setup.
 
 ## Dev Setup
 1. run "git clone https://github.com/MartinDawson/Reggest.git"
 2. cd into the newly created "Reggest/Reggest" folders
 3. run "yarn" to install the correct node packages
 4. run "dotnet restore" to build the nuget packages
-5. Install [watchman](https://facebook.github.io/watchman/docs/install.html) and follow the setup
 6. Create a '.env' file in the root project. I.e "Reggest/Reggest/.env". Copy and paste all of the variables from the [.env variables section here](https://github.com/MartinDawson/Reggest/blob/master/README.md#env-variables) into this file.
 7. Create a new database in Microsoft SQL Server Management Studio Called 'Reggest' by clicking on 'New Database' on the 'Databases' folder.
     - Server name: '.'
