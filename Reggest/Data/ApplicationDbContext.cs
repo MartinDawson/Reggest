@@ -12,9 +12,10 @@ namespace Reggest.Data
     public class ApplicationDbContext : IdentityDbContext
     {
         public DbSet<FitnessPlan> FitnessPlans { get; set; }
+        public DbSet<VariationPlan> VariationPlans { get; set; }
         public DbSet<Question> Questions { get; set; }
         public DbSet<Answer> Answers { get; set; }
-        public DbSet<FitnessPlanAnswerPoint> FitnessPlansAnswersPoints { get; set; }
+        public DbSet<PlanAnswerPoint> PlansAnswersPoints { get; set; }
 
         public ApplicationDbContext(DbContextOptions options)
             : base(options)

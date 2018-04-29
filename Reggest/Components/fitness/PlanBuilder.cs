@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace Reggest.Components.fitness
 {
-    public static class FitnessPlanBuilder
+    public static class PlanBuilder
     {
-        public static IQueryable<T> BuildFitnessPlan<T>(this IQueryable<T> query) where T : FitnessPlan
+        public static IQueryable<T> BuildPlan<T>(this IQueryable<T> query) where T : Plan
         {
             return query
-                .Include(x => x.VariationPlans);
+                .Include(x => x.WorkoutDaysPerWeek);
         }
     }
 }

@@ -209,6 +209,7 @@ namespace Reggest
             builder.RegisterType<Repository<Question, ApplicationDbContext>>().As<IRepository<Question>>();
             builder.RegisterType<Repository<Answer, ApplicationDbContext>>().As<IRepository<Answer>>();
             builder.RegisterType<Repository<FitnessPlan, ApplicationDbContext>>().As<IRepository<FitnessPlan>>();
+            builder.RegisterType<Repository<VariationPlan, ApplicationDbContext>>().As<IRepository<VariationPlan>>();
 
             return builder;
         }

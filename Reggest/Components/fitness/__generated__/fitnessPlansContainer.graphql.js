@@ -8,20 +8,19 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
-type variationPlansContainer_fitnessPlan$ref = any;
+type workoutDaysPerWeekContainer_plan$ref = any;
 import type { FragmentReference } from 'relay-runtime';
 declare export opaque type fitnessPlansContainer$ref: FragmentReference;
 export type fitnessPlansContainer = {|
   +fitnessPlans: ?$ReadOnlyArray<?{|
-    +fitnessPlanId: number,
-    +name: ?string,
-    +description: ?string,
-    +daysPerWeek: number,
+    +planId: number,
+    +name: string,
+    +description: string,
     +timeToWorkout: ?{|
       +hours: ?number,
       +minutes: ?number,
     |},
-    +$fragmentRefs: variationPlansContainer_fitnessPlan$ref,
+    +$fragmentRefs: workoutDaysPerWeekContainer_plan$ref,
   |}>,
   +$refType: fitnessPlansContainer$ref,
 |};
@@ -33,21 +32,34 @@ const node/*: ConcreteFragment*/ = {
   "name": "fitnessPlansContainer",
   "type": "Query",
   "metadata": null,
-  "argumentDefinitions": [],
+  "argumentDefinitions": [
+    {
+      "kind": "RootArgument",
+      "name": "order",
+      "type": "FitnessPlanOrderInput"
+    }
+  ],
   "selections": [
     {
       "kind": "LinkedField",
       "alias": null,
       "name": "fitnessPlans",
       "storageKey": null,
-      "args": null,
+      "args": [
+        {
+          "kind": "Variable",
+          "name": "order",
+          "variableName": "order",
+          "type": "FitnessPlanOrderInput"
+        }
+      ],
       "concreteType": "FitnessPlan",
       "plural": true,
       "selections": [
         {
           "kind": "ScalarField",
           "alias": null,
-          "name": "fitnessPlanId",
+          "name": "planId",
           "args": null,
           "storageKey": null
         },
@@ -62,13 +74,6 @@ const node/*: ConcreteFragment*/ = {
           "kind": "ScalarField",
           "alias": null,
           "name": "description",
-          "args": null,
-          "storageKey": null
-        },
-        {
-          "kind": "ScalarField",
-          "alias": null,
-          "name": "daysPerWeek",
           "args": null,
           "storageKey": null
         },
@@ -99,12 +104,12 @@ const node/*: ConcreteFragment*/ = {
         },
         {
           "kind": "FragmentSpread",
-          "name": "variationPlansContainer_fitnessPlan",
+          "name": "workoutDaysPerWeekContainer_plan",
           "args": null
         }
       ]
     }
   ]
 };
-(node/*: any*/).hash = '7e261a988cf680cb717b7e1700c8b05e';
+(node/*: any*/).hash = '6af89e535952ee01354724e0909b2fe4';
 module.exports = node;

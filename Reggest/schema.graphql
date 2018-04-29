@@ -1,5 +1,5 @@
-# source: http://localhost:8080/graphql
-# timestamp: Sat Apr 28 2018 17:09:53 GMT+0200 (W. Europe Daylight Time)
+# source: http://localhost:49891/graphql
+# timestamp: Sun Apr 29 2018 18:56:30 GMT+0200 (W. Europe Daylight Time)
 
 type Answer implements Node {
   """The Id of the Answer"""
@@ -27,39 +27,24 @@ scalar Date
 
 scalar Decimal
 
-type FitnessPlan implements Node {
+type FitnessPlan implements Node & Plan {
   """The Id of the FitnessPlan"""
-  fitnessPlanId: Int!
+  planId: Int!
 
   """The Global Id of the FitnessPlan"""
   id: ID!
-  name: String
-  description: String
+  name: String!
+  description: String!
   link: String
-  daysPerWeek: Int!
+
+  """The days per week to workout for this fitness plan"""
+  workoutDaysPerWeek: [Int]
 
   """The time the workout takes in hours/minutes"""
   timeToWorkout: TimeToWorkout
 
-  """The fitness plan that this variation plan is related to."""
-  parentFitnessPlan: FitnessPlan
-
   """The different types of variations of this fitness plan."""
-  variationPlans: [FitnessPlan]
-}
-
-type FitnessPlanAnswerPoint implements Node {
-  """The Id of the FitnessPlanAnswerPoint"""
-  fitnessPlanAnswerPointId: Int!
-
-  """The Global Id of the FitnessPlanAnswerPoint"""
-  id: ID!
-
-  """
-  The number of points that the current answer gives for the fitness plan
-  """
-  points: Int!
-  fitnessPlan: FitnessPlan
+  variationPlans: [VariationPlan]
 }
 
 """Provides ordering"""
@@ -76,6 +61,29 @@ type Mutation {
 interface Node {
   """Global node Id"""
   id: ID
+}
+
+interface Plan {
+  id: ID
+  planId: Int!
+  name: String!
+  description: String!
+  link: String
+
+  """The days per week to workout for this plan"""
+  workoutDaysPerWeek: [Int]
+
+  """The time the workout takes in hours/minutes"""
+  timeToWorkout: TimeToWorkout
+}
+
+type PlanAnswerPoint {
+  id: ID
+
+  """The number of points that the current answer gives for the plan"""
+  points: Int!
+  fitnessPlan: FitnessPlan
+  variationPlan: VariationPlan
 }
 
 type Query {
@@ -106,7 +114,7 @@ type Question implements Node {
 
   """The answers for this question"""
   answers: [Answer]
-  fitnessPlanAnswerPoints: [FitnessPlanAnswerPoint]
+  planAnswerPoints: [PlanAnswerPoint]
 }
 
 input SubmitAnswerInput {
@@ -135,4 +143,21 @@ type TimeToWorkout {
 
   """The amount of minutes it takes to complete the workout"""
   minutes: Int
+}
+
+type VariationPlan implements Plan {
+  id: ID
+  planId: Int!
+  name: String!
+  description: String!
+  link: String
+
+  """The days per week to workout for this variation plan"""
+  workoutDaysPerWeek: [Int]
+
+  """The time the workout takes in hours/minutes"""
+  timeToWorkout: TimeToWorkout
+
+  """The fitness plan that this variation plan is related to."""
+  parentFitnessPlan: FitnessPlan
 }

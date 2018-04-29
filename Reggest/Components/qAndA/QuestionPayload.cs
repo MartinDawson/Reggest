@@ -20,7 +20,7 @@ namespace Reggest.Components.qAndA
             Id(x => x.Id);
             Field(x => x.QuestionText).Description("The question to ask the user");
             Field<ListGraphType<AnswerPayload>>("answers", "The answers for this question");
-            Field<ListGraphType<FitnessPlanAnswerPointPayload>>("fitnessPlanAnswerPoints");
+            Field<ListGraphType<PlanAnswerPointPayload>>("planAnswerPoints");
         }
 
         public override Question GetById(string id)

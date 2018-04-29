@@ -6,16 +6,17 @@ import FitnessPlans from './fitnessPlans';
 
 const fragments = graphql`
   fragment fitnessPlansContainer on Query {
-    fitnessPlans {
-      fitnessPlanId
+    fitnessPlans(
+      order: $order
+    ) {
+      planId
       name
       description
-      daysPerWeek
       timeToWorkout {
         hours
         minutes
       }
-      ...variationPlansContainer_fitnessPlan
+      ...workoutDaysPerWeekContainer_plan
     }
   }
 `;

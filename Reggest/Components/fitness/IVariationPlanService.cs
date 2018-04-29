@@ -5,8 +5,7 @@ using System.Threading.Tasks;
 
 namespace Reggest.Components.fitness
 {
-    public interface IFitnessPlanService : IPlanService<FitnessPlan>
+    public interface IVariationPlanService : IPlanService<VariationPlan>
     {
-        void AddFitnessPlans(ICollection<FitnessPlan> fitnessPlans);
     }
 }

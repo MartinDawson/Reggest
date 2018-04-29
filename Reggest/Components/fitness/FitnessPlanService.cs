@@ -7,18 +7,14 @@ using System.Threading.Tasks;
 
 namespace Reggest.Components.qAndA
 {
-    public class FitnessPlanService : IFitnessPlanService
+    public class FitnessPlanService : PlanService<FitnessPlan>, IFitnessPlanService
     {
         private readonly IRepository<FitnessPlan> _repository;
 
         public FitnessPlanService(IRepository<FitnessPlan> repository)
+            : base(repository)
         {
             _repository = repository;
-        }
-
-        public IEnumerable<FitnessPlan> GetAll()
-        {
-            return _repository.GetAll().BuildFitnessPlan();
         }
 
         public void AddFitnessPlans(ICollection<FitnessPlan> fitnessPlans)
@@ -29,9 +25,14 @@ namespace Reggest.Components.qAndA
             }
         }
 
-        public FitnessPlan GetFitnessPlan(int id)
+        public override IEnumerable<FitnessPlan> GetAll()
         {
-            return _repository.GetAll().BuildFitnessPlan().Single(x => x.Id == id);
+            return base.GetAll().AsQueryable().BuildFitnessPlan();
+        }
+
+        public override FitnessPlan GetPlan(int id)
+        {
+            return GetAll().Single(x => x.Id == id);
         }
     }
 }

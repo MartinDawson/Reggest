@@ -13,6 +13,6 @@ namespace Reggest.Components.qAndA
         [Required]
         public string QuestionText { get; set; }
         public virtual ICollection<Answer> Answers { get; set; } = new List<Answer>();
-        public virtual ICollection<FitnessPlanAnswerPoint> FitnessPlanAnswerPoints { get; set; } = new List<FitnessPlanAnswerPoint>();
+        public virtual ICollection<PlanAnswerPoint> PlanAnswerPoints { get; set; } = new List<PlanAnswerPoint>();
     }
 }

@@ -39,15 +39,15 @@ namespace Reggest.Components.GraphQl
                 .Name("fitnessPlans")
                 .Argument<FitnessPlanOrderInput>("order", "The ordering for the fitness plans")
                 .Resolve(c => {
-                    var fitnessPlanOrder = c.GetArgument<FitnessPlanOrder>("order");
-                    var fitnessPlans = fitnessPlanService.GetAll().Where(x => x.ParentFitnessPlan == null);
+                    var fitnessPlanOrder = c.GetArgument<PlanOrder>("order");
+                    var fitnessPlans = fitnessPlanService.GetAll();
 
-                    if (fitnessPlanOrder?.FitnessPlanIds == null)
+                    if (fitnessPlanOrder?.PlanIds == null)
                     {
                         return fitnessPlans;
                     }
 
-                    return fitnessPlans.ToList().OrderBy(x => fitnessPlanOrder.FitnessPlanIds.IndexOf(x.Id));
+                    return fitnessPlans.ToList().OrderBy(x => fitnessPlanOrder.PlanIds.IndexOf(x.Id));
                 });
         }
     }

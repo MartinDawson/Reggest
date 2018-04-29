@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 
 namespace Reggest.Components.fitness
 {
-    public interface IFitnessPlanService : IPlanService<FitnessPlan>
+    public class WorkoutDayPerWeek
     {
-        void AddFitnessPlans(ICollection<FitnessPlan> fitnessPlans);
+        public int Id { get; set; }
+        public int DaysPerWeek { get; set; }
     }
 }

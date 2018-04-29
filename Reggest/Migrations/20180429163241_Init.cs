@@ -54,22 +54,14 @@ namespace Reggest.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    DaysPerWeek = table.Column<int>(nullable: false),
                     Description = table.Column<string>(nullable: true),
                     Link = table.Column<string>(nullable: true),
-                    Name = table.Column<string>(nullable: true),
-                    ParentFitnessPlanId = table.Column<int>(nullable: true),
-                    TimeToCompleteWorkout = table.Column<TimeSpan>(nullable: true)
+                    Name = table.Column<string>(nullable: false),
+                    TimeToCompleteWorkout = table.Column<TimeSpan>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_FitnessPlans", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_FitnessPlans_FitnessPlans_ParentFitnessPlanId",
-                        column: x => x.ParentFitnessPlanId,
-                        principalTable: "FitnessPlans",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -192,6 +184,29 @@ namespace Reggest.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "VariationPlans",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Description = table.Column<string>(nullable: true),
+                    FitnessPlanId = table.Column<int>(nullable: true),
+                    Link = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: false),
+                    TimeToCompleteWorkout = table.Column<TimeSpan>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_VariationPlans", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_VariationPlans_FitnessPlans_FitnessPlanId",
+                        column: x => x.FitnessPlanId,
+                        principalTable: "FitnessPlans",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Answers",
                 columns: table => new
                 {
@@ -213,28 +228,62 @@ namespace Reggest.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "FitnessPlansAnswersPoints",
+                name: "PlansAnswersPoints",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    FitnessPlanId = table.Column<int>(nullable: false),
+                    FitnessPlanId = table.Column<int>(nullable: true),
                     Points = table.Column<int>(nullable: false),
-                    QuestionId = table.Column<int>(nullable: true)
+                    QuestionId = table.Column<int>(nullable: true),
+                    VariationPlanId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_FitnessPlansAnswersPoints", x => x.Id);
+                    table.PrimaryKey("PK_PlansAnswersPoints", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_FitnessPlansAnswersPoints_FitnessPlans_FitnessPlanId",
+                        name: "FK_PlansAnswersPoints_FitnessPlans_FitnessPlanId",
                         column: x => x.FitnessPlanId,
                         principalTable: "FitnessPlans",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_FitnessPlansAnswersPoints_Questions_QuestionId",
+                        name: "FK_PlansAnswersPoints_Questions_QuestionId",
                         column: x => x.QuestionId,
                         principalTable: "Questions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_PlansAnswersPoints_VariationPlans_VariationPlanId",
+                        column: x => x.VariationPlanId,
+                        principalTable: "VariationPlans",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "WorkoutDayPerWeek",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    DaysPerWeek = table.Column<int>(nullable: false),
+                    FitnessPlanId = table.Column<int>(nullable: true),
+                    VariationPlanId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_WorkoutDayPerWeek", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_WorkoutDayPerWeek_FitnessPlans_FitnessPlanId",
+                        column: x => x.FitnessPlanId,
+                        principalTable: "FitnessPlans",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_WorkoutDayPerWeek_VariationPlans_VariationPlanId",
+                        column: x => x.VariationPlanId,
+                        principalTable: "VariationPlans",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -284,19 +333,34 @@ namespace Reggest.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_FitnessPlans_ParentFitnessPlanId",
-                table: "FitnessPlans",
-                column: "ParentFitnessPlanId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_FitnessPlansAnswersPoints_FitnessPlanId",
-                table: "FitnessPlansAnswersPoints",
+                name: "IX_PlansAnswersPoints_FitnessPlanId",
+                table: "PlansAnswersPoints",
                 column: "FitnessPlanId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_FitnessPlansAnswersPoints_QuestionId",
-                table: "FitnessPlansAnswersPoints",
+                name: "IX_PlansAnswersPoints_QuestionId",
+                table: "PlansAnswersPoints",
                 column: "QuestionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PlansAnswersPoints_VariationPlanId",
+                table: "PlansAnswersPoints",
+                column: "VariationPlanId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_VariationPlans_FitnessPlanId",
+                table: "VariationPlans",
+                column: "FitnessPlanId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_WorkoutDayPerWeek_FitnessPlanId",
+                table: "WorkoutDayPerWeek",
+                column: "FitnessPlanId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_WorkoutDayPerWeek_VariationPlanId",
+                table: "WorkoutDayPerWeek",
+                column: "VariationPlanId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -320,7 +384,10 @@ namespace Reggest.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "FitnessPlansAnswersPoints");
+                name: "PlansAnswersPoints");
+
+            migrationBuilder.DropTable(
+                name: "WorkoutDayPerWeek");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -329,10 +396,13 @@ namespace Reggest.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "FitnessPlans");
+                name: "Questions");
 
             migrationBuilder.DropTable(
-                name: "Questions");
+                name: "VariationPlans");
+
+            migrationBuilder.DropTable(
+                name: "FitnessPlans");
         }
     }
 }

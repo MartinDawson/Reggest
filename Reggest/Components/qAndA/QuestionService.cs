@@ -11,20 +11,31 @@ namespace Reggest.Components.qAndA
     {
         private readonly IRepository<Question> _repository;
         private readonly IFitnessPlanService _fitnessPlanService;
+        private readonly IVariationPlanService _variationPlanService;
 
-        public QuestionService(IRepository<Question> repository, IFitnessPlanService fitnessPlanService)
+        public QuestionService(IRepository<Question> repository, IFitnessPlanService fitnessPlanService,
+            IVariationPlanService variationPlanService)
         {
             _repository = repository;
             _fitnessPlanService = fitnessPlanService;
+            _variationPlanService = variationPlanService;
         }
 
         public Question GetQuestion(int id)
         {
             var question = _repository.GetAll().BuildQuestion().Single(x => x.Id == id);
 
-            foreach (var fitnessPlanAnswerPoint in question.FitnessPlanAnswerPoints)
+            foreach (var planAnswerPoint in question.PlanAnswerPoints)
             {
-                fitnessPlanAnswerPoint.FitnessPlan = _fitnessPlanService.GetFitnessPlan(fitnessPlanAnswerPoint.FitnessPlanId);
+                if (planAnswerPoint.FitnessPlanId.HasValue)
+                {
+                    planAnswerPoint.FitnessPlan = _fitnessPlanService.GetPlan(planAnswerPoint.FitnessPlanId.Value);
+                }
+
+                if (planAnswerPoint.VariationPlanId.HasValue)
+                {
+                    planAnswerPoint.VariationPlan = _variationPlanService.GetPlan(planAnswerPoint.VariationPlanId.Value);
+                }
             }
 
             return question;

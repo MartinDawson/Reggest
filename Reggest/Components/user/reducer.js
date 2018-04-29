@@ -2,43 +2,70 @@
 const fitnessPlansDefault = {};
 
 window._Constants.fitnessPlans.forEach((x) => {
-  fitnessPlansDefault[x.Name] = {
+  fitnessPlansDefault[x.Id] = {
     points: 0,
   };
 });
 
 const defaultState = {
-  fitnessPlans: fitnessPlansDefault,
   rankedFitnessPlans: [],
+  fitnessPlans: fitnessPlansDefault,
 };
-
-/* eslint-enable no-underscore-dangle */
 
 const reducer = (state = defaultState, action) => {
   switch (action.type) {
     case 'RANK_FITNESS_PLANS': {
       const fitnessPlans = {};
+      const planAnswerPoints = {};
 
-      action.fitnessPlansPoints.forEach((x) => {
-        const maxNumber = Math.max(action.answerPoints, x.points);
-        const minNumber = Math.min(action.answerPoints, x.points);
-        const difference = maxNumber - minNumber;
-        const newPoints = state.fitnessPlans[x.name].points + difference;
+      window._Constants.fitnessPlans.forEach((x) => {
+        planAnswerPoints[x.Id] = {
+          points: [],
+        };
+      });
 
-        fitnessPlans[x.name] = {
-          ...state.fitnessPlans[x.name],
-          ...x,
+      action.question.planAnswerPoints.forEach((x) => {
+        const planAnswerPoint = planAnswerPoints[x.fitnessPlan.planId];
+
+        planAnswerPoint.points = [
+          ...planAnswerPoint.points,
+          x.points,
+        ];
+
+        planAnswerPoints[x.fitnessPlan.planId] = planAnswerPoint;
+      });
+
+      Object.keys(planAnswerPoints).forEach((key) => {
+        const planAnswerPoint = planAnswerPoints[key];
+        let closestPoint = Number.MAX_SAFE_INTEGER;
+
+        planAnswerPoint.points.forEach((point) => {
+          const maxNumber = Math.max(action.answerPoints, point);
+          const minNumber = Math.min(action.answerPoints, point);
+          const difference = maxNumber - minNumber;
+
+          if (difference < closestPoint) {
+            closestPoint = difference;
+          }
+        });
+
+        const newPoints = state.fitnessPlans[key].points + closestPoint;
+
+        fitnessPlans[key] = {
           points: newPoints,
         };
       });
 
-      const rankedFitnessPlans = Object.keys(fitnessPlans).map(key => fitnessPlans[key]);
-
-      rankedFitnessPlans.sort((a, b) => a.points - b.points);
+      const rankedFitnessPlans = Object.keys(fitnessPlans)
+        .map(key => ({
+          fitnessPlanId: parseInt(key, 10),
+          points: fitnessPlans[key].points,
+        }))
+        .sort((a, b) => a.points - b.points);
 
       return {
         ...state,
-        rankedFitnessPlans,
+        rankedFitnessPlans: rankedFitnessPlans.map(x => x.fitnessPlanId),
         fitnessPlans,
       };
     }

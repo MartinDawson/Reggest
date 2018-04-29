@@ -1,12 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { graphql } from 'react-relay';
-import { compose, withHandlers, withProps, lifecycle } from 'recompose';
+import { compose, withHandlers, withProps, lifecycle, setPropTypes, branch, renderNothing } from 'recompose';
 import { refetchContainer } from 'relay-compose';
-import { withCookies } from 'react-cookie';
+import { withRouter } from 'found';
 
 import Fitness from './fitness';
-import { showModal } from '../shared/modal/actions';
+
+const mapStateToProps = ({ user }) => ({
+  rankedFitnessPlans: user.rankedFitnessPlans,
+});
 
 const fragments = graphql`
   fragment fitnessContainer on Query {
@@ -22,6 +26,7 @@ const fragments = graphql`
 const refetchQuery = graphql`
   query fitnessContainerRefetchQuery(
     $questionIndex: Int
+    $order: FitnessPlanOrderInput
   ) {
     ...fitnessContainer
   }
@@ -30,6 +35,7 @@ const refetchQuery = graphql`
 const query = graphql`
   query fitnessContainerQuery(
     $questionIndex: Int
+    $order: FitnessPlanOrderInput
   ) {
     ...fitnessContainer
     ...fitnessPlansContainer
@@ -41,32 +47,31 @@ const handlers = {
 };
 
 const FitnessContainer = compose(
-  connect(),
-  withCookies,
+  connect(mapStateToProps),
+  withRouter,
   refetchContainer(fragments, refetchQuery),
   withProps(props => ({
     hasQuestion: props.data.questionByIndex !== null,
   })),
   lifecycle({
     componentWillReceiveProps(nextProps) {
-      if (nextProps.hasQuestion !== this.props.hasQuestion &&
-          !nextProps.hasQuestion) {
-        const newsletterPopupShown = this.props.cookies.get('newsletterPopupShown');
-
-        if (!newsletterPopupShown) {
-          this.props.dispatch(showModal('fitnessPlans'));
-          const expires = new Date();
-
-          expires.setDate(expires.getDate() + 15);
-
-          this.props.cookies.set('newsletterPopupShown', true, {
-            expires,
-          });
-        }
+      if (!nextProps.hasQuestion) {
+        this.props.router.push({
+          pathname: '/yourFitnessPlans',
+          state: {
+            order: {
+              planIds: this.props.rankedFitnessPlans,
+            },
+          },
+        });
       }
     },
   }),
   withHandlers(handlers),
+  branch(
+    props => !props.hasQuestion,
+    renderNothing,
+  ),
 )(Fitness);
 
 export const routeConfig = {

@@ -8,20 +8,16 @@ using System.Threading.Tasks;
 
 namespace Reggest.Components.qAndA
 {
-    public class FitnessPlanAnswerPointPayload : GraphQl.NodeGraphType<FitnessPlanAnswerPoint>
+    public class PlanAnswerPointPayload : ObjectGraphType<PlanAnswerPoint>
     {
-        public FitnessPlanAnswerPointPayload()
+        public PlanAnswerPointPayload()
         {
-            Name = nameof(FitnessPlanAnswerPoint);
+            Name = nameof(PlanAnswerPoint);
 
-            Id(x => x.Id);
-            Field(x => x.Points).Description("The number of points that the current answer gives for the fitness plan");
+            Field<IdGraphType>("id");
+            Field(x => x.Points).Description("The number of points that the current answer gives for the plan");
             Field<FitnessPlanPayload>("fitnessPlan");
-        }
-
-        public override FitnessPlanAnswerPoint GetById(string id)
-        {
-            throw new NotImplementedException();
+            Field<VariationPlanPayload>("variationPlan");
         }
     }
 }

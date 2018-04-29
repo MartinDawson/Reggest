@@ -5,11 +5,19 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Reggest.Data;
 using Newtonsoft.Json;
+using Reggest.Components.fitness;
 
 namespace Reggest.Controllers
 {
     public class AppController : Controller
     {
+        private readonly IFitnessPlanService _fitnessPlanService;
+
+        public AppController(IFitnessPlanService fitnessPlanService)
+        {
+            _fitnessPlanService = fitnessPlanService;
+        }
+
         [Produces("text/html")]
         public IActionResult Index()
         {
@@ -18,12 +26,7 @@ namespace Reggest.Controllers
 
         public IActionResult GetJavaScript()
         {
-            var fitnessPlans = Seeder.FitnessPlans.Select(x => new
-            {
-                x.Name,
-                x.Description,
-                x.Link,
-            });
+            var fitnessPlans = _fitnessPlanService.GetAll();
             var constants = new
             {
                 fitnessPlans,

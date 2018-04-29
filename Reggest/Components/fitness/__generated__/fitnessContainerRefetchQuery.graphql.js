@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash c0949a449faf36c4c73464c72e666ce6
+ * @relayHash 23fc94d522b27f1efc4ca7df46fe048f
  */
 
 /* eslint-disable */
@@ -12,6 +12,9 @@ import type { ConcreteRequest } from 'relay-runtime';
 type fitnessContainer$ref = any;
 export type fitnessContainerRefetchQueryVariables = {|
   questionIndex?: ?number,
+  order?: ?{
+    fitnessPlanIds: $ReadOnlyArray<?number>,
+  },
 |};
 export type fitnessContainerRefetchQueryResponse = {|
   +$fragmentRefs: fitnessContainer$ref,
@@ -22,6 +25,7 @@ export type fitnessContainerRefetchQueryResponse = {|
 /*
 query fitnessContainerRefetchQuery(
   $questionIndex: Int
+  $order: FitnessPlanOrderInput
 ) {
   ...fitnessContainer
 }
@@ -44,26 +48,21 @@ fragment qAndAContainer_question on Question {
 }
 
 fragment fitnessPlansContainer on Query {
-  fitnessPlans {
-    fitnessPlanId
+  fitnessPlans(order: $order) {
+    planId
     name
     description
-    daysPerWeek
     timeToWorkout {
       hours
       minutes
     }
-    ...variationPlansContainer_fitnessPlan
+    ...workoutDaysPerWeekContainer_plan
     id
   }
 }
 
-fragment variationPlansContainer_fitnessPlan on FitnessPlan {
-  variationPlans {
-    fitnessPlanId
-    daysPerWeek
-    id
-  }
+fragment workoutDaysPerWeekContainer_plan on Plan {
+  workoutDaysPerWeek
 }
 */
 
@@ -74,6 +73,12 @@ var v0 = [
     "name": "questionIndex",
     "type": "Int",
     "defaultValue": null
+  },
+  {
+    "kind": "LocalArgument",
+    "name": "order",
+    "type": "FitnessPlanOrderInput",
+    "defaultValue": null
   }
 ],
 v1 = {
@@ -82,27 +87,13 @@ v1 = {
   "name": "id",
   "args": null,
   "storageKey": null
-},
-v2 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "fitnessPlanId",
-  "args": null,
-  "storageKey": null
-},
-v3 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "daysPerWeek",
-  "args": null,
-  "storageKey": null
 };
 return {
   "kind": "Request",
   "operationKind": "query",
   "name": "fitnessContainerRefetchQuery",
   "id": null,
-  "text": "query fitnessContainerRefetchQuery(\n  $questionIndex: Int\n) {\n  ...fitnessContainer\n}\n\nfragment fitnessContainer on Query {\n  questionByIndex(index: $questionIndex) {\n    ...qAndAContainer_question\n    id\n  }\n  ...fitnessPlansContainer\n}\n\nfragment qAndAContainer_question on Question {\n  questionText\n  answers {\n    answerId\n    answerText\n    id\n  }\n}\n\nfragment fitnessPlansContainer on Query {\n  fitnessPlans {\n    fitnessPlanId\n    name\n    description\n    daysPerWeek\n    timeToWorkout {\n      hours\n      minutes\n    }\n    ...variationPlansContainer_fitnessPlan\n    id\n  }\n}\n\nfragment variationPlansContainer_fitnessPlan on FitnessPlan {\n  variationPlans {\n    fitnessPlanId\n    daysPerWeek\n    id\n  }\n}\n",
+  "text": "query fitnessContainerRefetchQuery(\n  $questionIndex: Int\n  $order: FitnessPlanOrderInput\n) {\n  ...fitnessContainer\n}\n\nfragment fitnessContainer on Query {\n  questionByIndex(index: $questionIndex) {\n    ...qAndAContainer_question\n    id\n  }\n  ...fitnessPlansContainer\n}\n\nfragment qAndAContainer_question on Question {\n  questionText\n  answers {\n    answerId\n    answerText\n    id\n  }\n}\n\nfragment fitnessPlansContainer on Query {\n  fitnessPlans(order: $order) {\n    planId\n    name\n    description\n    timeToWorkout {\n      hours\n      minutes\n    }\n    ...workoutDaysPerWeekContainer_plan\n    id\n  }\n}\n\nfragment workoutDaysPerWeekContainer_plan on Plan {\n  workoutDaysPerWeek\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -180,11 +171,24 @@ return {
         "alias": null,
         "name": "fitnessPlans",
         "storageKey": null,
-        "args": null,
+        "args": [
+          {
+            "kind": "Variable",
+            "name": "order",
+            "variableName": "order",
+            "type": "FitnessPlanOrderInput"
+          }
+        ],
         "concreteType": "FitnessPlan",
         "plural": true,
         "selections": [
-          v2,
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "planId",
+            "args": null,
+            "storageKey": null
+          },
           {
             "kind": "ScalarField",
             "alias": null,
@@ -199,7 +203,6 @@ return {
             "args": null,
             "storageKey": null
           },
-          v3,
           {
             "kind": "LinkedField",
             "alias": null,
@@ -226,18 +229,11 @@ return {
             ]
           },
           {
-            "kind": "LinkedField",
+            "kind": "ScalarField",
             "alias": null,
-            "name": "variationPlans",
-            "storageKey": null,
+            "name": "workoutDaysPerWeek",
             "args": null,
-            "concreteType": "FitnessPlan",
-            "plural": true,
-            "selections": [
-              v2,
-              v3,
-              v1
-            ]
+            "storageKey": null
           },
           v1
         ]
@@ -246,5 +242,5 @@ return {
   }
 };
 })();
-(node/*: any*/).hash = '1aa5be760fb74c0eed48f257d3fe6067';
+(node/*: any*/).hash = 'a0c1c2d23f983a9f3dcae96ced139d76';
 module.exports = node;

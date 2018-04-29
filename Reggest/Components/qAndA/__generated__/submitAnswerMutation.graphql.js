@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 407f94da728fa1b5881f8972d606e8bd
+ * @relayHash 535d5ea5db68dcd89c8556dc9d71b318
  */
 
 /* eslint-disable */
@@ -9,7 +9,6 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-type variationPlansContainer_fitnessPlan$ref = any;
 export type submitAnswerMutationVariables = {|
   input: {
     clientMutationId?: ?string,
@@ -21,18 +20,10 @@ export type submitAnswerMutationResponse = {|
     +answer: {|
       +points: number,
       +question: ?{|
-        +fitnessPlanAnswerPoints: ?$ReadOnlyArray<?{|
+        +planAnswerPoints: ?$ReadOnlyArray<?{|
           +points: number,
           +fitnessPlan: ?{|
-            +fitnessPlanId: number,
-            +name: ?string,
-            +description: ?string,
-            +daysPerWeek: number,
-            +timeToWorkout: ?{|
-              +hours: ?number,
-              +minutes: ?number,
-            |},
-            +$fragmentRefs: variationPlansContainer_fitnessPlan$ref,
+            +planId: number,
           |},
         |}>,
       |},
@@ -50,18 +41,10 @@ mutation submitAnswerMutation(
     answer {
       points
       question {
-        fitnessPlanAnswerPoints {
+        planAnswerPoints {
           points
           fitnessPlan {
-            fitnessPlanId
-            name
-            description
-            daysPerWeek
-            timeToWorkout {
-              hours
-              minutes
-            }
-            ...variationPlansContainer_fitnessPlan
+            planId
             id
           }
           id
@@ -70,14 +53,6 @@ mutation submitAnswerMutation(
       }
       id
     }
-  }
-}
-
-fragment variationPlansContainer_fitnessPlan on FitnessPlan {
-  variationPlans {
-    fitnessPlanId
-    daysPerWeek
-    id
   }
 }
 */
@@ -109,57 +84,11 @@ v2 = {
 v3 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "fitnessPlanId",
+  "name": "planId",
   "args": null,
   "storageKey": null
 },
 v4 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "name",
-  "args": null,
-  "storageKey": null
-},
-v5 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "description",
-  "args": null,
-  "storageKey": null
-},
-v6 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "daysPerWeek",
-  "args": null,
-  "storageKey": null
-},
-v7 = {
-  "kind": "LinkedField",
-  "alias": null,
-  "name": "timeToWorkout",
-  "storageKey": null,
-  "args": null,
-  "concreteType": "TimeToWorkout",
-  "plural": false,
-  "selections": [
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "hours",
-      "args": null,
-      "storageKey": null
-    },
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "minutes",
-      "args": null,
-      "storageKey": null
-    }
-  ]
-},
-v8 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "id",
@@ -171,7 +100,7 @@ return {
   "operationKind": "mutation",
   "name": "submitAnswerMutation",
   "id": null,
-  "text": "mutation submitAnswerMutation(\n  $input: SubmitAnswerInput!\n) {\n  submitAnswer(input: $input) {\n    answer {\n      points\n      question {\n        fitnessPlanAnswerPoints {\n          points\n          fitnessPlan {\n            fitnessPlanId\n            name\n            description\n            daysPerWeek\n            timeToWorkout {\n              hours\n              minutes\n            }\n            ...variationPlansContainer_fitnessPlan\n            id\n          }\n          id\n        }\n        id\n      }\n      id\n    }\n  }\n}\n\nfragment variationPlansContainer_fitnessPlan on FitnessPlan {\n  variationPlans {\n    fitnessPlanId\n    daysPerWeek\n    id\n  }\n}\n",
+  "text": "mutation submitAnswerMutation(\n  $input: SubmitAnswerInput!\n) {\n  submitAnswer(input: $input) {\n    answer {\n      points\n      question {\n        planAnswerPoints {\n          points\n          fitnessPlan {\n            planId\n            id\n          }\n          id\n        }\n        id\n      }\n      id\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -211,10 +140,10 @@ return {
                   {
                     "kind": "LinkedField",
                     "alias": null,
-                    "name": "fitnessPlanAnswerPoints",
+                    "name": "planAnswerPoints",
                     "storageKey": null,
                     "args": null,
-                    "concreteType": "FitnessPlanAnswerPoint",
+                    "concreteType": "PlanAnswerPoint",
                     "plural": true,
                     "selections": [
                       v2,
@@ -227,16 +156,7 @@ return {
                         "concreteType": "FitnessPlan",
                         "plural": false,
                         "selections": [
-                          v3,
-                          v4,
-                          v5,
-                          v6,
-                          v7,
-                          {
-                            "kind": "FragmentSpread",
-                            "name": "variationPlansContainer_fitnessPlan",
-                            "args": null
-                          }
+                          v3
                         ]
                       }
                     ]
@@ -285,10 +205,10 @@ return {
                   {
                     "kind": "LinkedField",
                     "alias": null,
-                    "name": "fitnessPlanAnswerPoints",
+                    "name": "planAnswerPoints",
                     "storageKey": null,
                     "args": null,
-                    "concreteType": "FitnessPlanAnswerPoint",
+                    "concreteType": "PlanAnswerPoint",
                     "plural": true,
                     "selections": [
                       v2,
@@ -302,34 +222,16 @@ return {
                         "plural": false,
                         "selections": [
                           v3,
-                          v4,
-                          v5,
-                          v6,
-                          v7,
-                          {
-                            "kind": "LinkedField",
-                            "alias": null,
-                            "name": "variationPlans",
-                            "storageKey": null,
-                            "args": null,
-                            "concreteType": "FitnessPlan",
-                            "plural": true,
-                            "selections": [
-                              v3,
-                              v6,
-                              v8
-                            ]
-                          },
-                          v8
+                          v4
                         ]
                       },
-                      v8
+                      v4
                     ]
                   },
-                  v8
+                  v4
                 ]
               },
-              v8
+              v4
             ]
           }
         ]
@@ -338,5 +240,5 @@ return {
   }
 };
 })();
-(node/*: any*/).hash = 'cfda04c5dbde357bcfb0fd4c6d5f185d';
+(node/*: any*/).hash = '3859c7a4cc515edd6e80552b935ef469';
 module.exports = node;

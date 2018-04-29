@@ -8,10 +8,12 @@ import { routeConfig as privacyPolicyRouteConfig } from '../../footer/privacyPol
 import { routeConfig as imprintRouteConfig } from '../../footer/imprintContainer';
 import { routeConfig as errorPageRouteConfig } from '../../errorPage/errorPageContainer';
 import { routeConfig as primaryLayoutRouteConfig } from '../../layouts/primaryLayout/primaryLayoutContainer';
+import { routeConfig as yourFitnessPlansConfig } from '../../fitness/fitnessPlansRankedContainer';
 
 export default makeRouteConfig(
   <Route path="/" {...primaryLayoutRouteConfig}>
     <Route {...fitnessRouteConfig} />
+    <Route path="yourFitnessPlans" {...yourFitnessPlansConfig} />
     <Route path="error/:status" {...errorPageRouteConfig} />
     <Route path="termsAndConditions" {...termsAndConditionsRouteConfig} />
     <Route path="privacyPolicy" {...privacyPolicyRouteConfig} />

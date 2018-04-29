@@ -13,7 +13,7 @@ namespace Reggest.Components.fitness
             Name = nameof(FitnessPlanOrderInput);
             Description = "Provides ordering";
 
-            Field<NonNullGraphType<ListGraphType<IntGraphType>>>("fitnessPlanIds", "Orders by the ids of fitnessPlans");
+            Field<NonNullGraphType<ListGraphType<IntGraphType>>>("planIds", "Orders by the ids of the plans");
         }
     }
 }

@@ -17,16 +17,8 @@ namespace Reggest.Components.fitness
         SixthAnswer = 6,
     }
 
-    public class FitnessPlan
+    public class FitnessPlan : Plan
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public string Link { get; set; }
-        public TimeSpan? TimeToCompleteWorkout { get; set; }
-        public int DaysPerWeek { get; set; }
-        public int? ParentFitnessPlanId { get; set; }
-        public FitnessPlan ParentFitnessPlan { get; set; }
-        public virtual ICollection<FitnessPlan> VariationPlans { get; set; } = new List<FitnessPlan>();
+        public virtual ICollection<VariationPlan> VariationPlans { get; set; } = new List<VariationPlan>();
     }
 }

@@ -11,18 +11,10 @@ const mutation = graphql`
       answer {
         points
         question {
-          fitnessPlanAnswerPoints {
+          planAnswerPoints {
             points
             fitnessPlan {
-              fitnessPlanId
-              name
-              description
-              daysPerWeek
-              timeToWorkout {
-                hours
-                minutes
-              }
-              ...variationPlansContainer_fitnessPlan
+              planId
             }
           }
         }
@@ -43,13 +35,7 @@ export default (id, dispatch) => {
     variables,
   ).then(({ submitAnswer }) => {
     const { question, points } = submitAnswer.answer;
-    const fitnessPlansPoints = question.fitnessPlanAnswerPoints
-      .filter(x => x.fitnessPlan.name)
-      .map(x => ({
-        points: x.points,
-        ...x.fitnessPlan,
-      }));
 
-    dispatch(rankFitnessPlans(fitnessPlansPoints, points));
+    dispatch(rankFitnessPlans(question, points));
   });
 };

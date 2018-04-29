@@ -12,7 +12,7 @@ namespace Reggest.Components.qAndA
         {
             return query
                 .Include(x => x.Answers)
-                .Include(x => x.FitnessPlanAnswerPoints);
+                .Include(x => x.PlanAnswerPoints);
         }
     }
 }

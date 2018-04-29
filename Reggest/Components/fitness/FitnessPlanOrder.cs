@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace Reggest.Components.fitness
 {
-    public class FitnessPlanOrder
+    public class PlanOrder
     {
-        public List<int> FitnessPlanIds { get; set; }
+        public List<int> PlanIds { get; set; }
     }
 }

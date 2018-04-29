@@ -11,7 +11,7 @@ using System;
 namespace Reggest.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180428150811_Init")]
+    [Migration("20180429163241_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -185,35 +185,32 @@ namespace Reggest.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("DaysPerWeek");
-
                     b.Property<string>("Description");
 
                     b.Property<string>("Link");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
-                    b.Property<int?>("ParentFitnessPlanId");
-
-                    b.Property<TimeSpan?>("TimeToCompleteWorkout");
+                    b.Property<TimeSpan>("TimeToCompleteWorkout");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ParentFitnessPlanId");
 
                     b.ToTable("FitnessPlans");
                 });
 
-            modelBuilder.Entity("Reggest.Components.fitness.FitnessPlanAnswerPoint", b =>
+            modelBuilder.Entity("Reggest.Components.fitness.PlanAnswerPoint", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("FitnessPlanId");
+                    b.Property<int?>("FitnessPlanId");
 
                     b.Property<int>("Points");
 
                     b.Property<int?>("QuestionId");
+
+                    b.Property<int?>("VariationPlanId");
 
                     b.HasKey("Id");
 
@@ -221,7 +218,52 @@ namespace Reggest.Migrations
 
                     b.HasIndex("QuestionId");
 
-                    b.ToTable("FitnessPlansAnswersPoints");
+                    b.HasIndex("VariationPlanId");
+
+                    b.ToTable("PlansAnswersPoints");
+                });
+
+            modelBuilder.Entity("Reggest.Components.fitness.VariationPlan", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Description");
+
+                    b.Property<int?>("FitnessPlanId");
+
+                    b.Property<string>("Link");
+
+                    b.Property<string>("Name")
+                        .IsRequired();
+
+                    b.Property<TimeSpan>("TimeToCompleteWorkout");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FitnessPlanId");
+
+                    b.ToTable("VariationPlans");
+                });
+
+            modelBuilder.Entity("Reggest.Components.fitness.WorkoutDayPerWeek", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("DaysPerWeek");
+
+                    b.Property<int?>("FitnessPlanId");
+
+                    b.Property<int?>("VariationPlanId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FitnessPlanId");
+
+                    b.HasIndex("VariationPlanId");
+
+                    b.ToTable("WorkoutDayPerWeek");
                 });
 
             modelBuilder.Entity("Reggest.Components.qAndA.Answer", b =>
@@ -301,23 +343,37 @@ namespace Reggest.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Reggest.Components.fitness.FitnessPlan", b =>
-                {
-                    b.HasOne("Reggest.Components.fitness.FitnessPlan", "ParentFitnessPlan")
-                        .WithMany("VariationPlans")
-                        .HasForeignKey("ParentFitnessPlanId");
-                });
-
-            modelBuilder.Entity("Reggest.Components.fitness.FitnessPlanAnswerPoint", b =>
+            modelBuilder.Entity("Reggest.Components.fitness.PlanAnswerPoint", b =>
                 {
                     b.HasOne("Reggest.Components.fitness.FitnessPlan", "FitnessPlan")
                         .WithMany()
-                        .HasForeignKey("FitnessPlanId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("FitnessPlanId");
 
                     b.HasOne("Reggest.Components.qAndA.Question")
-                        .WithMany("FitnessPlanAnswerPoints")
+                        .WithMany("PlanAnswerPoints")
                         .HasForeignKey("QuestionId");
+
+                    b.HasOne("Reggest.Components.fitness.VariationPlan", "VariationPlan")
+                        .WithMany()
+                        .HasForeignKey("VariationPlanId");
+                });
+
+            modelBuilder.Entity("Reggest.Components.fitness.VariationPlan", b =>
+                {
+                    b.HasOne("Reggest.Components.fitness.FitnessPlan", "FitnessPlan")
+                        .WithMany("VariationPlans")
+                        .HasForeignKey("FitnessPlanId");
+                });
+
+            modelBuilder.Entity("Reggest.Components.fitness.WorkoutDayPerWeek", b =>
+                {
+                    b.HasOne("Reggest.Components.fitness.FitnessPlan")
+                        .WithMany("WorkoutDaysPerWeek")
+                        .HasForeignKey("FitnessPlanId");
+
+                    b.HasOne("Reggest.Components.fitness.VariationPlan")
+                        .WithMany("WorkoutDaysPerWeek")
+                        .HasForeignKey("VariationPlanId");
                 });
 
             modelBuilder.Entity("Reggest.Components.qAndA.Answer", b =>
