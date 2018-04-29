@@ -25,15 +25,18 @@
   "license": "UNLICENSED",
   "scripts": {
     "prestart": "webpack",
-    "start": "npm-run-all --parallel development relay-compiler:watch",
+    "setup": "run-s restore-nuget restore-modules",
+    "restore-nuget": "dotnet restore",
+    "restore-modules": "yarn",
+    "start": "run-p development relay-compiler:watch",
     "development": "cross-env ASPNETCORE_ENVIRONMENT=Development dotnet run",
     "relay-compiler": "relay-compiler --src ./components --schema schema.graphql",
     "relay-compiler:watch": "npm run relay-compiler -- --watch",
-    "get-schema": "cross-env graphql get-schema dev",
+    "get-schema": "graphql get-schema dev",
     "lint": "eslint --fix --ext .js components",
     "clean": "rimraf ./wwwroot/build",
     "build-client": "webpack",
-    "build": "npm-run-all --sequential clean build-client"
+    "build": "run-s clean build-client"
   },
   "browserslist": [
     "> 3%",

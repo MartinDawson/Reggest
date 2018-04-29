@@ -25,6 +25,7 @@ namespace Reggest.Data
         private static IAnswerService _answerService;
         private static IQuestionService _questionService;
         private static IFitnessPlanService _fitnessPlanService;
+        private static IHostingEnvironment _env;
 
         public static async Task<IWebHost> SeedData(this IWebHost webHost)
         {
@@ -35,8 +36,12 @@ namespace Reggest.Data
                     _answerService = scope.ServiceProvider.GetRequiredService<IAnswerService>();
                     _questionService = scope.ServiceProvider.GetRequiredService<IQuestionService>();
                     _fitnessPlanService = scope.ServiceProvider.GetRequiredService<IFitnessPlanService>();
+                    _env = scope.ServiceProvider.GetRequiredService<IHostingEnvironment>();
 
-                    context.Database.Migrate();
+                    if (_env.IsDevelopment())
+                    {
+                        await context.Database.MigrateAsync();
+                    }
 
                     SeedFitnessPlans();
                     SeedQandA();
