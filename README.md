@@ -15,8 +15,9 @@
 9. Open http://localhost:49891
 
 A new database called 'Reggest' will be created in MSSQL with the credentials:
-    - Server name: '.'
-    - Authentication: 'Windows Authentication'
+  - Server name: '.'
+  - Authentication: 'Windows Authentication'
+  
 This database will then be filled with the correct schema and data automatically when you run the app.
 
 ### .env variables
