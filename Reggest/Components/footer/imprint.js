@@ -11,7 +11,7 @@ const Imprint = () => (
       <div>Managing Director: Martin Dawson</div>
       <div>Address: 26 CalderView, Rastrick, Brighouse, HD63DQ United Kingdom</div>
       <div>Telephone: +(44)7473591097</div>
-      <div>Email address: info@reggest.com</div>
+      <div>Email address: u1356770@gmail.com</div>
     </div>
   </PageContent>
 );
