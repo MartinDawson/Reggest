@@ -3,8 +3,8 @@
 ## Prerequisites
 1. [Yarn](https://yarnpkg.com/lang/en/docs/install/#windows-stable)
 2. [Dotnet SDK](https://www.microsoft.com/net/learn/get-started/windows)
-3. [Microsoft SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-2017).
-4. [Watchman](https://facebook.github.io/watchman/docs/install.html). Follow the setup.
+3. [Microsoft SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-2017)
+4. [Watchman](https://facebook.github.io/watchman/docs/install.html)
 
 ## Dev Setup
 1. run `git clone https://github.com/MartinDawson/Reggest.git` on your command prompt
