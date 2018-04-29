@@ -1,12 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { graphql } from 'react-relay';
-import { compose, withHandlers, withProps, lifecycle, setPropTypes, branch, renderNothing } from 'recompose';
+import { compose, withHandlers, withProps, lifecycle, branch, renderNothing } from 'recompose';
 import { refetchContainer } from 'relay-compose';
 import { withRouter } from 'found';
 
 import Fitness from './fitness';
+import { clearFitnessPlansRanking } from '../user/actions';
 
 const mapStateToProps = ({ user }) => ({
   rankedFitnessPlans: user.rankedFitnessPlans,
@@ -47,13 +47,18 @@ const handlers = {
 };
 
 const FitnessContainer = compose(
-  connect(mapStateToProps),
+  connect(mapStateToProps, {
+    clearFitnessPlansRanking,
+  }),
   withRouter,
   refetchContainer(fragments, refetchQuery),
   withProps(props => ({
     hasQuestion: props.data.questionByIndex !== null,
   })),
   lifecycle({
+    componentDidMount() {
+      this.props.clearFitnessPlansRanking();
+    },
     componentWillReceiveProps(nextProps) {
       if (!nextProps.hasQuestion) {
         this.props.router.push({

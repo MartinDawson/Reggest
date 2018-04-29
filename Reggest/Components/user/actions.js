@@ -3,3 +3,7 @@ export const rankFitnessPlans = (question, answerPoints) => ({
   question,
   answerPoints,
 });
+
+export const clearFitnessPlansRanking = () => ({
+  type: 'CLEAR_FITNESS_PLANS_RANKING',
+});

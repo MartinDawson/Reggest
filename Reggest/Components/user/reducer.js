@@ -14,6 +14,12 @@ const defaultState = {
 
 const reducer = (state = defaultState, action) => {
   switch (action.type) {
+    case 'CLEAR_FITNESS_PLANS_RANKING': {
+      return {
+        ...state,
+        ...defaultState,
+      };
+    }
     case 'RANK_FITNESS_PLANS': {
       const fitnessPlans = {};
       const planAnswerPoints = {};

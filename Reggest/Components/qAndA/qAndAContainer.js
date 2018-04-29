@@ -1,5 +1,5 @@
 import { graphql } from 'react-relay';
-import { compose, withHandlers, setPropTypes, flattenProp } from 'recompose';
+import { compose, withHandlers, setPropTypes, flattenProp, withStateHandlers } from 'recompose';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { fragment } from 'relay-compose';
@@ -7,13 +7,16 @@ import { fragment } from 'relay-compose';
 import qAndA from './qAndA';
 import submitAnswerMutation from './submitAnswerMutation';
 
-let questionIndex = 0;
+const stateHandlers = {
+  answerOnClick: ({ questionIndex }, { dispatch, getNextQuestion }) => (id) => {
+    const newQuestionIndex = questionIndex + 1;
 
-const handlers = {
-  answerOnClick: ({ dispatch, getNextQuestion }) => (id) => {
-    questionIndex += 1;
     submitAnswerMutation(id, dispatch);
-    getNextQuestion(questionIndex);
+    getNextQuestion(newQuestionIndex);
+
+    return {
+      questionIndex: newQuestionIndex,
+    };
   },
 };
 
@@ -36,5 +39,7 @@ export default compose(
   connect(),
   fragment(fragments),
   flattenProp('question'),
-  withHandlers(handlers),
+  withStateHandlers({
+    questionIndex: 0,
+  }, stateHandlers),
 )(qAndA);
