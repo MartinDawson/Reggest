@@ -3,20 +3,22 @@
 ## Prerequisites
 1. [Yarn](https://yarnpkg.com/lang/en/docs/install/#windows-stable)
 2. [Dotnet SDK](https://www.microsoft.com/net/learn/get-started/windows)
-3. [Microsoft SQL Server Management Studio](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-2017). 2017 version is recommended.
-4. [Watchman](https://facebook.github.io/watchman/docs/install.html). Follow the setup.
+3. [Microsoft SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-2017)
+4. [Watchman](https://facebook.github.io/watchman/docs/install.html)
 
 ## Dev Setup
 1. run `git clone https://github.com/MartinDawson/Reggest.git` on your command prompt
 2. run `cd Reggest/Reggest` to move into the source directory of the solution
-3. run `yarn install` to install the correct npm packages
-4. run `dotnet restore` to build the nuget packages
+3. run `yarn run setup` to setup the project with the correct packages
 6. Create a '.env' file in this directory. I.e "Reggest/Reggest/.env". Copy and paste all of the variables from the [.env variables section here](https://github.com/MartinDawson/Reggest/blob/master/README.md#env-variables) into this file.
-7. Create a new empty database in Microsoft SQL Server Management Studio Called 'Reggest' by clicking on 'New Database' on the 'Databases' folder. Example: https://user-images.githubusercontent.com/15030491/39398017-1a02e840-4b08-11e8-928e-c3397e0297c2.jpg 
-    - Server name: '.'
-    - Authentication: 'Windows Authentication'
 8. run `yarn run start` to start the project
 9. Open http://localhost:49891
+
+A new database called 'Reggest' will be created in MSSQL with the credentials:
+  - Server name: '.'
+  - Authentication: 'Windows Authentication'
+  
+This database will then be filled with the correct schema and data automatically when you run the app.
 
 ### .env variables
 ```
