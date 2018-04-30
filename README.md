@@ -23,7 +23,7 @@ This database will then be filled with the correct schema and data automatically
 
 ### .env variables
 ```
-NODE_ENV=Development
+NODE_ENV=development
 RECAPTCHA_SITE_KEY=6Ley01QUAAAAAHFUtLNjjoZzJAOEqr1iyztvEECM
 ```
 
