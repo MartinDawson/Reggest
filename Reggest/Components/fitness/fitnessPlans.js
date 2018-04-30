@@ -8,24 +8,26 @@ import WorkoutDaysPerWeek from './workoutDaysPerWeekContainer';
 const FitnessPlans = ({ fitnessPlans }) => (
   fitnessPlans.map(fitnessPlan => (
     <li key={fitnessPlan.planId} className={styles.fitnessPlan}>
-      <div className={styles.name}>{fitnessPlan.name}</div>
-      <div className={styles.stats}>
-        <div className={styles.workoutDaysPerWeek}>
-          <span className={styles.label}>
-            Workouts per week:
-          </span>
-          <WorkoutDaysPerWeek plan={fitnessPlan} />
+      <div>
+        <div className={styles.name}>{fitnessPlan.name}</div>
+        <div className={styles.stats}>
+          <div className={styles.workoutDaysPerWeek}>
+            <span className={styles.label}>
+              Workouts per week:
+            </span>
+            <WorkoutDaysPerWeek plan={fitnessPlan} />
+          </div>
+          <div className={styles.timePerWorkout}>
+            <span className={styles.label}>
+              Time per workout:
+            </span>
+            <span>
+              {convertTimeToWorkout(fitnessPlan.timeToWorkout)}
+            </span>
+          </div>
         </div>
-        <div className={styles.timePerWorkout}>
-          <span className={styles.label}>
-            Time per workout:
-          </span>
-          <span>
-            {convertTimeToWorkout(fitnessPlan.timeToWorkout)}
-          </span>
-        </div>
+        <div className={styles.description}>{fitnessPlan.description}</div>
       </div>
-      <div className={styles.description}>{fitnessPlan.description}</div>
     </li>
   ))
 );
