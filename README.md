@@ -9,10 +9,11 @@
 ## Dev Setup
 1. run `git clone https://github.com/MartinDawson/Reggest.git` on your command prompt
 2. run `cd Reggest/Reggest` to move into the source directory of the solution
-3. run `yarn run setup` to setup the project with the correct packages
-6. Create a '.env' file in this directory. I.e "Reggest/Reggest/.env". Copy and paste all of the variables from the [.env variables section here](https://github.com/MartinDawson/Reggest/blob/master/README.md#env-variables) into this file.
-8. run `yarn run start` to start the project
-9. Open http://localhost:49891
+3. run `yarn install` to install the npm packages
+4. run `yarn run setup` to setup the project
+5. Create a '.env' file in this directory. I.e "Reggest/Reggest/.env". Copy and paste all of the variables from the [.env variables section here](https://github.com/MartinDawson/Reggest/blob/master/README.md#env-variables) into this file.
+6. run `yarn run start` to start the project
+7. Open http://localhost:49891
 
 A new database called 'Reggest' will be created in MSSQL with the credentials:
   - Server name: '.'
