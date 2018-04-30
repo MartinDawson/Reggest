@@ -24,6 +24,12 @@ namespace Reggest.Controllers
             return View("~/wwwroot/build/index.html");
         }
 
+        [Produces("application/xml")]
+        public IActionResult Sitemap()
+        {
+            return View("~/wwwroot/sitemap.xml");
+        }
+
         public IActionResult GetJavaScript()
         {
             var fitnessPlans = _fitnessPlanService.GetAll();

@@ -153,7 +153,7 @@ namespace Reggest
             {
                 routes.MapRoute(
                     "constants",
-                    "{controller}/constants.js",
+                    "constants.js",
                     new
                     {
                         controller = "App",
@@ -163,7 +163,11 @@ namespace Reggest
 
                 routes.MapRoute(
                     "app",
-                    "{controller}/{action}"
+                    "{action}",
+                    new
+                    {
+                        controller = "App",
+                    }
                 );
 
                 routes.MapSpaFallbackRoute(
