@@ -25,9 +25,8 @@
   "license": "UNLICENSED",
   "scripts": {
     "prestart": "webpack",
-    "setup": "run-s restore-nuget restore-modules",
+    "setup": "run-s restore-nuget",
     "restore-nuget": "dotnet restore",
-    "restore-modules": "yarn",
     "start": "run-p development relay-compiler:watch",
     "development": "cross-env ASPNETCORE_ENVIRONMENT=Development dotnet run",
     "relay-compiler": "relay-compiler --src ./components --schema schema.graphql",

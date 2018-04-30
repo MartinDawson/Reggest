@@ -4,6 +4,20 @@
   border-radius: 4px;
   border: solid 1px white;
   padding: 15px 25px;
+
+  > ol {
+    > li {
+      counter-increment: item;
+      display: flex;
+    }
+
+    > li:before {
+      margin-right: 10px;
+      content: "#" counter(item);
+      color: #737373;
+      margin-top: 1px;
+    }
+  }
 }
 
 .title {
@@ -11,3 +25,4 @@
   font-size: 18px;
   letter-spacing: 0.08em;
 }
+

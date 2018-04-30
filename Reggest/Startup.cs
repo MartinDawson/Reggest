@@ -50,11 +50,9 @@ namespace Reggest
             services.AddDbContext<ApplicationDbContext>(options =>
                options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")), ServiceLifetime.Transient);
 
-            var instrumentationKey = _configuration["applicationInsights:key"];
-
-            if (instrumentationKey != null)
+            if (_env.IsProduction())
             {
-                services.AddApplicationInsightsTelemetry(instrumentationKey);
+                services.AddApplicationInsightsTelemetry(_configuration["applicationInsights:key"]);
             }
 
             services.AddSession(options =>
