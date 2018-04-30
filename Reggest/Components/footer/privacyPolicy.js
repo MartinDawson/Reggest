@@ -1,9 +1,14 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 
 import PageContent from '../shared/pageContent';
 
 const PrivacyPolicy = () => (
   <PageContent>
+    <Helmet>
+      <title>Privacy Policy</title>
+      <meta name="description" content="Our privacy policy explaining what data we collect." />
+    </Helmet>
     <h1>Privacy Policy</h1>
     <h2>Last Updated: April 14th 2018</h2>
     <p>

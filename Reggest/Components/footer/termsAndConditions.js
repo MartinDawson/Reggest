@@ -1,9 +1,14 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 
 import PageContent from '../shared/pageContent';
 
 const TermsAndConditions = () => (
   <PageContent>
+    <Helmet>
+      <title>Terms and Conditions</title>
+      <meta name="description" content="Our terms and conditions that you agree to when using our site." />
+    </Helmet>
     <h1>Terms and Conditions</h1>
     <h2>Last Updated: April 14th 2018</h2>
     <p>

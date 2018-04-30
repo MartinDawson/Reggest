@@ -1,10 +1,15 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 
 import PageContent from '../shared/pageContent';
 import styles from './imprint.less';
 
 const Imprint = () => (
   <PageContent>
+    <Helmet>
+      <title>Imprint</title>
+      <meta name="description" content="Contact information for reggest.com." />
+    </Helmet>
     <div className={styles.imprintContent}>
       <h1>Imprint</h1>
       <div>Company Name: VAST NETWORK LTD</div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Helmet } from 'react-helmet';
 
 import QAndA from '../qAndA/qAndAContainer';
 import FitnessPlans from './fitnessPlansContainer';
@@ -10,6 +11,10 @@ const Fitness = ({
   getNextQuestion,
 }) => (
   <div className={styles.fitness}>
+    <Helmet>
+      <title>Suggests fitness plans for you based on your goals</title>
+      <meta name="description" content="Starting Strength, Strong Lifts 5x5, Strong Curves, Nsuns and lots more certified fitness plans designed for your goals." />
+    </Helmet>
     <div>
       <div>
         <div className={styles.title}>
