@@ -51,19 +51,6 @@ namespace Reggest.Data
 
         private static void SeedQandA()
         {
-            List<Answer> GetAnswers()
-            {
-                var answers = new List<Answer>
-                {
-                    new Answer { AnswerText = "A lot", Points = (int)AnswerMatch.FirstAnswer },
-                    new Answer { AnswerText = "Some", Points = (int)AnswerMatch.SecondAnswer },
-                    new Answer { AnswerText = "Not much", Points = (int)AnswerMatch.ThirdAnswer },
-                    new Answer { AnswerText = "Not at all", Points = (int)AnswerMatch.FourthAnswer },
-                };
-
-                return answers;
-            }
-
             List<Answer> GetAnswersForImportance()
             {
                 var answers = new List<Answer>
@@ -72,6 +59,19 @@ namespace Reggest.Data
                     new Answer { AnswerText = "Somewhat important", Points = (int)AnswerMatch.SecondAnswer },
                     new Answer { AnswerText = "Not that important", Points = (int)AnswerMatch.ThirdAnswer },
                     new Answer { AnswerText = "Not a goal at all", Points = (int)AnswerMatch.FourthAnswer },
+                };
+
+                return answers;
+            }
+
+            List<Answer> GetAnswersForComfort()
+            {
+                var answers = new List<Answer>
+                {
+                    new Answer { AnswerText = "Very comfortable", Points = (int)AnswerMatch.FirstAnswer },
+                    new Answer { AnswerText = "Somewhat comfortable", Points = (int)AnswerMatch.SecondAnswer },
+                    new Answer { AnswerText = "Not comfortable", Points = (int)AnswerMatch.ThirdAnswer },
+                    new Answer { AnswerText = "Not comfortable at all", Points = (int)AnswerMatch.FourthAnswer },
                 };
 
                 return answers;
@@ -135,7 +135,7 @@ namespace Reggest.Data
                 },
                 new Question
                 {
-                    QuestionText = "How much do you want to use dumbbells in your routine?",
+                    QuestionText = "How comfortable are you using dumbbells in your routine?",
                     PlanAnswerPoints = new List<PlanAnswerPoint>
                     {
                         new PlanAnswerPoint { FitnessPlanId = GetFitnessPlanId(GZCLP), Points = (int)AnswerMatch.SecondAnswer },
@@ -146,11 +146,11 @@ namespace Reggest.Data
                         new PlanAnswerPoint { FitnessPlanId = GetFitnessPlanId(DumbbellOnlyBasics), Points = (int)AnswerMatch.FirstAnswer },
                         new PlanAnswerPoint { FitnessPlanId = GetFitnessPlanId(TwoSuns), Points = (int)AnswerMatch.ThirdAnswer },
                     },
-                    Answers = GetAnswers(),
+                    Answers = GetAnswersForComfort(),
                 },
                 new Question
                 {
-                    QuestionText = "How much do you want to use barbells in your routine?",
+                    QuestionText = "How comfortable are you using barbells in your routine?",
                     PlanAnswerPoints = new List<PlanAnswerPoint>
                     {
                         new PlanAnswerPoint { FitnessPlanId = GetFitnessPlanId(GZCLP), Points = (int)AnswerMatch.SecondAnswer },
@@ -161,7 +161,7 @@ namespace Reggest.Data
                         new PlanAnswerPoint { FitnessPlanId = GetFitnessPlanId(DumbbellOnlyBasics), Points = (int)AnswerMatch.FourthAnswer },
                         new PlanAnswerPoint { FitnessPlanId = GetFitnessPlanId(TwoSuns), Points = (int)AnswerMatch.FirstAnswer },
                     },
-                    Answers = GetAnswers(),
+                    Answers = GetAnswersForComfort(),
                 },
                 new Question
                 {

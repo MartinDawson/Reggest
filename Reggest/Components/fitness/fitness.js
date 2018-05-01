@@ -12,7 +12,7 @@ const Fitness = ({
 }) => (
   <div className={styles.fitness}>
     <Helmet>
-      <title>Suggests fitness plans for you based on your goals</title>
+      <title>Suggests a fitness plan for you based on your goals</title>
       <meta name="description" content="Starting Strength, Strong Lifts 5x5, Strong Curves, Nsuns and lots more certified fitness plans designed for your goals." />
     </Helmet>
     <div>
