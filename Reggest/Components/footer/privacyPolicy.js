@@ -25,8 +25,8 @@ const PrivacyPolicy = () => (
         <h2>What personal information do we collect?</h2>
         <p>
           When registering for our newsletter, you will be asked to enter your email address.
-          This is to help us indentify you and keep you updated. We will not send you any emails that you
-          do not request.
+          This is to help us indentify you and keep you updated.
+          We will not send you any emails that you do not request.
         </p>
       </li>
       <li>

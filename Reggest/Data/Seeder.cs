@@ -165,6 +165,27 @@ namespace Reggest.Data
                 },
                 new Question
                 {
+                    QuestionText = "Do you want machine work to be included in your routine?",
+                    PlanAnswerPoints = new List<PlanAnswerPoint>
+                    {
+                        new PlanAnswerPoint { FitnessPlanId = GetFitnessPlanId(GZCLP), Points = (int)AnswerMatch.SecondAnswer },
+                        new PlanAnswerPoint { FitnessPlanId = GetFitnessPlanId(StartingStrength), Points = (int)AnswerMatch.FourthAnswer },
+                        new PlanAnswerPoint { FitnessPlanId = GetFitnessPlanId(StrongLifts), Points = (int)AnswerMatch.FourthAnswer },
+                        new PlanAnswerPoint { FitnessPlanId = GetFitnessPlanId(StrongCurves), Points = (int)AnswerMatch.ThirdAnswer },
+                        new PlanAnswerPoint { FitnessPlanId = GetFitnessPlanId(ThinnerLeanerStronger), Points = (int)AnswerMatch.FourthAnswer },
+                        new PlanAnswerPoint { FitnessPlanId = GetFitnessPlanId(DumbbellOnlyBasics), Points = (int)AnswerMatch.FourthAnswer },
+                        new PlanAnswerPoint { FitnessPlanId = GetFitnessPlanId(TwoSuns), Points = (int)AnswerMatch.FourthAnswer },
+                    },
+                    Answers = new List<Answer>
+                    {
+                        new Answer { AnswerText = "Yes", Points = (int)AnswerMatch.FirstAnswer },
+                        new Answer { AnswerText = "Only some", Points = (int)AnswerMatch.SecondAnswer },
+                        new Answer { AnswerText = "Not really", Points = (int)AnswerMatch.ThirdAnswer },
+                        new Answer { AnswerText = "No", Points = (int)AnswerMatch.FourthAnswer },
+                    }
+                },
+                new Question
+                {
                     QuestionText = "How important is increasing aesthetics as a goal for you?",
                     PlanAnswerPoints = new List<PlanAnswerPoint>
                     {
@@ -208,7 +229,7 @@ namespace Reggest.Data
                     },
                     Answers = GetAnswersForImportance(),
                 },
-                                new Question
+                new Question
                 {
                     QuestionText = "How important is upper body development (arms, chest, shoulders etc.) to you?",
                     PlanAnswerPoints = new List<PlanAnswerPoint>
