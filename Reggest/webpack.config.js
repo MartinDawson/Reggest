@@ -27,7 +27,7 @@ const plugins = [
     },
   }),
   new HTMLPlugin({
-    title: 'reggest',
+    title: 'Suggests a fitness plan for you based on your goals',
     hash: true,
     favicon: path.resolve(__dirname, 'wwwroot/favicon.ico'),
     template: path.resolve(__dirname, 'Components/app/app.ejs'),
