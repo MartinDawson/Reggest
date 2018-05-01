@@ -5,6 +5,9 @@ import { Helmet } from 'react-helmet';
 import QAndA from '../qAndA/qAndAContainer';
 import FitnessPlans from './fitnessPlansContainer';
 import styles from './fitness.less';
+import womanWorkoutImage from '../../wwwroot/images/womanWorkout.jpg';
+
+const shareUrl = window.location.origin;
 
 const Fitness = ({
   data,
@@ -14,6 +17,14 @@ const Fitness = ({
     <Helmet>
       <title>Suggests a fitness plan for you based on your goals</title>
       <meta name="description" content="Starting Strength, Strong Lifts 5x5, Strong Curves, Nsuns and lots more certified fitness plans designed for your goals." />
+      <meta name="twitter:card" content="app" />
+      <meta name="twitter:site" content="@ReggestOfficial" />
+      <meta property="og:title" content="9 simple questions to find the best fitness plan for you. Take the quiz now." />
+      <meta property="og:url" content={shareUrl} />
+      <meta property="og:type" content="website" />
+      <meta property="og:description" content="Not sure what program or routine to do at the gym? Take the fitness quiz to get a fitness plan which best suits your goals." />
+      <meta property="og:image" content={womanWorkoutImage} />
+      <meta property="og:site_name" content="Reggest.com" />
     </Helmet>
     <div>
       <div>
