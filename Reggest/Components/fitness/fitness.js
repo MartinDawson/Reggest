@@ -9,6 +9,9 @@ import womanWorkoutImage from '../../wwwroot/images/womanWorkout.jpg';
 
 const shareUrl = window.location.origin;
 
+const ogTitle = '9 simple questions to find the best fitness plan for you. Take the quiz now.';
+const ogDescription = 'Not sure what program or routine to do at the gym? Take the fitness quiz to get a fitness plan which best suits your goals.';
+
 const Fitness = ({
   data,
   getNextQuestion,
@@ -19,11 +22,17 @@ const Fitness = ({
       <meta name="description" content="Starting Strength, Strong Lifts 5x5, Strong Curves, Nsuns and lots more certified fitness plans designed for your goals." />
       <meta name="twitter:card" content="app" />
       <meta name="twitter:site" content="@ReggestOfficial" />
-      <meta property="og:title" content="9 simple questions to find the best fitness plan for you. Take the quiz now." />
+      <meta name="twitter:title" content={ogTitle} />
+      <meta name="twitter:description" content={ogDescription} />
+      <meta name="twitter:image:src" content={window.location.origin + womanWorkoutImage} />
+      <meta itemProp="name" content={ogTitle} />
+      <meta itemProp="description" content={ogDescription} />
+      <meta itemProp="image" content={window.location.origin + womanWorkoutImage} />
+      <meta property="og:title" content={ogTitle} />
       <meta property="og:url" content={shareUrl} />
       <meta property="og:type" content="website" />
-      <meta property="og:description" content="Not sure what program or routine to do at the gym? Take the fitness quiz to get a fitness plan which best suits your goals." />
-      <meta property="og:image" content={womanWorkoutImage} />
+      <meta property="og:description" content={ogDescription} />
+      <meta property="og:image" content={window.location.origin + womanWorkoutImage} />
       <meta property="og:site_name" content="Reggest.com" />
     </Helmet>
     <div>
