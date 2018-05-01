@@ -22,9 +22,6 @@ const Fitness = ({
       <meta name="description" content="Starting Strength, Strong Lifts 5x5, Strong Curves, Nsuns and lots more certified fitness plans designed for your goals." />
       <meta name="twitter:card" content="app" />
       <meta name="twitter:site" content="@ReggestOfficial" />
-      <meta name="twitter:title" content={ogTitle} />
-      <meta name="twitter:description" content={ogDescription} />
-      <meta name="twitter:image:src" content={window.location.origin + womanWorkoutImage} />
       <meta itemProp="name" content={ogTitle} />
       <meta itemProp="description" content={ogDescription} />
       <meta itemProp="image" content={window.location.origin + womanWorkoutImage} />
