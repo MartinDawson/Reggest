@@ -27,6 +27,16 @@ const FitnessPlans = ({ fitnessPlans }) => (
           </div>
         </div>
         <div className={styles.description}>{fitnessPlan.description}</div>
+        <ul className={styles.links}>
+          <span className={styles.label}>
+            Resources:
+          </span>
+          {fitnessPlan.links.map(link => (
+            <li>
+              <a href={link.url} className={styles.link} target="_blank" rel="noopener noreferrer">{link.title}</a>
+            </li>
+          ))}
+        </ul>
       </div>
     </li>
   ))
@@ -42,6 +52,12 @@ FitnessPlans.propTypes = {
         hours: PropTypes.number.isRequired,
         minutes: PropTypes.number.isRequired,
       }),
+      links: PropTypes.arrayOf(
+        PropTypes.shape({
+          title: PropTypes.string.isRequired,
+          url: PropTypes.string.isRequired,
+        }).isRequired,
+      ).isRequired,
     }).isRequired,
   ).isRequired,
 };

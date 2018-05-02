@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 23fc94d522b27f1efc4ca7df46fe048f
+ * @relayHash 6c8aceac5681d21e3cffb46c547f90f9
  */
 
 /* eslint-disable */
@@ -13,7 +13,7 @@ type fitnessContainer$ref = any;
 export type fitnessContainerRefetchQueryVariables = {|
   questionIndex?: ?number,
   order?: ?{
-    fitnessPlanIds: $ReadOnlyArray<?number>,
+    planIds: $ReadOnlyArray<?number>,
   },
 |};
 export type fitnessContainerRefetchQueryResponse = {|
@@ -56,6 +56,11 @@ fragment fitnessPlansContainer on Query {
       hours
       minutes
     }
+    links {
+      title
+      url
+      id
+    }
     ...workoutDaysPerWeekContainer_plan
     id
   }
@@ -93,7 +98,7 @@ return {
   "operationKind": "query",
   "name": "fitnessContainerRefetchQuery",
   "id": null,
-  "text": "query fitnessContainerRefetchQuery(\n  $questionIndex: Int\n  $order: FitnessPlanOrderInput\n) {\n  ...fitnessContainer\n}\n\nfragment fitnessContainer on Query {\n  questionByIndex(index: $questionIndex) {\n    ...qAndAContainer_question\n    id\n  }\n  ...fitnessPlansContainer\n}\n\nfragment qAndAContainer_question on Question {\n  questionText\n  answers {\n    answerId\n    answerText\n    id\n  }\n}\n\nfragment fitnessPlansContainer on Query {\n  fitnessPlans(order: $order) {\n    planId\n    name\n    description\n    timeToWorkout {\n      hours\n      minutes\n    }\n    ...workoutDaysPerWeekContainer_plan\n    id\n  }\n}\n\nfragment workoutDaysPerWeekContainer_plan on Plan {\n  workoutDaysPerWeek\n}\n",
+  "text": "query fitnessContainerRefetchQuery(\n  $questionIndex: Int\n  $order: FitnessPlanOrderInput\n) {\n  ...fitnessContainer\n}\n\nfragment fitnessContainer on Query {\n  questionByIndex(index: $questionIndex) {\n    ...qAndAContainer_question\n    id\n  }\n  ...fitnessPlansContainer\n}\n\nfragment qAndAContainer_question on Question {\n  questionText\n  answers {\n    answerId\n    answerText\n    id\n  }\n}\n\nfragment fitnessPlansContainer on Query {\n  fitnessPlans(order: $order) {\n    planId\n    name\n    description\n    timeToWorkout {\n      hours\n      minutes\n    }\n    links {\n      title\n      url\n      id\n    }\n    ...workoutDaysPerWeekContainer_plan\n    id\n  }\n}\n\nfragment workoutDaysPerWeekContainer_plan on Plan {\n  workoutDaysPerWeek\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -226,6 +231,32 @@ return {
                 "args": null,
                 "storageKey": null
               }
+            ]
+          },
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "links",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "Link",
+            "plural": true,
+            "selections": [
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "title",
+                "args": null,
+                "storageKey": null
+              },
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "url",
+                "args": null,
+                "storageKey": null
+              },
+              v1
             ]
           },
           {

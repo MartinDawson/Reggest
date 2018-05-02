@@ -43,15 +43,17 @@ const reducer = (state = defaultState, action) => {
 
       Object.keys(planAnswerPoints).forEach((key) => {
         const planAnswerPoint = planAnswerPoints[key];
-        let closestPoint = Number.MAX_SAFE_INTEGER;
+        let closestPoint = 0;
+        let isSet = false;
 
         planAnswerPoint.points.forEach((point) => {
           const maxNumber = Math.max(action.answerPoints, point);
           const minNumber = Math.min(action.answerPoints, point);
           const difference = maxNumber - minNumber;
 
-          if (difference < closestPoint) {
+          if ((difference < closestPoint) || !isSet) {
             closestPoint = difference;
+            isSet = true;
           }
         });
 

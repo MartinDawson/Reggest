@@ -184,9 +184,8 @@ namespace Reggest.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Description");
-
-                    b.Property<string>("Link");
+                    b.Property<string>("Description")
+                        .IsRequired();
 
                     b.Property<string>("Name")
                         .IsRequired();
@@ -196,6 +195,30 @@ namespace Reggest.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("FitnessPlans");
+                });
+
+            modelBuilder.Entity("Reggest.Components.fitness.Link", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int?>("FitnessPlanId");
+
+                    b.Property<string>("Title")
+                        .IsRequired();
+
+                    b.Property<string>("Url")
+                        .IsRequired();
+
+                    b.Property<int?>("VariationPlanId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FitnessPlanId");
+
+                    b.HasIndex("VariationPlanId");
+
+                    b.ToTable("Links");
                 });
 
             modelBuilder.Entity("Reggest.Components.fitness.PlanAnswerPoint", b =>
@@ -227,11 +250,10 @@ namespace Reggest.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Description");
+                    b.Property<string>("Description")
+                        .IsRequired();
 
                     b.Property<int?>("FitnessPlanId");
-
-                    b.Property<string>("Link");
 
                     b.Property<string>("Name")
                         .IsRequired();
@@ -340,6 +362,17 @@ namespace Reggest.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Reggest.Components.fitness.Link", b =>
+                {
+                    b.HasOne("Reggest.Components.fitness.FitnessPlan")
+                        .WithMany("Links")
+                        .HasForeignKey("FitnessPlanId");
+
+                    b.HasOne("Reggest.Components.fitness.VariationPlan")
+                        .WithMany("Links")
+                        .HasForeignKey("VariationPlanId");
                 });
 
             modelBuilder.Entity("Reggest.Components.fitness.PlanAnswerPoint", b =>

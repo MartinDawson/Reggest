@@ -21,7 +21,7 @@ namespace Reggest.Components.qAndA
             Id("planId", x => x.Id);
             Field(x => x.Name);
             Field(x => x.Description);
-            Field(x => x.Link, nullable: true);
+            Field<ListGraphType<LinkPayload>>("links", "The resources for this fitness plan, e.g. apps, workouts etc");
             Field<ListGraphType<IntGraphType>>("workoutDaysPerWeek", "The days per week to workout for this fitness plan", resolve: x => x.Source.WorkoutDaysPerWeek.Select(z => z.DaysPerWeek));
             Field<TimeToWorkoutPayload>("timeToWorkout", "The time the workout takes in hours/minutes", resolve: x =>
             {

@@ -20,6 +20,10 @@ export type fitnessPlansContainer = {|
       +hours: ?number,
       +minutes: ?number,
     |},
+    +links: ?$ReadOnlyArray<?{|
+      +title: string,
+      +url: string,
+    |}>,
     +$fragmentRefs: workoutDaysPerWeekContainer_plan$ref,
   |}>,
   +$refType: fitnessPlansContainer$ref,
@@ -103,6 +107,31 @@ const node/*: ConcreteFragment*/ = {
           ]
         },
         {
+          "kind": "LinkedField",
+          "alias": null,
+          "name": "links",
+          "storageKey": null,
+          "args": null,
+          "concreteType": "Link",
+          "plural": true,
+          "selections": [
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "name": "title",
+              "args": null,
+              "storageKey": null
+            },
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "name": "url",
+              "args": null,
+              "storageKey": null
+            }
+          ]
+        },
+        {
           "kind": "FragmentSpread",
           "name": "workoutDaysPerWeekContainer_plan",
           "args": null
@@ -111,5 +140,5 @@ const node/*: ConcreteFragment*/ = {
     }
   ]
 };
-(node/*: any*/).hash = '6af89e535952ee01354724e0909b2fe4';
+(node/*: any*/).hash = 'f1419124f3742d2cc9339c8361efd8b1';
 module.exports = node;

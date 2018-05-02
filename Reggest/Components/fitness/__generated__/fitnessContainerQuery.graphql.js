@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 7ed1efe4c0230a26f00633f8238af234
+ * @relayHash ea028aaf251b66fffdb73864294d9c40
  */
 
 /* eslint-disable */
@@ -14,7 +14,7 @@ type fitnessPlansContainer$ref = any;
 export type fitnessContainerQueryVariables = {|
   questionIndex?: ?number,
   order?: ?{
-    fitnessPlanIds: $ReadOnlyArray<?number>,
+    planIds: $ReadOnlyArray<?number>,
   },
 |};
 export type fitnessContainerQueryResponse = {|
@@ -48,6 +48,11 @@ fragment fitnessPlansContainer on Query {
     timeToWorkout {
       hours
       minutes
+    }
+    links {
+      title
+      url
+      id
     }
     ...workoutDaysPerWeekContainer_plan
     id
@@ -95,7 +100,7 @@ return {
   "operationKind": "query",
   "name": "fitnessContainerQuery",
   "id": null,
-  "text": "query fitnessContainerQuery(\n  $questionIndex: Int\n  $order: FitnessPlanOrderInput\n) {\n  ...fitnessContainer\n  ...fitnessPlansContainer\n}\n\nfragment fitnessContainer on Query {\n  questionByIndex(index: $questionIndex) {\n    ...qAndAContainer_question\n    id\n  }\n  ...fitnessPlansContainer\n}\n\nfragment fitnessPlansContainer on Query {\n  fitnessPlans(order: $order) {\n    planId\n    name\n    description\n    timeToWorkout {\n      hours\n      minutes\n    }\n    ...workoutDaysPerWeekContainer_plan\n    id\n  }\n}\n\nfragment workoutDaysPerWeekContainer_plan on Plan {\n  workoutDaysPerWeek\n}\n\nfragment qAndAContainer_question on Question {\n  questionText\n  answers {\n    answerId\n    answerText\n    id\n  }\n}\n",
+  "text": "query fitnessContainerQuery(\n  $questionIndex: Int\n  $order: FitnessPlanOrderInput\n) {\n  ...fitnessContainer\n  ...fitnessPlansContainer\n}\n\nfragment fitnessContainer on Query {\n  questionByIndex(index: $questionIndex) {\n    ...qAndAContainer_question\n    id\n  }\n  ...fitnessPlansContainer\n}\n\nfragment fitnessPlansContainer on Query {\n  fitnessPlans(order: $order) {\n    planId\n    name\n    description\n    timeToWorkout {\n      hours\n      minutes\n    }\n    links {\n      title\n      url\n      id\n    }\n    ...workoutDaysPerWeekContainer_plan\n    id\n  }\n}\n\nfragment workoutDaysPerWeekContainer_plan on Plan {\n  workoutDaysPerWeek\n}\n\nfragment qAndAContainer_question on Question {\n  questionText\n  answers {\n    answerId\n    answerText\n    id\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -233,6 +238,32 @@ return {
                 "args": null,
                 "storageKey": null
               }
+            ]
+          },
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "links",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "Link",
+            "plural": true,
+            "selections": [
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "title",
+                "args": null,
+                "storageKey": null
+              },
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "url",
+                "args": null,
+                "storageKey": null
+              },
+              v1
             ]
           },
           {

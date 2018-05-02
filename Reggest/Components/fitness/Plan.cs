@@ -14,9 +14,10 @@ namespace Reggest.Components.fitness
         public string Name { get; set; }
         [Required]
         public string Description { get; set; }
-        public string Link { get; set; }
         [Required]
         public TimeSpan TimeToCompleteWorkout { get; set; }
+        [Required]
+        public virtual ICollection<Link> Links { get; set; } = new List<Link>();
         public virtual ICollection<WorkoutDayPerWeek> WorkoutDaysPerWeek { get; set; } = new List<WorkoutDayPerWeek>();
     }
 }

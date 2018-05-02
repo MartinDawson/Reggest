@@ -54,8 +54,7 @@ namespace Reggest.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Description = table.Column<string>(nullable: true),
-                    Link = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: false),
                     Name = table.Column<string>(nullable: false),
                     TimeToCompleteWorkout = table.Column<TimeSpan>(nullable: false)
                 },
@@ -189,9 +188,8 @@ namespace Reggest.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Description = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: false),
                     FitnessPlanId = table.Column<int>(nullable: true),
-                    Link = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: false),
                     TimeToCompleteWorkout = table.Column<TimeSpan>(nullable: false)
                 },
@@ -225,6 +223,34 @@ namespace Reggest.Migrations
                         principalTable: "Questions",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Links",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    FitnessPlanId = table.Column<int>(nullable: true),
+                    Title = table.Column<string>(nullable: false),
+                    Url = table.Column<string>(nullable: false),
+                    VariationPlanId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Links", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Links_FitnessPlans_FitnessPlanId",
+                        column: x => x.FitnessPlanId,
+                        principalTable: "FitnessPlans",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Links_VariationPlans_VariationPlanId",
+                        column: x => x.VariationPlanId,
+                        principalTable: "VariationPlans",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -333,6 +359,16 @@ namespace Reggest.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Links_FitnessPlanId",
+                table: "Links",
+                column: "FitnessPlanId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Links_VariationPlanId",
+                table: "Links",
+                column: "VariationPlanId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_PlansAnswersPoints_FitnessPlanId",
                 table: "PlansAnswersPoints",
                 column: "FitnessPlanId");
@@ -382,6 +418,9 @@ namespace Reggest.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Links");
 
             migrationBuilder.DropTable(
                 name: "PlansAnswersPoints");

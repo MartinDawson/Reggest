@@ -12,7 +12,8 @@ namespace Reggest.Components.fitness
         public static IQueryable<T> BuildPlan<T>(this IQueryable<T> query) where T : Plan
         {
             return query
-                .Include(x => x.WorkoutDaysPerWeek);
+                .Include(x => x.WorkoutDaysPerWeek)
+                .Include(x => x.Links);
         }
     }
 }

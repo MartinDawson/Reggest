@@ -1,5 +1,5 @@
 # source: http://localhost:49891/graphql
-# timestamp: Sun Apr 29 2018 18:56:30 GMT+0200 (W. Europe Daylight Time)
+# timestamp: Wed May 02 2018 23:23:23 GMT+0200 (W. Europe Daylight Time)
 
 type Answer implements Node {
   """The Id of the Answer"""
@@ -35,7 +35,9 @@ type FitnessPlan implements Node & Plan {
   id: ID!
   name: String!
   description: String!
-  link: String
+
+  """The resources for this fitness plan, e.g. apps, workouts etc"""
+  links: [Link]
 
   """The days per week to workout for this fitness plan"""
   workoutDaysPerWeek: [Int]
@@ -49,8 +51,16 @@ type FitnessPlan implements Node & Plan {
 
 """Provides ordering"""
 input FitnessPlanOrderInput {
-  """Orders by the ids of fitnessPlans"""
-  fitnessPlanIds: [Int]!
+  """Orders by the ids of the plans"""
+  planIds: [Int]!
+}
+
+type Link {
+  id: ID
+
+  """The title of what this link is"""
+  title: String!
+  url: String!
 }
 
 type Mutation {
@@ -68,7 +78,9 @@ interface Plan {
   planId: Int!
   name: String!
   description: String!
-  link: String
+
+  """The resources for this plan, e.g. apps, workouts etc"""
+  links: [Link]
 
   """The days per week to workout for this plan"""
   workoutDaysPerWeek: [Int]
@@ -150,7 +162,9 @@ type VariationPlan implements Plan {
   planId: Int!
   name: String!
   description: String!
-  link: String
+
+  """The resources for this variation plan, e.g. apps, workouts etc"""
+  links: [Link]
 
   """The days per week to workout for this variation plan"""
   workoutDaysPerWeek: [Int]

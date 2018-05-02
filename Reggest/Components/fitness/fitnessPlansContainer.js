@@ -16,6 +16,10 @@ const fragments = graphql`
         hours
         minutes
       }
+      links {
+        title
+        url
+      }
       ...workoutDaysPerWeekContainer_plan
     }
   }

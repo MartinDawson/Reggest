@@ -135,6 +135,20 @@ namespace Reggest.Data
                 },
                 new Question
                 {
+                    QuestionText = "Are you male or female?",
+                    PlanAnswerPoints = new List<PlanAnswerPoint>
+                    {
+                        new PlanAnswerPoint { FitnessPlanId = GetFitnessPlanId(StrongCurves), Points = (int)AnswerMatch.SixthAnswer },
+                        new PlanAnswerPoint { FitnessPlanId = GetFitnessPlanId(ThinnerLeanerStronger), Points = (int)AnswerMatch.SixthAnswer },
+                    },
+                    Answers = new List<Answer>
+                    {
+                        new Answer { AnswerText = "Male", Points = (int)AnswerMatch.FirstAnswer },
+                        new Answer { AnswerText = "Female", Points = (int)AnswerMatch.SixthAnswer },
+                    }
+                },
+                new Question
+                {
                     QuestionText = "How comfortable are you using dumbbells in your routine?",
                     PlanAnswerPoints = new List<PlanAnswerPoint>
                     {
@@ -259,7 +273,9 @@ namespace Reggest.Data
                 {
                     Name = GZCLP,
                     Description = "Free novice strength training program with linear progression. Focuses on main barbell movements with machine and dumbbell accessories, making it easy to customize for aesthetic goals. Many prefer the structure and body part balance of GZCL over StrongLifts and Starting Strength, but there is no movement instruction provided. 3 days per week.",
-                    Link = "https://www.reddit.com/r/Fitness/comments/6pjiwd/heres_a_quick_summary_of_the_gzclp_linear/",
+                    Links = new List<Link> {
+                        new Link { Title = "Getting started", Url = "https://www.reddit.com/r/Fitness/comments/6pjiwd/heres_a_quick_summary_of_the_gzclp_linear/" },
+                    },
                     WorkoutDaysPerWeek = new List<WorkoutDayPerWeek> {
                         new WorkoutDayPerWeek { DaysPerWeek = 3 },
                     },
@@ -269,7 +285,9 @@ namespace Reggest.Data
                 {
                     Name = StartingStrength,
                     Description = "Book paired with a simple program for foundational strength. 3 days/week workout schedule on only the major barbell movements (no accessory work).",
-                    Link = "https://startingstrength.com/",
+                    Links = new List<Link> {
+                        new Link { Title = "Website", Url = "https://startingstrength.com/" },
+                    },
                     WorkoutDaysPerWeek = new List<WorkoutDayPerWeek> {
                         new WorkoutDayPerWeek { DaysPerWeek = 3 },
                     },
@@ -279,7 +297,9 @@ namespace Reggest.Data
                 {
                     Name = StrongLifts,
                     Description = "Free website-based beginner's program. 3 days/week workout schedule on only the major barbell movements (no accessory work). Very similar to Starting Strength but adds rows and adjusts the volume slightly.",
-                    Link = "https://stronglifts.com/5x5/",
+                    Links = new List<Link> {
+                        new Link { Title = "Website", Url = "https://stronglifts.com/5x5/" },
+                    },
                     WorkoutDaysPerWeek = new List<WorkoutDayPerWeek> {
                         new WorkoutDayPerWeek { DaysPerWeek = 3 },
                     },
@@ -289,7 +309,9 @@ namespace Reggest.Data
                 {
                     Name = StrongCurves,
                     Description = "An aesthetics-based beginners program. Focuses on glute and lower body development, while also including upper body work as well.",
-                    Link = "https://www.reddit.com/r/xxfitness/comments/3k7e47/ok_the_color_coded_google_excel_strong_curve/?st=jfzvxru9&sh=a1dd43f2",
+                    Links = new List<Link> {
+                        new Link { Title = "Getting started", Url = "https://www.reddit.com/r/xxfitness/comments/3k7e47/ok_the_color_coded_google_excel_strong_curve/?st=jfzvxru9&sh=a1dd43f2" },
+                    },
                     WorkoutDaysPerWeek = new List<WorkoutDayPerWeek> {
                         new WorkoutDayPerWeek { DaysPerWeek = 3 },
                         new WorkoutDayPerWeek { DaysPerWeek = 4 },
@@ -300,7 +322,9 @@ namespace Reggest.Data
                 {
                     Name = ThinnerLeanerStronger,
                     Description = "Book with fitness program, diet advice, supplement recommendations, etc. Comes in 3/4/5 day variants.",
-                    Link = "https://www.muscleforlife.com/thinner-leaner-stronger/",
+                    Links = new List<Link> {
+                        new Link { Title = "Website", Url = "https://www.muscleforlife.com/thinner-leaner-stronger/" },
+                    },
                     WorkoutDaysPerWeek = new List<WorkoutDayPerWeek> {
                         new WorkoutDayPerWeek { DaysPerWeek = 3 },
                         new WorkoutDayPerWeek { DaysPerWeek = 4 },
@@ -312,7 +336,9 @@ namespace Reggest.Data
                 {
                     Name = DumbbellOnlyBasics,
                     Description = "For those limited to dumbbells only or who want to start with less technical movements. A traditional bodypart 'split' routine with days dedicated to chest/triceps, back/biceps, and legs/shoulders. 3 days per week.",
-                    Link = "https://www.muscleandstrength.com/workouts/frankoman-dumbbell-only-split.html",
+                    Links = new List<Link> {
+                        new Link { Title = "Workout", Url = "https://www.muscleandstrength.com/workouts/frankoman-dumbbell-only-split.html" },
+                    },
                     TimeToCompleteWorkout = TimeSpan.FromMinutes(45),
                     WorkoutDaysPerWeek = new List<WorkoutDayPerWeek> {
                         new WorkoutDayPerWeek { DaysPerWeek = 3 },
@@ -322,6 +348,9 @@ namespace Reggest.Data
                 {
                     Name = TwoSuns,
                     Description = "The nSuns (2suns) Linear Progression program is that takes inspiration from a few other popular programs and condenses it down into a single high volume week. Involves heavy amounts of squats/deadlifts/benching.",
+                    Links = new List<Link>  {
+                        new Link { Title = "Getting started", Url = "http://archive.is/2017.01.27-015129/https://www.reddit.com/r/Fitness/comments/5icyza/2_suns531lp_tdee_calculator_and_other_items_all/" },
+                    },
                     TimeToCompleteWorkout = TimeSpan.FromHours(1.5),
                     WorkoutDaysPerWeek = new List<WorkoutDayPerWeek> {
                         new WorkoutDayPerWeek { DaysPerWeek = 4 },

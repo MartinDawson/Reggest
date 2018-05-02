@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash c152cd236b7a03da52f81a09de254ce6
+ * @relayHash 441bd9b6e6233e408a327daddb48b18d
  */
 
 /* eslint-disable */
@@ -12,7 +12,7 @@ import type { ConcreteRequest } from 'relay-runtime';
 type fitnessPlansContainer$ref = any;
 export type fitnessPlansRankedContainerQueryVariables = {|
   order?: ?{
-    fitnessPlanIds: $ReadOnlyArray<?number>,
+    planIds: $ReadOnlyArray<?number>,
   },
 |};
 export type fitnessPlansRankedContainerQueryResponse = {|
@@ -37,6 +37,11 @@ fragment fitnessPlansContainer on Query {
       hours
       minutes
     }
+    links {
+      title
+      url
+      id
+    }
     ...workoutDaysPerWeekContainer_plan
     id
   }
@@ -55,13 +60,20 @@ var v0 = [
     "type": "FitnessPlanOrderInput",
     "defaultValue": null
   }
-];
+],
+v1 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
+};
 return {
   "kind": "Request",
   "operationKind": "query",
   "name": "fitnessPlansRankedContainerQuery",
   "id": null,
-  "text": "query fitnessPlansRankedContainerQuery(\n  $order: FitnessPlanOrderInput\n) {\n  ...fitnessPlansContainer\n}\n\nfragment fitnessPlansContainer on Query {\n  fitnessPlans(order: $order) {\n    planId\n    name\n    description\n    timeToWorkout {\n      hours\n      minutes\n    }\n    ...workoutDaysPerWeekContainer_plan\n    id\n  }\n}\n\nfragment workoutDaysPerWeekContainer_plan on Plan {\n  workoutDaysPerWeek\n}\n",
+  "text": "query fitnessPlansRankedContainerQuery(\n  $order: FitnessPlanOrderInput\n) {\n  ...fitnessPlansContainer\n}\n\nfragment fitnessPlansContainer on Query {\n  fitnessPlans(order: $order) {\n    planId\n    name\n    description\n    timeToWorkout {\n      hours\n      minutes\n    }\n    links {\n      title\n      url\n      id\n    }\n    ...workoutDaysPerWeekContainer_plan\n    id\n  }\n}\n\nfragment workoutDaysPerWeekContainer_plan on Plan {\n  workoutDaysPerWeek\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -145,19 +157,39 @@ return {
             ]
           },
           {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "links",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "Link",
+            "plural": true,
+            "selections": [
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "title",
+                "args": null,
+                "storageKey": null
+              },
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "url",
+                "args": null,
+                "storageKey": null
+              },
+              v1
+            ]
+          },
+          {
             "kind": "ScalarField",
             "alias": null,
             "name": "workoutDaysPerWeek",
             "args": null,
             "storageKey": null
           },
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "id",
-            "args": null,
-            "storageKey": null
-          }
+          v1
         ]
       }
     ]

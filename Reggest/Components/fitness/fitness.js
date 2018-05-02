@@ -9,7 +9,7 @@ import womanWorkoutImage from '../../wwwroot/images/womanWorkout.jpg';
 
 const shareUrl = window.location.origin;
 
-const ogTitle = '9 simple questions to find the best fitness plan for you. Take the quiz now.';
+const ogTitle = '10 simple questions to find the best fitness plan for you. Take the quiz now.';
 const ogDescription = 'Not sure what program or routine to do at the gym? Take the fitness quiz to get a fitness plan which best suits your goals.';
 
 const Fitness = ({
